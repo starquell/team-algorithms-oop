@@ -3,7 +3,7 @@
 #include "SplayTreeAlgorithms.hpp"
 #include "../NodeTools.hpp"
 
-namespace lab {
+namespace trees {
 
     template <typename T>
     auto SplayTree<T>::begin() const -> iterator {

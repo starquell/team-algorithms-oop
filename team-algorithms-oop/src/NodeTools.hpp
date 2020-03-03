@@ -1,6 +1,6 @@
 #pragma once
 
-namespace lab::detail {
+namespace trees::detail {
 
     template <typename BinaryTreeNode>
     bool isLeftSon (BinaryTreeNode* node) noexcept {

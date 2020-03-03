@@ -5,7 +5,7 @@
 
 #include "../BinarySearchTreeIterator.hpp"
 
-namespace lab {
+namespace trees{
 
     template <typename T>
     class SplayTree {

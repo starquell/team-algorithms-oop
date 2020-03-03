@@ -2,7 +2,7 @@
 
 #include "NodeTools.hpp"
 
-namespace lab {
+namespace trees {
 
     template <typename BSTNode, typename T>
     bool BinarySearchTreeIterator<BSTNode, T>::operator!= (

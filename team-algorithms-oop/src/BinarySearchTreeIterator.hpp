@@ -1,6 +1,6 @@
 #pragma once
 
-namespace lab {
+namespace trees {
 
     template <typename BinarySearchTreeNode, typename T>
     class BinarySearchTreeIterator {

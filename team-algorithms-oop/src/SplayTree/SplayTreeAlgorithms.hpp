@@ -4,7 +4,7 @@
 #include <utility>
 #include <cassert>
 
-namespace lab::detail {
+namespace trees::detail {
 
     template <typename T>
     class Splayer {
