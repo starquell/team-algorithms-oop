@@ -4,7 +4,7 @@
 #include <utility>
 #include <cassert>
 
-namespace trees::detail {
+namespace tree::detail {
 
     template <typename T>
     class Splayer {
@@ -15,6 +15,9 @@ namespace trees::detail {
 
         auto splay() noexcept -> typename SplayTree<T>::Node*
         {
+            if (!m_node) {
+                return nullptr;
+            }
             while (m_node->parent) {
                 if ((isRightSon(m_node) && isLeftSon(m_node->parent)) ||
                     (isLeftSon(m_node) && isRightSon(m_node->parent))) {
@@ -118,7 +121,7 @@ namespace trees::detail {
             return lhs;
         }
         assert(max(lhs)->data < min(rhs)->data);
-        auto lhs_root = splay(max(lhs));
+        auto lhs_root = splay<T>(max(lhs));
         lhs_root->right = rhs;
         lhs_root->right->parent = lhs_root;
         return lhs_root;

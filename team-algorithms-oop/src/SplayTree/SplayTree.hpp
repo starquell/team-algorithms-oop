@@ -5,7 +5,7 @@
 
 #include "../BinarySearchTreeIterator.hpp"
 
-namespace trees{
+namespace tree{
 
     template <typename T>
     class SplayTree {
@@ -28,7 +28,13 @@ namespace trees{
 
         explicit SplayTree() noexcept = default;
 
-        SplayTree(std::initializer_list<T> elems) noexcept;
+        template <typename Iter>
+        SplayTree(Iter begin, Iter end);
+
+        SplayTree(std::initializer_list<T> elems);
+
+        SplayTree (const SplayTree& other);
+        SplayTree& operator= (SplayTree other) noexcept;
 
         bool search (const T& key) noexcept;
         void insert (const T& key);
