@@ -17,13 +17,17 @@ namespace tree {
 
         const T& operator*() noexcept ;
 
-        bool operator!= (const BinarySearchTreeIterator& other) noexcept;
+        bool operator!= (const BinarySearchTreeIterator& other) const noexcept;
 
-        bool operator== (const BinarySearchTreeIterator& other) noexcept;
+        bool operator== (const BinarySearchTreeIterator& other) const noexcept;
 
         BinarySearchTreeIterator& operator++() noexcept ;
 
+        BinarySearchTreeIterator& operator--() noexcept ;
+
         BinarySearchTreeIterator operator+ (int n) const noexcept ;
+
+        BinarySearchTreeIterator operator- (int n) const noexcept ;
 
     private:
         Node* m_curr;

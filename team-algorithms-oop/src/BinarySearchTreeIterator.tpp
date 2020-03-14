@@ -6,14 +6,14 @@ namespace tree {
 
     template <typename BSTNode, typename T>
     bool BinarySearchTreeIterator<BSTNode, T>::operator!= (
-            const BinarySearchTreeIterator<BSTNode, T>& other) noexcept
+            const BinarySearchTreeIterator<BSTNode, T>& other) const noexcept
     {
         return m_curr != other.m_curr;
     }
 
     template <typename BSTNode, typename T>
-    bool BinarySearchTreeIterator<BSTNode, T>::operator== (
-            const BinarySearchTreeIterator<BSTNode, T>& other) noexcept
+    bool BinarySearchTreeIterator<BSTNode, T>::operator==  (
+            const BinarySearchTreeIterator<BSTNode, T>& other) const noexcept
     {
         return m_curr == other.m_curr;
     }
@@ -46,6 +46,32 @@ namespace tree {
     }
 
     template <typename BSTNode, typename T>
+    auto BinarySearchTreeIterator<BSTNode, T>::operator--() noexcept
+    -> BinarySearchTreeIterator<BSTNode, T>&
+    {
+        if (m_curr->left) {
+            auto temp = m_curr->left;
+            while (temp->right) {
+                temp = temp->right;
+            }
+            m_curr = temp;
+            return *this;
+        }
+
+        while (true) {
+            if (!m_curr->parent) {
+                m_curr = nullptr;
+                return *this;
+            }
+            if (detail::isRightSon(m_curr)) {
+                m_curr = m_curr->parent;
+                return *this;
+            }
+            m_curr = m_curr->parent;
+        }
+    }
+
+    template <typename BSTNode, typename T>
     auto BinarySearchTreeIterator<BSTNode, T>::operator*() noexcept
             -> const T&
     {
@@ -64,6 +90,17 @@ namespace tree {
         BinarySearchTreeIterator<BSTNode, T> temp(*this);
         for (int i = 0; i < n; ++i) {
             ++temp;
+        }
+        return temp;
+    }
+
+    template <typename BSTNode, typename T>
+    auto BinarySearchTreeIterator<BSTNode, T>::operator- (int n) const noexcept
+    -> BinarySearchTreeIterator<BSTNode, T>
+    {
+        BinarySearchTreeIterator<BSTNode, T> temp(*this);
+        for (int i = 0; i < n; ++i) {
+            --temp;
         }
         return temp;
     }

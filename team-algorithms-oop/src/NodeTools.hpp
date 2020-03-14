@@ -79,4 +79,24 @@ namespace tree::detail {
         deleteTree(node->right);
         delete node;
     }
+
+    template <typename BinaryTreeNode>
+    BinaryTreeNode* sibling(BinaryTreeNode* node) {
+        if (node->parent == nullptr) {
+            return nullptr;
+        }
+
+        if (isLeftSon(node)) {
+            return node->parent->right;
+        }
+
+        return node->parent->left;
+    }
+
+    template <typename BinaryTreeNode>
+    void swapData(BinaryTreeNode* firstNode, BinaryTreeNode* secondNode) {
+        auto temp = firstNode->data;
+        firstNode->data = secondNode->data;
+        secondNode->data = temp;
+    }
 }
