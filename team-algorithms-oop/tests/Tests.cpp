@@ -2,6 +2,7 @@
 #include "catch.hpp"
 
 #include "../src/SplayTree/SplayTree.hpp"
+#include "../src/RedBlackTree/RedBlackTree.h"
 
 TEST_CASE("Splay tree", "[splay]") {
 
@@ -38,5 +39,33 @@ TEST_CASE("Splay tree", "[splay]") {
         tree.erase(elems[0]);
 
         REQUIRE_FALSE(tree.search(elems[0]));
+    }
+}
+
+TEST_CASE("Red Black Tree", "[RedBlackTree]") {
+
+    std::vector elems = {1, 4, 103, 2, 24};
+
+    SECTION("Constructor's from iterators test") {
+        auto rbTree = new tree::RedBlackTree<int>(elems);
+
+        REQUIRE(*rbTree->begin() == 1);
+        REQUIRE(*(rbTree->begin() + 1) == 2);
+        REQUIRE(*(rbTree->begin() + 2) == 4);
+        REQUIRE(*(rbTree->begin() + 3) == 24);
+        REQUIRE(*(rbTree->begin() + 4) == 103);
+    }
+    auto rbTree = new tree::RedBlackTree<int>(elems);
+
+    SECTION("Insert") {
+        rbTree->insert(100);
+        REQUIRE(rbTree->search(100)!=rbTree->end());
+    }
+
+    SECTION("Erase") {
+        REQUIRE(rbTree->search(elems[0])!=rbTree->end());
+        rbTree->erase(elems[0]);
+
+        REQUIRE(rbTree->search(elems[0])==rbTree->end());
     }
 }
