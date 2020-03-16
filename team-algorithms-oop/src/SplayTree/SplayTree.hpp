@@ -3,29 +3,17 @@
 #include <iterator>
 #include <cstddef>
 
-#include "../BinarySearchTreeIterator.hpp"
+#include <BSTBase.hpp>
+#include <NodeBase.hpp>
 
-namespace tree{
+namespace tree {
 
     template <typename T>
-    class SplayTree {
+    class SplayTree : public BSTBase<T, SplayTree<T>> {
+    private:
+        using Base = BSTBase<T, SplayTree<T>>;
 
     public:
-
-        struct Node {
-            T data;
-            Node* left = nullptr;
-            Node* right = nullptr;
-            Node* parent = nullptr;
-        };
-
-    public:
-        using value_type = T;
-        using reference = T&;
-        using const_reference = const T&;
-        using iterator = BinarySearchTreeIterator<Node, T>;
-        using const_iterator = BinarySearchTreeIterator<Node, T>;
-
         explicit SplayTree() noexcept = default;
 
         template <typename Iter>
@@ -33,23 +21,36 @@ namespace tree{
 
         SplayTree(std::initializer_list<T> elems);
 
-        SplayTree (const SplayTree& other);
-        SplayTree& operator= (SplayTree other) noexcept;
+        void insert (const T& key) override;
+        void erase (const T& key) override;
 
-        bool search (const T& key) noexcept;
-        void insert (const T& key);
-        void erase (const T& key);
+        using Base::Base;
+        using Base::operator=;
+        using Base::begin;
+        using Base::end;
+        using Base::size;
 
-        iterator begin() const;
-        iterator end() const;
+        ~SplayTree() override = default;
 
-        ~SplayTree ();
+    protected:
+        using Base::_root;
+        using Base::_size;
+    };
 
-    private:
-        using NodePtr = Node*;
-        NodePtr m_root = nullptr;
+    template <typename T>
+    struct Node<SplayTree<T>> {
+        T data;
+        Node<SplayTree<T>>* left = nullptr;
+        Node<SplayTree<T>>* right = nullptr;
+        Node<SplayTree<T>>* parent = nullptr;
+
+        ~Node<SplayTree<T>> () {
+            if (left)
+                delete left;
+            if (right)
+                delete right;
+        }
     };
 }
 
-#include "../BinarySearchTreeIterator.tpp"
 #include "SplayTree.tpp"
