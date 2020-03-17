@@ -6,14 +6,16 @@ set(CMAKE_CXX_STANDARD 17)
 set(TESTS_DIR ${CMAKE_SOURCE_DIR}/tests)
 set(SRC_DIR ${CMAKE_SOURCE_DIR}/src)
 
+set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
+
 include_directories(${SRC_DIR})
 
-set(SRC_LIST
-        main.cpp)
+set(LIB_NAME ${PROJECT_NAME}core)
 
-option(ENABLE_TESTS "Build test for project" ON)
-#if(ENABLE_TESTS)
+option(ENABLE_TESTS "Build tests for project" ON)
+if(ENABLE_TESTS)
     add_subdirectory(${TESTS_DIR})
-#endif()
+endif()
 
-add_executable(${PROJECT_NAME} ${SRC_LIST})
+add_executable(main main.cpp)
