@@ -17,26 +17,26 @@ namespace tree {
 
     public:
         using value_type = T;
-    using iterator = BSTIterator<T, Node<DerivedTree>>;
+        using iterator = BSTIterator<T, Node<DerivedTree>>;
 
-    iterator search (const T& key) noexcept;
+        iterator search (const T& key) noexcept;
 
-    virtual void insert (const T& key) = 0;
-    virtual void erase (const T& key) = 0;
+        virtual void insert (const T& key) = 0;
+        virtual void erase (const T& key) = 0;
 
-    using Base::TreeBase;
-    using Base::operator=;
-    using Base::size;
+        using Base::TreeBase;
+        using Base::operator=;
+        using Base::size;
 
-    iterator begin() const;
-    iterator end() const;
+        iterator begin() const;
+        iterator end() const;
 
-    ~BSTBase() override = default;
+        ~BSTBase() override = default;
 
     protected:
-    using Base::_root;
-    using Base::_size;
-};
+        using Base::_root;
+        using Base::_size;
+    };
 }
 
 #include "BSTBase.tpp"
