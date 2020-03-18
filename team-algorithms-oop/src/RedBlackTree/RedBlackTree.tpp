@@ -1,114 +1,70 @@
 #pragma once
 
 #include "RedBlackTree.h"
-#include "NodeTools.hpp"
-#include "BinarySearchTreeIterator.hpp"
+#include "../NodeUtilities.hpp"
+#include "RBNodeUtilities.h"
 
 namespace tree {
 
     template <typename T>
-    bool RedBlackTree<T>::Node::hasRedChild() {
-        return (left != nullptr && left->color == red) ||
-               (right != nullptr && right->color == red);
+    void RedBlackTree<T>::rotateLeft(Node<RedBlackTree<T>> *&currNode) {
+        Node<RedBlackTree<T>> *currChildRight = currNode->right;
+        currNode->right = currChildRight->left;
+
+        if (currNode->right != nullptr) {
+            currNode->right->parent = currNode;
+        }
+
+        currChildRight->parent = currNode->parent;
+
+        if (currNode->parent == nullptr) {
+            _root = currChildRight;
+        } else if (currNode == currNode->parent->left) {
+            currNode->parent->left = currChildRight;
+        } else {
+            currNode->parent->right = currChildRight;
+        }
+
+        currChildRight->left = currNode;
+        currNode->parent = currChildRight;
     }
 
     template <typename T>
-    void RedBlackTree<T>::Node::swapColors(Node* firstNode, Node* secondNode) {
-        Color temp = firstNode->color;
-        firstNode->color = secondNode->color;
-        secondNode->color = temp;
+    void RedBlackTree<T>::rotateRight(Node<RedBlackTree<T>> *&currNode) {
+        Node<RedBlackTree<T>> *currChildLeft = currNode->left;
+        currNode->left = currChildLeft->right;
+
+        if (currNode->left != nullptr) {
+            currNode->left->parent = currNode;
+        }
+
+        currChildLeft->parent = currNode->parent;
+
+        if (currNode->parent == nullptr) {
+            _root = currChildLeft;
+        } else if (currNode == currNode->parent->left) {
+            currNode->parent->left = currChildLeft;
+        } else {
+            currNode->parent->right = currChildLeft;
+        }
+
+        currChildLeft->right = currNode;
+        currNode->parent = currChildLeft;
     }
 
     template <typename T>
-        auto RedBlackTree<T>::simpleInsert(Node *currNode, Node *inputNode) { //insert like in ordinary BST
-            if (currNode == nullptr) {
-                return inputNode;
-            }
+        void RedBlackTree<T>::fixTree(Node<RedBlackTree<T>>* &currNode) {
+        Node<RedBlackTree<T>> *currParent = nullptr;
+        Node<RedBlackTree<T>> *currGrandparent = nullptr;
 
-            if (inputNode->data < currNode->data) {
-                currNode->left = simpleInsert(currNode->left, inputNode);
-                currNode->left->parent = currNode;
-            } else if (inputNode->data > currNode->data) {
-                currNode->right = simpleInsert(currNode->right, inputNode);
-                currNode->right->parent = currNode;
-            }
-
-            return currNode;
-        }
-
-    template <typename T>
-    typename RedBlackTree<T>::Node* RedBlackTree<T>::find(const T &elem) {
-        Node *node = root;
-        while (node) {
-            if (node->data > elem) {
-                node = node->left;
-            } else if (node->data < elem) {
-                node = node->right;
-            } else {
-                return node;
-            }
-        }
-        return nullptr;
-    }
-
-    template <typename T>
-        void RedBlackTree<T>::rotateLeft(Node *&currNode) {
-            Node *currChildRight = currNode->right;
-            currNode->right = currChildRight->left;
-
-            if (currNode->right != nullptr) {
-                currNode->right->parent = currNode;
-            }
-
-            currChildRight->parent = currNode->parent;
-
-            if (currNode->parent == nullptr) {
-                root = currChildRight;
-            } else if (currNode == currNode->parent->left) {
-                currNode->parent->left = currChildRight;
-            } else {
-                currNode->parent->right = currChildRight;
-            }
-
-            currChildRight->left = currNode;
-            currNode->parent = currChildRight;
-        }
-
-    template <typename T>
-        void RedBlackTree<T>::rotateRight(Node *&currNode) {
-            Node *currChildLeft = currNode->left;
-            currNode->left = currChildLeft->right;
-
-            if (currNode->left != nullptr) {
-                currNode->left->parent = currNode;
-            }
-
-            currChildLeft->parent = currNode->parent;
-
-            if (currNode->parent == nullptr) {
-                root = currChildLeft;
-            } else if (currNode == currNode->parent->left) {
-                currNode->parent->left = currChildLeft;
-            } else {
-                currNode->parent->right = currChildLeft;
-            }
-
-            currChildLeft->right = currNode;
-            currNode->parent = currChildLeft;
-        }
-
-    template <typename T>
-        void RedBlackTree<T>::fixTree(Node *&currNode) {
-            Node *currParent = nullptr;
-            Node *currGrandparent = nullptr;
-
-            while ((currNode != this->root) && (currNode->color != black) && (currNode->parent->color == red)) {
-                currParent = currNode->parent;
-                currGrandparent = currNode->parent->parent;
+            while ((currNode != _root) && (currNode->color != black)
+            && ((currNode->parent)->color == red)) {
+                currParent = (currNode->parent);
+                currGrandparent = (currNode->parent->parent);
 
                 //parent of current node is left child
                 if (currParent == currGrandparent->left) {
-                    Node *currUncle = currGrandparent->right;
+                    Node<RedBlackTree<T>> *currUncle = (currGrandparent->right);
 
                     //uncle is red: do only recoloring
                     if (currUncle != nullptr && currUncle->color == red) {
@@ -122,16 +78,16 @@ namespace tree {
                         if (currNode == currParent->right) {
                             rotateLeft(currParent);
                             currNode = currParent;
-                            currParent = currNode->parent;
+                            currParent = (currNode->parent);
                         }
 
                         //current node is left child: right rotation
                         rotateRight(currGrandparent);
-                        Node::swapColors(currParent, currGrandparent);
+                        tree::utils::swapColors(currParent, currGrandparent);
                         currNode = currParent;
                     }
                 } else { //parent of current node is right child
-                    Node *currUncle = currGrandparent->left;
+                    Node<RedBlackTree<T>> *currUncle =  (currGrandparent->left);
 
                     //uncle is red: do only recoloring
                     if (currUncle != nullptr && currUncle->color == red) {
@@ -145,48 +101,29 @@ namespace tree {
                         if (currNode == currParent->left) {
                             rotateRight(currParent);
                             currNode = currParent;
-                            currParent = currNode->parent;
+                            currParent =  (currNode->parent);
                         }
 
                         //current node is right child: left rotation
                         rotateLeft(currGrandparent);
-                        Node::swapColors(currParent, currGrandparent);
+                        tree::utils::swapColors(currParent, currGrandparent);
                         currNode = currParent;
                     }
                 }
             }
 
-            root->color = black;
+        (_root)->color = black;
         };
 
-        template <typename T>
-        typename RedBlackTree<T>::Node* RedBlackTree<T>::simpleReplace(Node *node) {
-            // when node have 2 children
-            if (node->left != nullptr && node->right != nullptr) {
-                return detail::min(node->right);
-            }
-
-            // when leaf
-            if (node->left == nullptr && node->right == nullptr) {
-                return nullptr;
-            }
-
-            // when single child
-            if (node->left != nullptr) {
-                return node->left;
-            } else {
-                return node->right;
-            }
-        }
 
     template <typename T>
-        void RedBlackTree<T>::fixBothBlack(Node *node) {
-            if (node == root) { // Reached root
+        void RedBlackTree<T>::fixBothBlack(Node<RedBlackTree<T>> *node) {
+            if (node == _root) { // Reached root
                 return;
             }
 
-            Node *sibling = detail::sibling(node);
-            Node *parent = node->parent;
+        Node<RedBlackTree<T>> *sibling = tree::utils::sibling(node);
+        Node<RedBlackTree<T>> *parent = (node->parent);
             if (sibling == nullptr) {
                 // No sibiling, double black pushed up
                 fixBothBlack(parent);
@@ -194,7 +131,7 @@ namespace tree {
                 // Sibling red
                 parent->color = red;
                 sibling->color = black;
-                if (detail::isLeftSon(sibling)) {
+                if (tree::utils::isLeftSon(sibling)) {
                     // left case
                     rotateRight(parent);
                 } else {
@@ -204,29 +141,29 @@ namespace tree {
                 fixBothBlack(node);
             } else {
                 // Sibling black
-                if (sibling->hasRedChild()) {
+                if (tree::utils::hasRedChild(sibling)) {
                     // at least 1 red children
                     if (sibling->left != nullptr && sibling->left->color == red) {
-                        if (detail::isLeftSon(sibling)) {
+                        if (tree::utils::isLeftSon(sibling)) {
                             // left left
-                            sibling->left->color = sibling->color;
+                            (sibling->left)->color = sibling->color;
                             sibling->color = parent->color;
                             rotateRight(parent);
                         } else {
                             // right left
-                            sibling->left->color = parent->color;
+                            (sibling->left)->color = parent->color;
                             rotateRight(sibling);
                             rotateLeft(parent);
                         }
                     } else {
-                        if (detail::isLeftSon(sibling)) {
+                        if (tree::utils::isLeftSon(sibling)) {
                             // left right
-                            sibling->right->color = parent->color;
+                            (sibling->right)->color = parent->color;
                             rotateLeft(sibling);
                             rotateRight(parent);
                         } else {
                             // right right
-                            sibling->right->color = sibling->color;
+                            (sibling->right)->color = sibling->color;
                             sibling->color = parent->color;
                             rotateLeft(parent);
                         }
@@ -244,19 +181,39 @@ namespace tree {
         }
 
     template <typename T>
-        void RedBlackTree<T>::eraseNode(Node *nodeToDelete) {
-            Node *nodeToReplace = simpleReplace(nodeToDelete);
+    Node<RedBlackTree<T>>* RedBlackTree<T>::simpleReplace(Node<RedBlackTree<T>> *node) {
+        // when node have 2 children
+        if (node->left != nullptr && node->right != nullptr) {
+            return tree::utils::min(node->right);
+        }
+
+        // when leaf
+        if (node->left == nullptr && node->right == nullptr) {
+            return nullptr;
+        }
+
+        // when single child
+        if (node->left != nullptr) {
+            return node->left;
+        } else {
+            return node->right;
+        }
+    }
+
+    template <typename T>
+        void RedBlackTree<T>::eraseNode(Node<RedBlackTree<T>> *nodeToDelete) {
+        Node<RedBlackTree<T>> *nodeToReplace = simpleReplace(nodeToDelete);
 
             // True when u and v are both black
             bool bothBlack = ((nodeToReplace == nullptr || nodeToReplace->color == black)
                               && (nodeToDelete->color == black));
-            Node *parent = nodeToDelete->parent;
+        Node<RedBlackTree<T>> *parent =  (nodeToDelete->parent);
 
             if (nodeToReplace == nullptr) {
                 // u is NULL therefore v is leaf
-                if (nodeToDelete == root) {
-                    // v is root, making root null
-                    root = nullptr;
+                if (nodeToDelete == _root) {
+                    // v is _root, making _root null
+                    _root = nullptr;
                 } else {
                     if (bothBlack) {
                         // u and v both black
@@ -264,14 +221,14 @@ namespace tree {
                         fixBothBlack(nodeToDelete);
                     } else {
                         // u or v is red
-                        if (detail::sibling(nodeToDelete) != nullptr)
+                        if (tree::utils::sibling(nodeToDelete) != nullptr)
                             // sibling is not null, make it red"
-                            detail::sibling(nodeToDelete)->color = red;
+                            tree::utils::sibling(nodeToDelete)->color = red;
                     }
 
                     // delete v from the tree
 
-                    if (detail::isLeftSon(nodeToDelete)) {
+                    if (tree::utils::isLeftSon(nodeToDelete)) {
                         parent->left = nullptr;
                     } else {
                         parent->right = nullptr;
@@ -283,15 +240,15 @@ namespace tree {
 
             if (nodeToDelete->left == nullptr || nodeToDelete->right == nullptr) {
                 // nodeToDelete has 1 child
-                if (nodeToDelete == root) {
-                    // v is root, assign the value of u to v, and delete u
+                if (nodeToDelete == _root) {
+                    // v is _root, assign the value of u to v, and delete u
                     nodeToDelete->data = nodeToReplace->data;
                     nodeToDelete->left = nullptr;
                     nodeToDelete->right = nullptr;
                     delete nodeToReplace;
                 } else {
                     // Detach v from tree and move u up
-                    if (detail::isLeftSon(nodeToDelete)) {
+                    if (tree::utils::isLeftSon(nodeToDelete)) {
                         parent->left = nodeToReplace;
                     } else {
                         parent->right = nodeToReplace;
@@ -310,50 +267,58 @@ namespace tree {
             }
 
             // v has 2 children, swap values with successor and recurse
-            detail::swapData(nodeToReplace, nodeToDelete);
+            tree::utils::swapData(nodeToReplace, nodeToDelete);
             eraseNode(nodeToReplace);
         }
 
     template <typename T>
-        void RedBlackTree<T>::printTreePreorder(Node *curr) {
-            if (curr != nullptr) {
-                std::cout << "{" << curr->data << " - " << curr->color << "} ";
-                printTreePreorder(curr->left);
-                printTreePreorder(curr->right);
-            }
+    template <typename Iter>
+    RedBlackTree<T>::RedBlackTree (Iter begin, Iter end)
+    {
+        _root = nullptr;
+        for (; begin != end; ++begin) {
+            insert(*begin);
         }
-
-    template <typename T>
-        auto RedBlackTree<T>::begin () const -> iterator {
-            return iterator {detail::min(root)};
-        }
-
-    template <typename T>
-        auto RedBlackTree<T>::end () const -> iterator {
-            return iterator {nullptr};
-        }
-
-    template <typename T>
-    RedBlackTree<T>::RedBlackTree(std::vector<T> &_data) {
-        root = nullptr;
-        for (auto &item : _data) {
-        insert(item);
-    }
     }
 
     template <typename T>
-    void RedBlackTree<T>::insert(const T _data) {
-        auto inputNode = new Node(_data);
-        this->root = simpleInsert(this->root, inputNode);
+    RedBlackTree<T>::RedBlackTree (std::initializer_list<T> elems) {
+        _root = nullptr;
+        for (const auto& elem : elems) {
+            insert(elem);
+        }
+    }
+
+    template <typename T>
+    auto RedBlackTree<T>::simpleInsert(Node<RedBlackTree<T>> *currNode, Node<RedBlackTree<T>> *inputNode) { //insert like in ordinary BST
+        if (currNode == nullptr) {
+            return inputNode;
+        }
+
+        if (inputNode->data < currNode->data) {
+            currNode->left = simpleInsert(currNode->left, inputNode);
+            currNode->left->parent = currNode;
+        } else if (inputNode->data > currNode->data) {
+            currNode->right = simpleInsert(currNode->right, inputNode);
+            currNode->right->parent = currNode;
+        }
+
+        return currNode;
+    }
+
+    template <typename T>
+    void RedBlackTree<T>::insert(const T& _data) {
+        auto inputNode = new Node<RedBlackTree<T>>{_data};
+        _root = simpleInsert(_root, inputNode);
 
         fixTree(inputNode);
     }
 
     template <typename T>
-    void RedBlackTree<T>::erase(T _data) {
-        if (root == nullptr) { return; }
+    void RedBlackTree<T>::erase(const T& _data) {
+        if (_root == nullptr) { return; }
 
-        Node *nodeToDelete = find(_data);
+        Node<RedBlackTree<T>> *nodeToDelete = tree::utils::find<RedBlackTree>(_root,  _data);
 
         if (nodeToDelete == nullptr) {
             std::cout << "No node with such value to delete:" << _data << std::endl;
@@ -361,27 +326,6 @@ namespace tree {
         }
 
         eraseNode(nodeToDelete);
-    }
-
-    template <typename T>
-    typename RedBlackTree<T>::iterator RedBlackTree<T>::search(const T &elem) const {
-        Node *node = root;
-        while (node) {
-            if (node->data > elem) {
-                node = node->left;
-            } else if (node->data < elem) {
-                node = node->right;
-            } else {
-                return iterator(node);
-            }
-        }
-        return end();
-    }
-
-    template <typename T>
-    void RedBlackTree<T>::print() {
-        printTreePreorder(root);
-        std::cout << std::endl;
     }
 
     };

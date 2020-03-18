@@ -5,8 +5,9 @@
 #pragma once
 
 #include <iostream>
-#include <vector>
-#include "BinarySearchTreeIterator.hpp"
+#include "../BSTBase.hpp"
+#include "../NodeBase.hpp"
+
 
 namespace tree {
     enum Color {
@@ -14,47 +15,65 @@ namespace tree {
     };
 
     template<typename T>
-    class RedBlackTree {
-    public:
-        struct Node {
-            T data;
-            Color color;
-            Node *left;
-            Node *right;
-            Node *parent;
+class RedBlackTree : public BSTBase<T, RedBlackTree<T>> {
 
-            explicit Node(T _data) : data(_data), left(nullptr), right(nullptr), parent(nullptr), color(red) {}
-            bool hasRedChild();
-            static void swapColors(Node *firstNode, Node *secondNode);
-        };
-    private:
-        Node* root;
+private:
+    using NodeRBT = Node<RedBlackTree<T>>;
+    using Base = BSTBase<T, RedBlackTree<T>>;
 
-    protected:
-        auto simpleInsert(Node *currNode, Node *inputNode);//insert like in ordinary BST
-        Node* find(const T &elem);
-        void rotateLeft(Node *&currNode);
-        void rotateRight(Node *&currNode);
-        void fixTree(Node *&currNode);
-        Node* simpleReplace(Node *node);
-        void fixBothBlack(Node *node);
-        void eraseNode(Node *nodeToDelete);
-        void printTreePreorder(Node *curr);
+protected:
+        using Base::_root;
+        using Base::_size;
 
-    public:
-        using iterator = BinarySearchTreeIterator<Node, T>;
-        auto begin () const -> iterator;
-        auto end () const -> iterator;
+        void rotateLeft(NodeRBT *&currNode);
+        void rotateRight(NodeRBT *&currNode);
+        void fixTree(NodeRBT *&currNode);
+        void fixBothBlack(NodeRBT *node);
+        void eraseNode(NodeRBT *nodeToDelete);
+        Node<RedBlackTree<T>>* simpleReplace(Node<RedBlackTree<T>> *node);
+        auto simpleInsert(Node<RedBlackTree<T>> *currNode, Node<RedBlackTree<T>> *inputNode);
 
-        RedBlackTree() : root(nullptr) {}
-        explicit RedBlackTree(std::vector<T> &_data);
+public:
+    RedBlackTree() = default;
+        template <typename Iter>
+    RedBlackTree(Iter begin, Iter end);
 
-        void insert(const T _data);
-        void erase(T _data);
-        iterator search(const T &elem) const;
-        void print();
+    RedBlackTree(std::initializer_list<T> elems);
+
+        void insert(const T& _data) override;
+        void erase(const T& _data) override;
+
+        using Base::Base;
+        using Base::operator=;
+        using Base::begin;
+        using Base::end;
+        using Base::size;
+        ~RedBlackTree() override = default;
 
     };
+
+    template<typename T>
+    struct Node<RedBlackTree<T>> {
+        using NodeRBT = Node<RedBlackTree<T>>;
+
+        T data;
+        Color color = red;
+        NodeRBT* left = nullptr;
+        NodeRBT* right = nullptr;
+        NodeRBT* parent = nullptr;
+
+        explicit Node<RedBlackTree<T>> (const T& _data) : data(_data) {}
+        explicit Node<RedBlackTree<T>> (Node<RedBlackTree<T>>* node) : data(node->data), color(node->color) {}
+        ~Node<RedBlackTree<T>>() {
+            if (left) {
+                delete left;
+            }
+            if (right) {
+                delete right;
+            }
+        }
+    };
+
 }
 
 #include "RedBlackTree.tpp"
