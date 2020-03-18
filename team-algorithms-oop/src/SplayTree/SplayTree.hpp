@@ -44,6 +44,9 @@ namespace tree {
         Node<SplayTree<T>>* right = nullptr;
         Node<SplayTree<T>>* parent = nullptr;
 
+        explicit Node<SplayTree<T>> (const T& _data) : data(_data) {}
+        explicit Node<SplayTree<T>> (Node<SplayTree<T>>* node) : Node<SplayTree<T>>(node->data) {}
+
         ~Node<SplayTree<T>> () {
             if (left)
                 delete left;
