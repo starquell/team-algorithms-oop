@@ -235,6 +235,8 @@ namespace tree {
                     parent->right = nullptr;
                 }
             }
+            nodeToDelete->left = nullptr;
+            nodeToDelete->right = nullptr;
             delete nodeToDelete;
             return;
         }
@@ -246,6 +248,8 @@ namespace tree {
                 nodeToDelete->data = nodeToReplace->data;
                 nodeToDelete->left = nullptr;
                 nodeToDelete->right = nullptr;
+                nodeToReplace->left = nullptr;
+                nodeToReplace->right = nullptr;
                 delete nodeToReplace;
             } else {
                 // Detach v from tree and move u up
@@ -254,6 +258,8 @@ namespace tree {
                 } else {
                     parent->right = nodeToReplace;
                 }
+                nodeToDelete->left = nullptr;
+                nodeToDelete->right = nullptr;
                 delete nodeToDelete;
                 nodeToReplace->parent = parent;
                 if (bothBlack) {
