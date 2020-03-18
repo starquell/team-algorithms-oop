@@ -74,9 +74,17 @@ namespace tree::utils {
      *   @return Deep copy of node
      */
     template <typename TreeType>
-    auto clone (Node<TreeType>* node) -> Node<TreeType>* {
-        // TODO Yano4ka rabotat'
-        return nullptr;
+    auto clone (Node<TreeType>* node, Node<TreeType>* parentNode = nullptr) -> Node<TreeType>* {
+        if (!node) {
+            return nullptr;
+        }
+
+        auto newNode = new Node<TreeType>(node);
+        newNode->parent = parentNode;
+        newNode->left = clone(node->left, newNode);
+        newNode->right = clone(node->right, newNode);
+
+        return newNode;
     }
 
     /**
@@ -112,6 +120,10 @@ namespace tree::utils {
     auto insertWithParent (Node<TreeType>* node, Node<TreeType>* to_insert) -> Node<TreeType>* {
 
         const auto& key = to_insert->data;
+
+        if (node == nullptr) {
+            return to_insert;
+        }
 
         while (true) {
             if (node->data > key) {
@@ -183,6 +195,26 @@ namespace tree::utils {
 
         set(node->parent->right, node->left, node->parent);
         set(node->left, node->parent, node);
+    }
+
+    template <typename TreeType>
+    Node<TreeType>* sibling(Node<TreeType>* node) {
+        if (node->parent == nullptr) {
+            return nullptr;
+        }
+
+        if (isLeftSon(node)) {
+            return node->parent->right;
+        }
+
+        return node->parent->left;
+    }
+
+    template <typename TreeType>
+    void swapData(Node<TreeType>* firstNode, Node<TreeType>* secondNode) {
+        auto temp = firstNode->data;
+        firstNode->data = secondNode->data;
+        secondNode->data = temp;
     }
 }
 
