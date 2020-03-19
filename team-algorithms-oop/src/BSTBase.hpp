@@ -13,11 +13,11 @@ namespace tree {
     class BSTBase : SearchTreeBase<T, DerivedTree> {
     protected:
         explicit BSTBase() = default;
-        void BSTInsert(Node<DerivedTree>* toInsert) {
+        void simpleInsert(Node<DerivedTree>* toInsert) {
             if (_root == nullptr) {
                 _root = toInsert;
             } else {
-                tree::utils::insertWithParent(_root, toInsert);
+                utils::insertWithParent(_root, toInsert);
             }
         }
     private:

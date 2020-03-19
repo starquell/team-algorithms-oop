@@ -26,7 +26,7 @@ namespace tree {
     template <typename T>
     void RedBlackTree<T>::insert(const T& _data) {
         auto inputNode = new Node<RedBlackTree<T>>{_data};
-        BSTInsert(inputNode);
+        simpleInsert(inputNode);
 
         utils::InsertionFixRBTree(_root, inputNode);
         _size++;

@@ -1,9 +1,9 @@
 #pragma once
 
-#include <variant>
-#include "TreeBase.hpp"
+#include "SearchTreeBase.hpp"
 #include "SplayTree/SplayTree.hpp"
 #include "RedBlackTree/RedBlackTree.hpp"
+#include <variant>
 
 namespace tree {
 
