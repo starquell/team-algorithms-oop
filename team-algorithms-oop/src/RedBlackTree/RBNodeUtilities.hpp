@@ -5,14 +5,14 @@
 namespace tree::utils {
 
     template<typename T>
-    bool hasRedChild(tree::Node<tree::RedBlackTree<T>>* node) {
-        return (node->left != nullptr && node->left->color == tree::Node<tree::RedBlackTree<T>>::Color::Red) ||
-               (node->right != nullptr && node->right->color == tree::Node<tree::RedBlackTree<T>>::Color::Red);
+    bool hasRedChild(Node<RedBlackTree<T>>* node) {
+        return (node->left != nullptr && node->left->color == Node<RedBlackTree<T>>::Color::Red) ||
+               (node->right != nullptr && node->right->color == Node<RedBlackTree<T>>::Color::Red);
     }
 
     template<typename T>
-    void swapColors(tree::Node<tree::RedBlackTree<T>>* firstNode, tree::Node<tree::RedBlackTree<T>>* secondNode) {
-        typename tree::Node<tree::RedBlackTree<T>>::Color temp = firstNode->color;
+    void swapColors(Node<RedBlackTree<T>>* firstNode, Node<RedBlackTree<T>>* secondNode) {
+        typename Node<RedBlackTree<T>>::Color temp = firstNode->color;
         firstNode->color = secondNode->color;
         secondNode->color = temp;
     }
@@ -23,18 +23,9 @@ namespace tree::utils {
      *
      */
     template <typename T>
-    void copyNodeData (tree::Node<tree::RedBlackTree<T>>* toCopy, tree::Node<tree::RedBlackTree<T>>* toPaste) {
+    void copyNodeData (Node<RedBlackTree<T>>* toCopy, Node<RedBlackTree<T>>* toPaste) {
         toPaste->data = toCopy->data;
         toPaste->color = toCopy->color;
-    }
-
-    template <typename T>
-    void treeFixingRecoloringCase(Node<RedBlackTree<T>>* currNode, Node<RedBlackTree<T>>* currGrandparent,
-                                                   Node<RedBlackTree<T>>* currParent, Node<RedBlackTree<T>>* currUncle) {
-        currGrandparent->color = tree::Node<tree::RedBlackTree<T>>::Red;
-        currParent->color = tree::Node<tree::RedBlackTree<T>>::Black;
-        currUncle->color = tree::Node<tree::RedBlackTree<T>>::Black;
-        currNode = currGrandparent;
     }
 
     template <typename T>
