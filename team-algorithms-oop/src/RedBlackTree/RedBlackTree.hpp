@@ -16,6 +16,7 @@ namespace tree {
     protected:
         using Base::_root;
         using Base::_size;
+        using Base::BSTInsert;
 
         void rotateLeft(NodeRBT*& currNode);
         void rotateRight(NodeRBT*& currNode);
@@ -23,7 +24,6 @@ namespace tree {
         void fixBothBlack(NodeRBT* node);
         void eraseNode(NodeRBT* nodeToDelete);
         Node<RedBlackTree<T>>* simpleReplace(Node<RedBlackTree<T>>* node);
-        auto simpleInsert(Node<RedBlackTree<T>>* currNode, Node<RedBlackTree<T>>* inputNode);
 
     public:
         RedBlackTree() = default;

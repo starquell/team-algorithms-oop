@@ -2,6 +2,7 @@
 
 #include <TreeBase.hpp>
 #include <Iterators/BSTIterator.hpp>
+#include "NodeUtilities.hpp"
 
 namespace tree {
 
@@ -12,6 +13,13 @@ namespace tree {
     class BSTBase : TreeBase<T, DerivedTree> {
     protected:
         explicit BSTBase() = default;
+        void BSTInsert(Node<DerivedTree>* toInsert) {
+            if (_root == nullptr) {
+                _root = toInsert;
+            } else {
+                tree::utils::insertWithParent(_root, toInsert);
+            }
+        }
     private:
         using Base = TreeBase<T, DerivedTree>;
 

@@ -290,26 +290,9 @@ namespace tree {
     }
 
     template <typename T>
-    auto RedBlackTree<T>::simpleInsert(Node<RedBlackTree<T>>* currNode, Node<RedBlackTree<T>>* inputNode) { //insert like in ordinary BST
-        if (currNode == nullptr) {
-            return inputNode;
-        }
-
-        if (inputNode->data < currNode->data) {
-            currNode->left = simpleInsert(currNode->left, inputNode);
-            currNode->left->parent = currNode;
-        } else if (inputNode->data > currNode->data) {
-            currNode->right = simpleInsert(currNode->right, inputNode);
-            currNode->right->parent = currNode;
-        }
-
-        return currNode;
-    }
-
-    template <typename T>
     void RedBlackTree<T>::insert(const T& _data) {
         auto inputNode = new Node<RedBlackTree<T>>{_data};
-        _root = simpleInsert(_root, inputNode);
+        BSTInsert(inputNode);
 
         fixTree(inputNode);
         _size++;

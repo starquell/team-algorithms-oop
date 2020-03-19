@@ -130,10 +130,6 @@ namespace tree::utils {
 
         const auto& key = to_insert->data;
 
-        if (node == nullptr) {
-            return to_insert;
-        }
-
         while (true) {
             if (node->data > key) {
                 if (!node->left) {
@@ -152,6 +148,26 @@ namespace tree::utils {
             else
                 return node;
         }
+    }
+
+    /**
+     *  @brief Simple insertion in BST node with parent info, recursive approach
+     */
+    template <typename TreeType>
+    auto simpleInsert(Node<TreeType>* currNode, Node<TreeType>* inputNode) {
+        if (currNode == nullptr) {
+            return inputNode;
+        }
+
+        if (inputNode->data < currNode->data) {
+            currNode->left = simpleInsert(currNode->left, inputNode);
+            currNode->left->parent = currNode;
+        } else if (inputNode->data > currNode->data) {
+            currNode->right = simpleInsert(currNode->right, inputNode);
+            currNode->right->parent = currNode;
+        }
+
+        return currNode;
     }
 
     /**
