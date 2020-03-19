@@ -61,14 +61,6 @@ namespace tree {
 
         explicit Node<RedBlackTree<T>> (const T& _data) : data(_data) {}
         explicit Node<RedBlackTree<T>> (Node<RedBlackTree<T>>* node) : data(node->data), color(node->color) {}
-        ~Node<RedBlackTree<T>>() {
-            if (left) {
-                delete left;
-            }
-            if (right) {
-                delete right;
-            }
-        }
     };
 
 }

@@ -7,7 +7,7 @@ namespace tree {
     template <typename T, typename DerivedTree>
     TreeBase<T, DerivedTree>::~TreeBase ()  {
         if (_root) {
-            delete _root;
+            tree::utils::eraseSubTree(_root);
         }
     }
     template <typename T, typename Derived>

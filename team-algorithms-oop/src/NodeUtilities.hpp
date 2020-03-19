@@ -216,6 +216,18 @@ namespace tree::utils {
         firstNode->data = secondNode->data;
         secondNode->data = temp;
     }
+
+    template <typename TreeType>
+    void eraseSubTree (Node<TreeType>* toDelete) {
+        if (toDelete == nullptr) {
+            return;
+        }
+
+        eraseSubTree(toDelete->left);
+        eraseSubTree(toDelete->right);
+
+        delete toDelete;
+    }
 }
 
 
