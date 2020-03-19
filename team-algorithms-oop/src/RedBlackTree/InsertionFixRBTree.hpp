@@ -13,23 +13,30 @@ namespace tree::utils {
         Node<RedBlackTree<T>>* currUncle = nullptr;
         Node<RedBlackTree<T>>* root;
 
+        void treeFixingRecoloringCase() {
+            currGrandparent->color = Node<RedBlackTree<T>>::Red;
+            currParent->color = Node<RedBlackTree<T>>::Black;
+            currUncle->color = Node<RedBlackTree<T>>::Black;
+            currNode = currGrandparent;
+        }
+
         void treeFixingLeftChildCase() {
             currUncle = currGrandparent->right;
 
             //uncle is Red: do only recoloring
-            if (currUncle != nullptr && currUncle->color == tree::Node<tree::RedBlackTree<T>>::Red) {
-                treeFixingRecoloringCase(currNode, currGrandparent, currParent, currUncle);
+            if (currUncle != nullptr && currUncle->color == Node<RedBlackTree<T>>::Red) {
+                treeFixingRecoloringCase();
             } else {
                 //current node is right child: left rotation
                 if (currNode == currParent->right) {
-                    tree::utils::rotateLeft(root, currParent);
+                    utils::rotateLeft(root, currParent);
                     currNode = currParent;
                     currParent = currNode->parent;
                 }
 
                 //current node is left child: right rotation
-                tree::utils::rotateRight(root, currGrandparent);
-                tree::utils::swapColors(currParent, currGrandparent);
+                utils::rotateRight(root, currGrandparent);
+                utils::swapColors(currParent, currGrandparent);
                 currNode = currParent;
             }
         }
@@ -38,19 +45,19 @@ namespace tree::utils {
             currUncle = currGrandparent->left;
 
             //uncle is Red: do only recoloring
-            if (currUncle != nullptr && currUncle->color == tree::Node<tree::RedBlackTree<T>>::Red) {
-                treeFixingRecoloringCase(currNode, currGrandparent, currParent, currUncle);
+            if (currUncle != nullptr && currUncle->color == Node<RedBlackTree<T>>::Red) {
+                treeFixingRecoloringCase();
             } else {
                 //current node is left child: right rotation
                 if (currNode == currParent->left) {
-                    tree::utils::rotateRight(root, currParent);
+                    utils::rotateRight(root, currParent);
                     currNode = currParent;
                     currParent = currNode->parent;
                 }
 
                 //current node is right child: left rotation
-                tree::utils::rotateLeft(root, currGrandparent);
-                tree::utils::swapColors(currParent, currGrandparent);
+                utils::rotateLeft(root, currGrandparent);
+                utils::swapColors(currParent, currGrandparent);
                 currNode = currParent;
             }
         }

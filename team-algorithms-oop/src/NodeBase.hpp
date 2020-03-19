@@ -3,7 +3,7 @@
 namespace tree {
 
     /**
-     *   @brief Tree node class, use class template specilization
+     *   @brief Tree node class, use class template specialization
      *          for your tree implementations
      */
     template <typename Tree>

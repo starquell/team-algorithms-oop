@@ -15,7 +15,7 @@ namespace tree {
     protected:
         using Base::_root;
         using Base::_size;
-        using Base::BSTInsert;
+        using Base::simpleInsert;
 
     public:
         RedBlackTree() = default;

@@ -26,9 +26,9 @@ namespace tree {
     template <typename T>
     void RedBlackTree<T>::insert(const T& _data) {
         auto inputNode = new Node<RedBlackTree<T>>{_data};
-        BSTInsert(inputNode);
+        simpleInsert(inputNode);
 
-        tree::utils::InsertionFixRBTree(_root, inputNode);
+        utils::InsertionFixRBTree(_root, inputNode);
         _size++;
     }
 
@@ -38,7 +38,7 @@ namespace tree {
             return;
         }
 
-        Node<RedBlackTree<T>>* nodeToDelete = tree::utils::find<RedBlackTree>(_root,  _data);
+        Node<RedBlackTree<T>>* nodeToDelete = utils::find<RedBlackTree>(_root,  _data);
 
         if (nodeToDelete == nullptr) {
             return;
@@ -47,7 +47,7 @@ namespace tree {
         if (nodeToDelete == _root && nodeToDelete->left == nullptr && nodeToDelete->right == nullptr) {
             _root = nullptr;
         } else {
-            tree::utils::DeletionFixRBTRee(_root, nodeToDelete);
+            utils::DeletionFixRBTRee(_root, nodeToDelete);
         }
         _size--;
     }

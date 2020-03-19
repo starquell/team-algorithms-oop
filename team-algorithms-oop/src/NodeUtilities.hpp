@@ -234,7 +234,7 @@ namespace tree::utils {
     Node<TreeType>* findReplacement(Node<TreeType>* node) {
         // when node have 2 children
         if (node->left != nullptr && node->right != nullptr) {
-            return tree::utils::min(node->right);
+            return utils::min(node->right);
         }
 
         // when leaf
