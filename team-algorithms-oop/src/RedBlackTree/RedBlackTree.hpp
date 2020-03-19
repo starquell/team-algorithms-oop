@@ -18,13 +18,6 @@ namespace tree {
         using Base::_size;
         using Base::BSTInsert;
 
-        void rotateLeft(NodeRBT*& currNode);
-        void rotateRight(NodeRBT*& currNode);
-        void fixTree(NodeRBT*& currNode);
-        void fixBothBlack(NodeRBT* node);
-        void eraseNode(NodeRBT* nodeToDelete);
-        Node<RedBlackTree<T>>* simpleReplace(Node<RedBlackTree<T>>* node);
-
     public:
         RedBlackTree() = default;
         template <typename Iter>

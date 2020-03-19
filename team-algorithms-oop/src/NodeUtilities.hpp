@@ -222,6 +222,33 @@ namespace tree::utils {
 
         delete toDelete;
     }
+
+    /**
+     *
+     * @brief Find the closest node which can be put in place of given node
+     * @param node - node for which we should find replacement node
+     * @return node that should replace given node
+     *
+     */
+    template <typename TreeType>
+    Node<TreeType>* findReplacement(Node<TreeType>* node) {
+        // when node have 2 children
+        if (node->left != nullptr && node->right != nullptr) {
+            return tree::utils::min(node->right);
+        }
+
+        // when leaf
+        if (node->left == nullptr && node->right == nullptr) {
+            return nullptr;
+        }
+
+        // when single child
+        if (node->left != nullptr) {
+            return node->left;
+        } else {
+            return node->right;
+        }
+    }
 }
 
 

@@ -27,4 +27,59 @@ namespace tree::utils {
         toPaste->data = toCopy->data;
         toPaste->color = toCopy->color;
     }
+
+    template <typename T>
+    void treeFixingRecoloringCase(Node<RedBlackTree<T>>* currNode, Node<RedBlackTree<T>>* currGrandparent,
+                                                   Node<RedBlackTree<T>>* currParent, Node<RedBlackTree<T>>* currUncle) {
+        currGrandparent->color = tree::Node<tree::RedBlackTree<T>>::Red;
+        currParent->color = tree::Node<tree::RedBlackTree<T>>::Black;
+        currUncle->color = tree::Node<tree::RedBlackTree<T>>::Black;
+        currNode = currGrandparent;
+    }
+
+    template <typename T>
+    void rotateLeft(Node<RedBlackTree<T>>*& _root, Node<RedBlackTree<T>>*& currNode) {
+        Node<RedBlackTree<T>>* currChildRight = currNode->right;
+        currNode->right = currChildRight->left;
+
+        if (currNode->right != nullptr) {
+            currNode->right->parent = currNode;
+        }
+
+        currChildRight->parent = currNode->parent;
+
+        if (currNode->parent == nullptr) {
+            _root = currChildRight;
+        } else if (currNode == currNode->parent->left) {
+            currNode->parent->left = currChildRight;
+        } else {
+            currNode->parent->right = currChildRight;
+        }
+
+        currChildRight->left = currNode;
+        currNode->parent = currChildRight;
+    }
+
+    template <typename T>
+    void rotateRight(Node<RedBlackTree<T>>*& _root, Node<RedBlackTree<T>>* &currNode) {
+        Node<RedBlackTree<T>>* currChildLeft = currNode->left;
+        currNode->left = currChildLeft->right;
+
+        if (currNode->left != nullptr) {
+            currNode->left->parent = currNode;
+        }
+
+        currChildLeft->parent = currNode->parent;
+
+        if (currNode->parent == nullptr) {
+            _root = currChildLeft;
+        } else if (currNode == currNode->parent->left) {
+            currNode->parent->left = currChildLeft;
+        } else {
+            currNode->parent->right = currChildLeft;
+        }
+
+        currChildLeft->right = currNode;
+        currNode->parent = currChildLeft;
+    }
 }
