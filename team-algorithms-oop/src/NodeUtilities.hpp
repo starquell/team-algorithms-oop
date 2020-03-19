@@ -151,26 +151,6 @@ namespace tree::utils {
     }
 
     /**
-     *  @brief Simple insertion in BST node with parent info, recursive approach
-     */
-    template <typename TreeType>
-    auto simpleInsert(Node<TreeType>* currNode, Node<TreeType>* inputNode) {
-        if (currNode == nullptr) {
-            return inputNode;
-        }
-
-        if (inputNode->data < currNode->data) {
-            currNode->left = simpleInsert(currNode->left, inputNode);
-            currNode->left->parent = currNode;
-        } else if (inputNode->data > currNode->data) {
-            currNode->right = simpleInsert(currNode->right, inputNode);
-            currNode->right->parent = currNode;
-        }
-
-        return currNode;
-    }
-
-    /**
      *  @brief Assign var to value, setting var's parent new_parent
      */
     template <typename TreeType>

@@ -54,7 +54,7 @@ TEST_CASE("Splay tree", "[splay]") {
 
 TEST_CASE("Red Black Tree", "[RedBlackTree]") {
 
-    std::vector elems = {1, 4, 103, 2, 24};
+    std::array elems = {1, 4, 103, 2, 24};
 
     SECTION("Constructor's from iterators") {
         tree::RedBlackTree<int> rbTree(elems.begin(), elems.end());
