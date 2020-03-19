@@ -8,20 +8,20 @@ namespace tree {
     *   @brief Abstract base class for tree implementations
     */
     template <typename T, typename DerivedTree>
-    class TreeBase {
+    class SearchTreeBase {
     protected:
-        explicit TreeBase() = default;
+        explicit SearchTreeBase() = default;
 
     public:
         using value_type = T;
 
-        TreeBase (const TreeBase& other);
-        TreeBase& operator= (TreeBase other);
+        SearchTreeBase (const SearchTreeBase& other);
+        SearchTreeBase& operator= (SearchTreeBase other);
 
         [[nodiscard]]
         auto size() const noexcept -> std::size_t;
 
-        virtual ~TreeBase();
+        virtual ~SearchTreeBase();
 
     protected:
         std::size_t _size = 0;
@@ -29,4 +29,4 @@ namespace tree {
     };
 }
 
-#include <TreeBase.tpp>
+#include <SearchTreeBase.tpp>
