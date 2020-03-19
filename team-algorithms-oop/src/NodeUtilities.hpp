@@ -71,12 +71,29 @@ namespace tree::utils {
     }
 
     /**
+    *  @brief Copy field of toCopy node to toPaste node, but without fields-pointers
+    */
+    template <typename TreeType>
+    void copyNodeData (Node<TreeType>* toCopy, Node<TreeType>* toPaste) {
+        toPaste->data = toCopy->data;
+    }
+
+    /**
      *   @return Deep copy of node
      */
     template <typename TreeType>
-    auto clone (Node<TreeType>* node) -> Node<TreeType>* {
-        // TODO Yano4ka rabotat'
-        return nullptr;
+    auto clone (Node<TreeType>* node, Node<TreeType>* parentNode = nullptr) -> Node<TreeType>* {
+        if (!node) {
+            return nullptr;
+        }
+
+        auto newNode = new Node<TreeType>();
+        copyNodeData(node, newNode);
+        newNode->parent = parentNode;
+        newNode->left = clone(node->left, newNode);
+        newNode->right = clone(node->right, newNode);
+
+        return newNode;
     }
 
     /**
@@ -133,17 +150,6 @@ namespace tree::utils {
         }
     }
 
-    template <typename TreeType>
-    void deleteTree (Node<TreeType>* node) {
-        if (node->left) {
-            deleteTree(node->left);
-        }
-        if (node->right)
-            deleteTree(node->right);
-
-        delete node;
-    }
-
     /**
      *  @brief Assign var to value, setting var's parent new_parent
      */
@@ -183,6 +189,65 @@ namespace tree::utils {
 
         set(node->parent->right, node->left, node->parent);
         set(node->left, node->parent, node);
+    }
+
+    template <typename TreeType>
+    Node<TreeType>* sibling(Node<TreeType>* node) {
+        if (node->parent == nullptr) {
+            return nullptr;
+        }
+
+        if (isLeftSon(node)) {
+            return node->parent->right;
+        }
+
+        return node->parent->left;
+    }
+
+    template <typename TreeType>
+    void swapData(Node<TreeType>* firstNode, Node<TreeType>* secondNode) {
+        auto temp = firstNode->data;
+        firstNode->data = secondNode->data;
+        secondNode->data = temp;
+    }
+
+    template <typename TreeType>
+    void eraseSubTree (Node<TreeType>* toDelete) {
+        if (toDelete == nullptr) {
+            return;
+        }
+
+        eraseSubTree(toDelete->left);
+        eraseSubTree(toDelete->right);
+
+        delete toDelete;
+    }
+
+    /**
+     *
+     * @brief Find the closest node which can be put in place of given node
+     * @param node - node for which we should find replacement node
+     * @return node that should replace given node
+     *
+     */
+    template <typename TreeType>
+    Node<TreeType>* findReplacement(Node<TreeType>* node) {
+        // when node have 2 children
+        if (node->left != nullptr && node->right != nullptr) {
+            return tree::utils::min(node->right);
+        }
+
+        // when leaf
+        if (node->left == nullptr && node->right == nullptr) {
+            return nullptr;
+        }
+
+        // when single child
+        if (node->left != nullptr) {
+            return node->left;
+        } else {
+            return node->right;
+        }
     }
 }
 

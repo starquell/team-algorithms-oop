@@ -43,13 +43,6 @@ namespace tree {
         Node<SplayTree<T>>* left = nullptr;
         Node<SplayTree<T>>* right = nullptr;
         Node<SplayTree<T>>* parent = nullptr;
-
-        ~Node<SplayTree<T>> () {
-            if (left)
-                delete left;
-            if (right)
-                delete right;
-        }
     };
 }
 
