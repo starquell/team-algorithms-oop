@@ -57,22 +57,22 @@ namespace tree::utils {
 
     public:
         InsertionFixRBTree(Node<RedBlackTree<T>>*& _root, Node<RedBlackTree<T>>*& _currNode)
-        : currNode(_currNode), root(_root) {
-                while (currNode != root && currNode->color != tree::Node<tree::RedBlackTree<T>>::Black
-                       && currNode->parent->color == tree::Node<tree::RedBlackTree<T>>::Red) {
-                    currParent = currNode->parent;
-                    currGrandparent = currNode->parent->parent;
+               : currNode(_currNode), root(_root)
+        {
+            while (currNode != root && currNode->color != tree::Node<tree::RedBlackTree<T>>::Black
+                   && currNode->parent->color == tree::Node<tree::RedBlackTree<T>>::Red) {
+                currParent = currNode->parent;
+                currGrandparent = currNode->parent->parent;
 
-                    //parent of current node is left child
-                    if (currParent == currGrandparent->left) {
-                        treeFixingLeftChildCase();
-                    } else { //parent of current node is right child
-                        treeFixingRightChildCase();
-                    }
+                /// parent of current node is left child
+                if (currParent == currGrandparent->left) {
+                    treeFixingLeftChildCase();
+                }else { ///parent of current node is right child
+                    treeFixingRightChildCase();
                 }
-
-                _root = root;
-            (_root)->color = tree::Node<tree::RedBlackTree<T>>::Black;
+            }
+            _root = root;
+            _root->color = tree::Node<tree::RedBlackTree<T>>::Black;
         }
     };
 }
