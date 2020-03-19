@@ -16,4 +16,15 @@ namespace tree::utils {
         firstNode->color = secondNode->color;
         secondNode->color = temp;
     }
+
+    /**
+     *
+     * @brief Copy field of toCopy node to toPaste node, but without fields-pointers
+     *
+     */
+    template <typename T>
+    void copyNodeData (tree::Node<tree::RedBlackTree<T>>* toCopy, tree::Node<tree::RedBlackTree<T>>* toPaste) {
+        toPaste->data = toCopy->data;
+        toPaste->color = toCopy->color;
+    }
 }

@@ -71,6 +71,14 @@ namespace tree::utils {
     }
 
     /**
+    *  @brief Copy field of toCopy node to toPaste node, but without fields-pointers
+    */
+    template <typename TreeType>
+    void copyNodeData (Node<TreeType>* toCopy, Node<TreeType>* toPaste) {
+        toPaste->data = toCopy->data;
+    }
+
+    /**
      *   @return Deep copy of node
      */
     template <typename TreeType>
@@ -79,7 +87,8 @@ namespace tree::utils {
             return nullptr;
         }
 
-        auto newNode = new Node<TreeType>(node);
+        auto newNode = new Node<TreeType>();
+        copyNodeData(node, newNode);
         newNode->parent = parentNode;
         newNode->left = clone(node->left, newNode);
         newNode->right = clone(node->right, newNode);
@@ -143,17 +152,6 @@ namespace tree::utils {
             else
                 return node;
         }
-    }
-
-    template <typename TreeType>
-    void deleteTree (Node<TreeType>* node) {
-        if (node->left) {
-            deleteTree(node->left);
-        }
-        if (node->right)
-            deleteTree(node->right);
-
-        delete node;
     }
 
     /**

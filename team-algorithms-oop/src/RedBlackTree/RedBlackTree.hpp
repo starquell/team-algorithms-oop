@@ -58,9 +58,6 @@ namespace tree {
         NodeRBT* left = nullptr;
         NodeRBT* right = nullptr;
         NodeRBT* parent = nullptr;
-
-        explicit Node<RedBlackTree<T>> (const T& _data) : data(_data) {}
-        explicit Node<RedBlackTree<T>> (Node<RedBlackTree<T>>* node) : data(node->data), color(node->color) {}
     };
 
 }
