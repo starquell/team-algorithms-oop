@@ -1,6 +1,6 @@
 #pragma once
 
-#include <TreeBase.hpp>
+#include <SearchTreeBase.hpp>
 #include <Iterators/BSTIterator.hpp>
 #include "NodeUtilities.hpp"
 
@@ -10,7 +10,7 @@ namespace tree {
      *   @brief Abstract base class for binary search tree implementations
      */
     template <typename T, typename DerivedTree>
-    class BSTBase : TreeBase<T, DerivedTree> {
+    class BSTBase : SearchTreeBase<T, DerivedTree> {
     protected:
         explicit BSTBase() = default;
         void BSTInsert(Node<DerivedTree>* toInsert) {
@@ -21,7 +21,7 @@ namespace tree {
             }
         }
     private:
-        using Base = TreeBase<T, DerivedTree>;
+        using Base = SearchTreeBase<T, DerivedTree>;
 
     public:
         using value_type = T;
@@ -32,7 +32,7 @@ namespace tree {
         virtual void insert (const T& key) = 0;
         virtual void erase (const T& key) = 0;
 
-        using Base::TreeBase;
+        using Base::SearchTreeBase;
         using Base::operator=;
         using Base::size;
 

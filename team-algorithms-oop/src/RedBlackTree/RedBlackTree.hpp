@@ -2,7 +2,6 @@
 
 #include <iostream>
 #include "../BSTBase.hpp"
-#include "../NodeBase.hpp"
 
 
 namespace tree {
