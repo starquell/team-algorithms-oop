@@ -1,8 +1,6 @@
 #pragma once
 
 #include <NodeUtilities.hpp>
-#include "SearchTreeBase.hpp"
-
 
 namespace tree {
 

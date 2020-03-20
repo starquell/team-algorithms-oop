@@ -4,6 +4,9 @@
 
 namespace tree {
 
+    /**
+        @brief Class that expand Tree functionality by undo and redo operations
+     */
     template <typename Tree>
     class UndoableTree : public Tree {
     public:
@@ -17,8 +20,7 @@ namespace tree {
         };
 
     public:
-        explicit UndoableTree () = default;
-
+        explicit UndoableTree() = default;
         UndoableTree (std::initializer_list<value_type> elems);
 
         template <typename Iter>
