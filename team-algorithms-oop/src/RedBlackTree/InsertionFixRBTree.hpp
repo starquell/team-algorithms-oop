@@ -4,6 +4,9 @@
 
 namespace tree::utils {
 
+    /**
+     * @brief Implementation of algorithm that restore RBTree properties after insertion
+     */
     template <typename T>
     class InsertionFixRBTree {
     private:
@@ -63,6 +66,10 @@ namespace tree::utils {
         }
 
     public:
+        /**
+         * @brief Constructor initialize class fields and call functions for all possible situations of violations
+         * @param _currNode - the node that we inserted so there can be violations of properties of RBTree
+         */
         InsertionFixRBTree(Node<RedBlackTree<T>>*& _root, Node<RedBlackTree<T>>*& _currNode)
                : currNode(_currNode), root(_root)
         {
