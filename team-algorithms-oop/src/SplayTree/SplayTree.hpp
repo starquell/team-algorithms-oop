@@ -4,17 +4,30 @@
 
 namespace tree {
 
+    /**
+     *  @brief Splay Tree implementation
+     */
+
     template <typename T>
     class SplayTree : public BSTBase<T, SplayTree<T>> {
     private:
         using Base = BSTBase<T, SplayTree<T>>;
 
     public:
+        /**
+         *  @brief Created tree with no elements
+         */
         explicit SplayTree() noexcept = default;
 
+        /**
+         *  @brief Contructs tree with elements from range [begin, end)
+         */
         template <typename Iter>
         SplayTree(Iter begin, Iter end);
 
+        /**
+         *  @brief Contructs tree with elements from list
+         */
         SplayTree(std::initializer_list<T> elems);
 
         void insert (const T& key) override;

@@ -1,7 +1,7 @@
 #pragma once
 
 #include <iostream>
-#include "../BSTBase.hpp"
+#include <BSTBase.hpp>
 
 
 namespace tree {
@@ -19,9 +19,16 @@ namespace tree {
 
     public:
         RedBlackTree() = default;
+
+        /**
+        *  @brief Contructs tree with elements from range [begin, end)
+        */
         template <typename Iter>
         RedBlackTree(Iter begin, Iter end);
 
+        /**
+         *  @brief Contructs tree with elements from list
+         */
         RedBlackTree(std::initializer_list<T> elems);
 
         void insert(const T& _data) override;

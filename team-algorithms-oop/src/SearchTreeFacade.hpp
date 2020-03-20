@@ -4,11 +4,17 @@
 
 namespace tree {
 
+    /**
+     *  @brief Priority for tree operation (search, insert, erase) in SearchTree class
+     */
     enum class Priority {
         QuickAccessToRecentlyUsed,
         GeneralPerfomance
     };
 
+    /**
+     *  @brief Class that implements tree, choosing implementation according to priority
+     */
     template <typename T, Priority priority = Priority::GeneralPerfomance>
     class SearchTree {};
 

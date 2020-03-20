@@ -1,6 +1,5 @@
 #pragma once
 
-#include "RedBlackTree.hpp"
 #include "InsertionFixRBTree.hpp"
 #include "DeletionFixRBTree.hpp"
 

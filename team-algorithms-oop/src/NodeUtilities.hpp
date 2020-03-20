@@ -9,6 +9,9 @@
  */
 namespace tree::utils {
 
+    /**
+     *  @brief Returns node with key elem in subtree node
+     */
     template <typename TreeType, typename T>
     auto find (Node<TreeType>* node, const T& elem) noexcept -> Node<TreeType>* {
 
