@@ -4,11 +4,14 @@
 
 namespace tree::utils {
 
+    /**
+     * @brief Implementation of algorithm for node deletion and restore RBTree properties after deletion
+     */
     template <typename T>
     class DeletionFixRBTRee {
     private:
         Node<RedBlackTree<T>>* root;
-        Node<RedBlackTree<T>>* doubleBlackNode; ///DBN
+        Node<RedBlackTree<T>>* doubleBlackNode; ///shortly DBN everywhere under
         Node<RedBlackTree<T>>* DBNSibling;
         Node<RedBlackTree<T>>* DBNParent;
 
@@ -21,10 +24,10 @@ namespace tree::utils {
             DBNParent->color = Node<RedBlackTree<T>>::Red;
             DBNSibling->color = Node<RedBlackTree<T>>::Black;
             if (utils::isLeftSon(DBNSibling)) {
-                // left case
+                /// left case
                 utils::rotateRight(root, DBNParent);
             } else {
-                // right case
+                /// right case
                 utils::rotateLeft(root, DBNParent);
             }
             fixBothBlack();
@@ -32,12 +35,12 @@ namespace tree::utils {
 
         void siblingHasLeftRedChild() {
             if (utils::isLeftSon(DBNSibling)) {
-                // left left
+                /// left left
                 (DBNSibling->left)->color = DBNSibling->color;
                 DBNSibling->color = DBNParent->color;
                 utils::rotateRight(root, DBNParent);
             } else {
-                // right left
+                /// right left
                 (DBNSibling->left)->color = DBNParent->color;
                 utils::rotateRight(root, DBNSibling);
                 utils::rotateLeft(root, DBNParent);
@@ -46,12 +49,12 @@ namespace tree::utils {
 
         void siblingHasRightRedChild() {
             if (utils::isLeftSon(DBNSibling)) {
-                // left right
+                /// left right
                 (DBNSibling->right)->color = DBNParent->color;
                 utils::rotateLeft(root, DBNSibling);
                 utils::rotateRight(root, DBNParent);
             } else {
-                // right right
+                /// right right
                 (DBNSibling->right)->color = DBNSibling->color;
                 DBNSibling->color = DBNParent->color;
                 utils::rotateLeft(root, DBNParent);
@@ -71,7 +74,7 @@ namespace tree::utils {
 
         void blackSiblingCase() {
             if (utils::hasRedChild(DBNSibling)) {
-                // at least 1 Red child
+                /// at least 1 Red child
                 if (DBNSibling->left != nullptr && DBNSibling->left->color == Node<RedBlackTree<T>>::Red) {
                     siblingHasLeftRedChild();
                 } else {
@@ -83,6 +86,10 @@ namespace tree::utils {
             }
         }
 
+        /**
+         * @brief Restoring balance of the tree when deleted node and replacement node are both black
+         *          by rotation and recoloring
+         */
         void fixBothBlack() {
             if (doubleBlackNode == root) { // Reached root
                 return;
@@ -144,6 +151,10 @@ namespace tree::utils {
             }
         }
 
+        /**
+         * @brief Find replacement for the node that we want to delete
+         * and call functions to replace and delete it for all possible variant
+         */
         void eraseNode() {
             nodeToReplace = utils::findReplacement(nodeToDelete);
             parentNodeToDelete = nodeToDelete->parent;

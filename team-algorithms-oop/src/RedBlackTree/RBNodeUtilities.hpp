@@ -28,6 +28,9 @@ namespace tree::utils {
         toPaste->color = toCopy->color;
     }
 
+    /**
+     * @param currNode parent node before rotation
+     */
     template <typename T>
     void rotateLeft(Node<RedBlackTree<T>>*& _root, Node<RedBlackTree<T>>*& currNode) {
         Node<RedBlackTree<T>>* currChildRight = currNode->right;
@@ -51,6 +54,9 @@ namespace tree::utils {
         currNode->parent = currChildRight;
     }
 
+    /**
+     * @param currNode parent node before rotation
+     */
     template <typename T>
     void rotateRight(Node<RedBlackTree<T>>*& _root, Node<RedBlackTree<T>>* &currNode) {
         Node<RedBlackTree<T>>* currChildLeft = currNode->left;

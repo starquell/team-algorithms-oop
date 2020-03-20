@@ -162,7 +162,7 @@ namespace tree::utils {
     }
 
     /**
-     *   @brief Computes std::vector of all nodes of subtree 'node' in incresing order
+     *   @brief Computes std::vector of all nodes of subtree 'node' in increasing order
      */
     template <typename TreeType>
     void makeOrderedSequence (Node<TreeType>* node, std::vector<Node<TreeType>*>& nodes) {
@@ -175,6 +175,9 @@ namespace tree::utils {
         nodes.push_back(node);
     }
 
+    /**
+     * @param node left child of current parent after rotation becomes parent
+     */
     template <typename TreeType>
     void rightRotate (Node<TreeType>* node) {
         assert(isLeftSon(node));
@@ -183,6 +186,9 @@ namespace tree::utils {
         set(node->right, node->parent, node);
     }
 
+    /**
+     * @param node right child of current parent after rotation becomes parent
+     */
     template <typename TreeType>
     void leftRotate (Node<TreeType>* node) {
         assert(isRightSon(node));
@@ -191,6 +197,9 @@ namespace tree::utils {
         set(node->left, node->parent, node);
     }
 
+    /**
+     * @return another child of node parent and nullptr if there is no parent
+     */
     template <typename TreeType>
     Node<TreeType>* sibling(Node<TreeType>* node) {
         if (node->parent == nullptr) {
@@ -211,6 +220,9 @@ namespace tree::utils {
         secondNode->data = temp;
     }
 
+    /**
+     * @brief recurrsively erase whole subtree strating from toDelete node
+     */
     template <typename TreeType>
     void eraseSubTree (Node<TreeType>* toDelete) {
         if (toDelete == nullptr) {
@@ -226,7 +238,7 @@ namespace tree::utils {
     /**
      *
      * @brief Find the closest node which can be put in place of given node
-     * @param node - node for which we should find replacement node
+     * @param node node for which we should find replacement node
      * @return node that should replace given node
      *
      */
