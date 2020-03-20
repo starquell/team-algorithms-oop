@@ -9,7 +9,7 @@
 /**
  *  @brief Set of functions and classes that implement algorithms for Splay Tree
  */
-namespace tree::utils {
+namespace tree::bstutils {
 
     /**
      *  @brief Implementation of splay algorithm for Splay Tree
@@ -122,8 +122,8 @@ namespace tree::utils {
         if (!rhs) {
             return lhs;
         }
-        auto max_in_lhs = utils::max(lhs);
-        assert (max_in_lhs->data < utils::min(rhs)->data);
+        auto max_in_lhs = max(lhs);
+        assert (max_in_lhs->data < min(rhs)->data);
         auto lhs_root = splay(max_in_lhs);
         lhs_root->right = rhs;
         lhs_root->right->parent = lhs_root;
@@ -135,14 +135,14 @@ namespace tree::utils {
                 -> std::pair <Node<SplayTree<T>>*, Node<SplayTree<T>>*>
     {
         std::vector<Node<SplayTree<T>>*> elems;
-        utils::makeOrderedSequence(tree, elems);
+        makeOrderedSequence(tree, elems);
 
         T upper_bound = std::upper_bound(elems.begin(), elems.back(), elem,
                                         [] (const auto& key, const auto elem) {
                                             return key < *elem;
         });
 
-        auto upper_bound_node = utils::find(tree, elem);
+        auto upper_bound_node = find(tree, elem);
         auto new_tree = splay(upper_bound_node);
         auto leftTree = new_tree->left;
         leftTree->parent = nullptr;

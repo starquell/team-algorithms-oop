@@ -7,7 +7,7 @@ namespace tree {
     template <typename T, typename DerivedTree>
     SearchTreeBase<T, DerivedTree>::~SearchTreeBase ()  {
         if (_root) {
-            tree::utils::eraseSubTree(_root);
+            bstutils::eraseSubTree(_root);
         }
     }
     template <typename T, typename Derived>
@@ -17,7 +17,7 @@ namespace tree {
 
     template <typename T, typename DerivedTree>
     SearchTreeBase<T, DerivedTree>::SearchTreeBase (const SearchTreeBase& other)
-        : _root(utils::clone(other._root)),
+        : _root(bstutils::clone(other._root)),
           _size(other._size)
     {}
 

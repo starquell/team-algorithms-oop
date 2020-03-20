@@ -7,22 +7,15 @@ namespace tree {
     template <typename T>
     void SplayTree<T>::insert (const T& key) {
         auto new_node = new Node<SplayTree<T>> {key};
-        if (!_root) {
-            _root = new_node;
-            ++_size;
-            return;
-        }
-        else {
-            utils::insertWithParent(_root, new_node);
-        }
-        _root = utils::splay(new_node);
+        Base::simpleInsert(new_node);
+        _root = bstutils::splay(new_node);
         ++_size;
     }
 
     template <typename T>
     void SplayTree<T>::erase (const T& key) {
-        auto found = utils::find(_root, key);
-        auto splayed = utils::splay(found);
+        auto found = bstutils::find(_root, key);
+        auto splayed = bstutils::splay(found);
         if (!splayed) {
             return;
         }
@@ -37,7 +30,7 @@ namespace tree {
             splayed->right = nullptr;
         }
         delete splayed;
-        _root = utils::merge<T>(lhs_tree, rhs_tree);
+        _root = bstutils::merge<T>(lhs_tree, rhs_tree);
         --_size;
     }
 

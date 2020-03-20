@@ -17,7 +17,7 @@ namespace tree {
             if (_root == nullptr) {
                 _root = toInsert;
             } else {
-                utils::insertWithParent(_root, toInsert);
+                bstutils::insertWithParent(_root, toInsert);
             }
         }
     private:

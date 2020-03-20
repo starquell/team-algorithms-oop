@@ -27,7 +27,7 @@ namespace tree {
         auto inputNode = new Node<RedBlackTree<T>>{_data};
         simpleInsert(inputNode);
 
-        utils::InsertionFixRBTree(_root, inputNode);
+        rbutils::InsertionFixRBTree(_root, inputNode);
         _size++;
     }
 
@@ -37,7 +37,7 @@ namespace tree {
             return;
         }
 
-        Node<RedBlackTree<T>>* nodeToDelete = utils::find<RedBlackTree>(_root,  _data);
+        Node<RedBlackTree<T>>* nodeToDelete = bstutils::find<RedBlackTree>(_root,  _data);
 
         if (nodeToDelete == nullptr) {
             return;
@@ -46,7 +46,7 @@ namespace tree {
         if (nodeToDelete == _root && nodeToDelete->left == nullptr && nodeToDelete->right == nullptr) {
             _root = nullptr;
         } else {
-            utils::DeletionFixRBTRee(_root, nodeToDelete);
+            rbutils::DeletionFixRBTRee(_root, nodeToDelete);
         }
         _size--;
     }

@@ -12,7 +12,6 @@ namespace tree {
     class SplayTree : public BSTBase<T, SplayTree<T>> {
     private:
         using Base = BSTBase<T, SplayTree<T>>;
-
     public:
         /**
          *  @brief Created tree with no elements
@@ -32,12 +31,6 @@ namespace tree {
 
         void insert (const T& key) override;
         void erase (const T& key) override;
-
-        using Base::Base;
-        using Base::operator=;
-        using Base::begin;
-        using Base::end;
-        using Base::size;
 
         ~SplayTree() override = default;
 

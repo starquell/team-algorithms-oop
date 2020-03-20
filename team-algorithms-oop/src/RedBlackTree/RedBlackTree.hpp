@@ -12,11 +12,6 @@ namespace tree {
         using NodeRBT = Node<RedBlackTree<T>>;
         using Base = BSTBase<T, RedBlackTree<T>>;
 
-    protected:
-        using Base::_root;
-        using Base::_size;
-        using Base::simpleInsert;
-
     public:
         RedBlackTree() = default;
 
@@ -34,13 +29,12 @@ namespace tree {
         void insert(const T& _data) override;
         void erase(const T& _data) override;
 
-        using Base::Base;
-        using Base::operator=;
-        using Base::begin;
-        using Base::end;
-        using Base::size;
         ~RedBlackTree() override = default;
 
+    protected:
+        using Base::_root;
+        using Base::_size;
+        using Base::simpleInsert;
     };
 
     template<typename T>

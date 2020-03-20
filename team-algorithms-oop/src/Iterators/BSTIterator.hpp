@@ -1,14 +1,14 @@
 #pragma once
 
-#include <Iterators/IteratorBase.hpp>
+#include <Iterators/TreeIterator.hpp>
 
 namespace tree {
 
     /**
-     *  @brief Iterator for binary search tree with node that has pointer on parent node
+     *  @brief TreeIterator for binary search tree with node that has pointer on parent node
      */
     template <typename T, typename TreeNode>
-    class BSTIterator : public IteratorBase<T, BSTIterator<T, TreeNode>> {
+    class BSTIterator : public TreeIterator<T, BSTIterator<T, TreeNode>> {
 
     public:
         explicit BSTIterator (TreeNode* root) noexcept;

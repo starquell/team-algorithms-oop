@@ -7,7 +7,7 @@
 /**
  *   @brief Set of function to work with binary tree nodes
  */
-namespace tree::utils {
+namespace tree::bstutils {
 
     /**
      *  @brief Returns node with key elem in subtree node
@@ -201,7 +201,7 @@ namespace tree::utils {
     }
 
     /**
-     * @return another child of node parent and nullptr if there is no parent
+     * @return Another child of node parent and nullptr if there is no parent
      */
     template <typename TreeType>
     Node<TreeType>* sibling(Node<TreeType>* node) {
@@ -224,7 +224,7 @@ namespace tree::utils {
     }
 
     /**
-     * @brief recurrsively erase whole subtree strating from toDelete node
+     * @brief Recurrsively erase whole subtree strating from toDelete node
      */
     template <typename TreeType>
     void eraseSubTree (Node<TreeType>* toDelete) {
@@ -241,15 +241,15 @@ namespace tree::utils {
     /**
      *
      * @brief Find the closest node which can be put in place of given node
-     * @param node node for which we should find replacement node
-     * @return node that should replace given node
+     * @param node Node for which we should find replacement node
+     * @return Node that should replace given node
      *
      */
     template <typename TreeType>
     Node<TreeType>* findReplacement(Node<TreeType>* node) {
         // when node have 2 children
         if (node->left != nullptr && node->right != nullptr) {
-            return utils::min(node->right);
+            return min(node->right);
         }
 
         // when leaf

@@ -6897,8 +6897,8 @@ namespace Catch {
 
             double weighted_average_quantile(int k, int q, std::vector<double>::iterator first, std::vector<double>::iterator last);
 
-            template <typename Iterator>
-            OutlierClassification classify_outliers(Iterator first, Iterator last) {
+            template <typename TreeIterator>
+            OutlierClassification classify_outliers(TreeIterator first, TreeIterator last) {
                 std::vector<double> copy(first, last);
 
                 auto q1 = weighted_average_quantile(1, 4, copy.begin(), copy.end());
@@ -6921,15 +6921,15 @@ namespace Catch {
                 return o;
             }
 
-            template <typename Iterator>
-            double mean(Iterator first, Iterator last) {
+            template <typename TreeIterator>
+            double mean(TreeIterator first, TreeIterator last) {
                 auto count = last - first;
                 double sum = std::accumulate(first, last, 0.);
                 return sum / count;
             }
 
-            template <typename URng, typename Iterator, typename Estimator>
-            sample resample(URng& rng, int resamples, Iterator first, Iterator last, Estimator& estimator) {
+            template <typename URng, typename TreeIterator, typename Estimator>
+            sample resample(URng& rng, int resamples, TreeIterator first, TreeIterator last, Estimator& estimator) {
                 auto n = last - first;
                 std::uniform_int_distribution<decltype(n)> dist(0, n - 1);
 
@@ -6945,8 +6945,8 @@ namespace Catch {
                 return out;
             }
 
-            template <typename Estimator, typename Iterator>
-            sample jackknife(Estimator&& estimator, Iterator first, Iterator last) {
+            template <typename Estimator, typename TreeIterator>
+            sample jackknife(Estimator&& estimator, TreeIterator first, TreeIterator last) {
                 auto n = last - first;
                 auto second = std::next(first);
                 sample results;
@@ -6968,8 +6968,8 @@ namespace Catch {
 
             double normal_quantile(double p);
 
-            template <typename Iterator, typename Estimator>
-            Estimate<double> bootstrap(double confidence_level, Iterator first, Iterator last, sample const& resample, Estimator&& estimator) {
+            template <typename TreeIterator, typename Estimator>
+            Estimate<double> bootstrap(double confidence_level, TreeIterator first, TreeIterator last, sample const& resample, Estimator&& estimator) {
                 auto n_samples = last - first;
 
                 double point = estimator(first, last);
@@ -7165,8 +7165,8 @@ namespace Catch {
 namespace Catch {
     namespace Benchmark {
         namespace Detail {
-            template <typename Duration, typename Iterator>
-            SampleAnalysis<Duration> analyse(const IConfig &cfg, Environment<Duration>, Iterator first, Iterator last) {
+            template <typename Duration, typename TreeIterator>
+            SampleAnalysis<Duration> analyse(const IConfig &cfg, Environment<Duration>, TreeIterator first, TreeIterator last) {
                 if (!cfg.benchmarkNoAnalysis()) {
                     std::vector<double> samples;
                     samples.reserve(last - first);

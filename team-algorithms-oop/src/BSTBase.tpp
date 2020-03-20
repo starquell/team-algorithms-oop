@@ -8,7 +8,7 @@ namespace tree {
     auto BSTBase<T, DerivedTree>::search (const T& key) noexcept
         -> typename BSTBase<T, DerivedTree>::iterator
     {
-        auto found = utils::find(_root, key);
+        auto found = bstutils::find(_root, key);
         if (found) {
             auto iter = begin();
             while (iter) {
@@ -26,7 +26,7 @@ namespace tree {
 
     template <typename T, typename Derived>
     auto BSTBase<T, Derived>::begin() const -> typename BSTBase<T, Derived>::iterator {
-        return iterator{utils::min(_root)};
+        return iterator{bstutils::min(_root)};
     }
 
     template <typename T, typename Derived>
