@@ -1,0 +1,61 @@
+\hypertarget{classlab_1_1tree_1_1_tree_iterator}{}\doxysection{lab\+::tree\+::Tree\+Iterator$<$ T, Derived\+Iterator $>$ Class Template Reference}
+\label{classlab_1_1tree_1_1_tree_iterator}\index{lab::tree::TreeIterator$<$ T, DerivedIterator $>$@{lab::tree::TreeIterator$<$ T, DerivedIterator $>$}}
+
+
+Interface for tree iterators.  
+
+
+
+
+{\ttfamily \#include $<$Tree\+Iterator.\+hpp$>$}
+
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classlab_1_1tree_1_1_tree_iterator_ab3e0787434006d78119329f454a6f7c3}\label{classlab_1_1tree_1_1_tree_iterator_ab3e0787434006d78119329f454a6f7c3}} 
+using {\bfseries value\+\_\+type} = T
+\item 
+\mbox{\Hypertarget{classlab_1_1tree_1_1_tree_iterator_a85291b2b24111e8eb0f9f3f46e43fe50}\label{classlab_1_1tree_1_1_tree_iterator_a85291b2b24111e8eb0f9f3f46e43fe50}} 
+using {\bfseries difference\+\_\+type} = std\+::ptrdiff\+\_\+t
+\item 
+\mbox{\Hypertarget{classlab_1_1tree_1_1_tree_iterator_a50b0b0a46718b8c56ba9b5bd653ece43}\label{classlab_1_1tree_1_1_tree_iterator_a50b0b0a46718b8c56ba9b5bd653ece43}} 
+using {\bfseries pointer} = T $\ast$
+\item 
+\mbox{\Hypertarget{classlab_1_1tree_1_1_tree_iterator_a1f02ae964604d12061cc2fee347b2a35}\label{classlab_1_1tree_1_1_tree_iterator_a1f02ae964604d12061cc2fee347b2a35}} 
+using {\bfseries reference} = T \&
+\item 
+\mbox{\Hypertarget{classlab_1_1tree_1_1_tree_iterator_ad43ce1b1218d6648b7f52c9bd42d4f7c}\label{classlab_1_1tree_1_1_tree_iterator_ad43ce1b1218d6648b7f52c9bd42d4f7c}} 
+using {\bfseries iterator\+\_\+category} = std\+::forward\+\_\+iterator\+\_\+tag
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classlab_1_1tree_1_1_tree_iterator_ac45774343a192abcc6a2e793d4136b8c}\label{classlab_1_1tree_1_1_tree_iterator_ac45774343a192abcc6a2e793d4136b8c}} 
+virtual const T \& {\bfseries operator$\ast$} () noexcept=0
+\item 
+\mbox{\Hypertarget{classlab_1_1tree_1_1_tree_iterator_af6f48647390a491af9b5b31b4f058a15}\label{classlab_1_1tree_1_1_tree_iterator_af6f48647390a491af9b5b31b4f058a15}} 
+virtual {\bfseries operator bool} () const noexcept=0
+\item 
+\mbox{\Hypertarget{classlab_1_1tree_1_1_tree_iterator_a2f6a8c962f59c1e9ad52e06670c38380}\label{classlab_1_1tree_1_1_tree_iterator_a2f6a8c962f59c1e9ad52e06670c38380}} 
+virtual bool {\bfseries operator!=} (const Derived\+Iterator \&other) noexcept=0
+\item 
+\mbox{\Hypertarget{classlab_1_1tree_1_1_tree_iterator_ae4a456ab385a79116faa4569e0532da2}\label{classlab_1_1tree_1_1_tree_iterator_ae4a456ab385a79116faa4569e0532da2}} 
+virtual bool {\bfseries operator==} (const Derived\+Iterator \&other) noexcept=0
+\item 
+\mbox{\Hypertarget{classlab_1_1tree_1_1_tree_iterator_ae4a1d99fd8e93a47b274732c7631a4fd}\label{classlab_1_1tree_1_1_tree_iterator_ae4a1d99fd8e93a47b274732c7631a4fd}} 
+virtual Derived\+Iterator \& {\bfseries operator++} () noexcept=0
+\item 
+\mbox{\Hypertarget{classlab_1_1tree_1_1_tree_iterator_a4d72cdfc75edf70b2cd0c882e6232913}\label{classlab_1_1tree_1_1_tree_iterator_a4d72cdfc75edf70b2cd0c882e6232913}} 
+virtual Derived\+Iterator {\bfseries operator+} (int n) const noexcept=0
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename T, typename Derived\+Iterator$>$\newline
+class lab\+::tree\+::\+Tree\+Iterator$<$ T, Derived\+Iterator $>$}
+
+Interface for tree iterators. 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/\+Iterators/Tree\+Iterator.\+hpp\end{DoxyCompactItemize}

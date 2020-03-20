@@ -1,0 +1,159 @@
+\hypertarget{namespacelab_1_1tree_1_1bstutils}{}\doxysection{lab\+::tree\+::bstutils Namespace Reference}
+\label{namespacelab_1_1tree_1_1bstutils}\index{lab::tree::bstutils@{lab::tree::bstutils}}
+
+
+Set of function to work with binary tree nodes.  
+
+
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classlab_1_1tree_1_1bstutils_1_1_splayer}{Splayer}}
+\begin{DoxyCompactList}\small\item\em Implementation of splay algorithm for Splay Tree. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{namespacelab_1_1tree_1_1bstutils_ad4f7772151759c8dd7fa93d15e098fe3}\label{namespacelab_1_1tree_1_1bstutils_ad4f7772151759c8dd7fa93d15e098fe3}} 
+{\footnotesize template$<$typename Tree , typename T , typename Compare $>$ }\\auto \mbox{\hyperlink{namespacelab_1_1tree_1_1bstutils_ad4f7772151759c8dd7fa93d15e098fe3}{find}} (\mbox{\hyperlink{structlab_1_1tree_1_1_node}{Node}}$<$ Tree $>$ $\ast$node, const T \&elem, const Compare \&comp) noexcept -\/$>$ \mbox{\hyperlink{structlab_1_1tree_1_1_node}{Node}}$<$ Tree $>$ $\ast$
+\begin{DoxyCompactList}\small\item\em Returns node with key elem in subtree node. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{namespacelab_1_1tree_1_1bstutils_a8814b4f08a5be7bd50afaeb6b53e9044}\label{namespacelab_1_1tree_1_1bstutils_a8814b4f08a5be7bd50afaeb6b53e9044}} 
+{\footnotesize template$<$typename Tree $>$ }\\bool {\bfseries is\+Left\+Son} (\mbox{\hyperlink{structlab_1_1tree_1_1_node}{Node}}$<$ Tree $>$ $\ast$node) noexcept
+\item 
+\mbox{\Hypertarget{namespacelab_1_1tree_1_1bstutils_a9815554a14e6316ec1bdd4860fbed3dc}\label{namespacelab_1_1tree_1_1bstutils_a9815554a14e6316ec1bdd4860fbed3dc}} 
+{\footnotesize template$<$typename Tree $>$ }\\bool {\bfseries is\+Right\+Son} (\mbox{\hyperlink{structlab_1_1tree_1_1_node}{Node}}$<$ Tree $>$ $\ast$node) noexcept
+\item 
+{\footnotesize template$<$typename Tree $>$ }\\auto \mbox{\hyperlink{namespacelab_1_1tree_1_1bstutils_ad3524e5d4e4c62235df92d2f6a253822}{min}} (\mbox{\hyperlink{structlab_1_1tree_1_1_node}{Node}}$<$ Tree $>$ $\ast$node) noexcept -\/$>$ \mbox{\hyperlink{structlab_1_1tree_1_1_node}{Node}}$<$ Tree $>$ $\ast$
+\item 
+{\footnotesize template$<$typename Tree $>$ }\\auto \mbox{\hyperlink{namespacelab_1_1tree_1_1bstutils_a2a7076003bc685f80c3baa4c6b626637}{max}} (\mbox{\hyperlink{structlab_1_1tree_1_1_node}{Node}}$<$ Tree $>$ $\ast$node) noexcept -\/$>$ \mbox{\hyperlink{structlab_1_1tree_1_1_node}{Node}}$<$ Tree $>$ $\ast$
+\item 
+\mbox{\Hypertarget{namespacelab_1_1tree_1_1bstutils_a5c8a793eead5aefaed86835d2f62f9ed}\label{namespacelab_1_1tree_1_1bstutils_a5c8a793eead5aefaed86835d2f62f9ed}} 
+{\footnotesize template$<$typename Tree $>$ }\\void \mbox{\hyperlink{namespacelab_1_1tree_1_1bstutils_a5c8a793eead5aefaed86835d2f62f9ed}{copy\+Node\+Data}} (\mbox{\hyperlink{structlab_1_1tree_1_1_node}{Node}}$<$ Tree $>$ $\ast$to\+Copy, \mbox{\hyperlink{structlab_1_1tree_1_1_node}{Node}}$<$ Tree $>$ $\ast$to\+Paste)
+\begin{DoxyCompactList}\small\item\em Copy field of to\+Copy node to to\+Paste node, but without fields-\/pointers. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename Tree $>$ }\\auto \mbox{\hyperlink{namespacelab_1_1tree_1_1bstutils_a6fc9622aaac48ce4b06d11ca901337f5}{clone}} (\mbox{\hyperlink{structlab_1_1tree_1_1_node}{Node}}$<$ Tree $>$ $\ast$node, \mbox{\hyperlink{structlab_1_1tree_1_1_node}{Node}}$<$ Tree $>$ $\ast$parent\+Node=nullptr) -\/$>$ \mbox{\hyperlink{structlab_1_1tree_1_1_node}{Node}}$<$ Tree $>$ $\ast$
+\item 
+\mbox{\Hypertarget{namespacelab_1_1tree_1_1bstutils_ae35eec9e3f37e972e89871a26d7add9a}\label{namespacelab_1_1tree_1_1bstutils_ae35eec9e3f37e972e89871a26d7add9a}} 
+{\footnotesize template$<$typename Tree , typename Compare $>$ }\\auto \mbox{\hyperlink{namespacelab_1_1tree_1_1bstutils_ae35eec9e3f37e972e89871a26d7add9a}{insert}} (\mbox{\hyperlink{structlab_1_1tree_1_1_node}{Node}}$<$ Tree $>$ $\ast$node, \mbox{\hyperlink{structlab_1_1tree_1_1_node}{Node}}$<$ Tree $>$ $\ast$to\+\_\+insert, const Compare \&comp) -\/$>$ \mbox{\hyperlink{structlab_1_1tree_1_1_node}{Node}}$<$ Tree $>$ $\ast$
+\begin{DoxyCompactList}\small\item\em Simple insertion in B\+ST node without parent info, non-\/recursive approach. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{namespacelab_1_1tree_1_1bstutils_ad1b953bcab2a68c01db1127df8e5cd89}\label{namespacelab_1_1tree_1_1bstutils_ad1b953bcab2a68c01db1127df8e5cd89}} 
+{\footnotesize template$<$typename Tree , typename Compare $>$ }\\auto \mbox{\hyperlink{namespacelab_1_1tree_1_1bstutils_ad1b953bcab2a68c01db1127df8e5cd89}{insert\+With\+Parent}} (\mbox{\hyperlink{structlab_1_1tree_1_1_node}{Node}}$<$ Tree $>$ $\ast$node, \mbox{\hyperlink{structlab_1_1tree_1_1_node}{Node}}$<$ Tree $>$ $\ast$to\+\_\+insert, const Compare \&comp) -\/$>$ \mbox{\hyperlink{structlab_1_1tree_1_1_node}{Node}}$<$ Tree $>$ $\ast$
+\begin{DoxyCompactList}\small\item\em Simple insertion in B\+ST node with parent info, non-\/recursive approach. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{namespacelab_1_1tree_1_1bstutils_a0828d3fb8bc6cd3889316a2c3e29e228}\label{namespacelab_1_1tree_1_1bstutils_a0828d3fb8bc6cd3889316a2c3e29e228}} 
+{\footnotesize template$<$typename Tree $>$ }\\void \mbox{\hyperlink{namespacelab_1_1tree_1_1bstutils_a0828d3fb8bc6cd3889316a2c3e29e228}{set}} (\mbox{\hyperlink{structlab_1_1tree_1_1_node}{Node}}$<$ Tree $>$ $\ast$\&var, \mbox{\hyperlink{structlab_1_1tree_1_1_node}{Node}}$<$ Tree $>$ $\ast$value, \mbox{\hyperlink{structlab_1_1tree_1_1_node}{Node}}$<$ Tree $>$ $\ast$new\+\_\+parent=nullptr)
+\begin{DoxyCompactList}\small\item\em Assign var to value, setting var\textquotesingle{}s parent new\+\_\+parent. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{namespacelab_1_1tree_1_1bstutils_adb75326ed69ce10f5e669a552baaecf8}\label{namespacelab_1_1tree_1_1bstutils_adb75326ed69ce10f5e669a552baaecf8}} 
+{\footnotesize template$<$typename Tree $>$ }\\void \mbox{\hyperlink{namespacelab_1_1tree_1_1bstutils_adb75326ed69ce10f5e669a552baaecf8}{make\+Ordered\+Sequence}} (\mbox{\hyperlink{structlab_1_1tree_1_1_node}{Node}}$<$ Tree $>$ $\ast$node, std\+::vector$<$ \mbox{\hyperlink{structlab_1_1tree_1_1_node}{Node}}$<$ Tree $>$ $\ast$ $>$ \&nodes)
+\begin{DoxyCompactList}\small\item\em Computes std\+::vector of all nodes of subtree \textquotesingle{}node\textquotesingle{} in increasing order. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename Tree $>$ }\\void \mbox{\hyperlink{namespacelab_1_1tree_1_1bstutils_a86067321db5d3a817a7df88ce33c2d92}{right\+Rotate}} (\mbox{\hyperlink{structlab_1_1tree_1_1_node}{Node}}$<$ Tree $>$ $\ast$node)
+\item 
+{\footnotesize template$<$typename Tree $>$ }\\void \mbox{\hyperlink{namespacelab_1_1tree_1_1bstutils_a3e0f952cb6fa2e6543f07e76ad27f640}{left\+Rotate}} (\mbox{\hyperlink{structlab_1_1tree_1_1_node}{Node}}$<$ Tree $>$ $\ast$node)
+\item 
+{\footnotesize template$<$typename Tree $>$ }\\\mbox{\hyperlink{structlab_1_1tree_1_1_node}{Node}}$<$ Tree $>$ $\ast$ \mbox{\hyperlink{namespacelab_1_1tree_1_1bstutils_a78d72d83807db1b5f65719727a2aa4ed}{sibling}} (\mbox{\hyperlink{structlab_1_1tree_1_1_node}{Node}}$<$ Tree $>$ $\ast$node)
+\item 
+\mbox{\Hypertarget{namespacelab_1_1tree_1_1bstutils_ace0aff22d2219a705542d07dfa680bf3}\label{namespacelab_1_1tree_1_1bstutils_ace0aff22d2219a705542d07dfa680bf3}} 
+{\footnotesize template$<$typename Tree $>$ }\\void {\bfseries swap\+Data} (\mbox{\hyperlink{structlab_1_1tree_1_1_node}{Node}}$<$ Tree $>$ $\ast$first\+Node, \mbox{\hyperlink{structlab_1_1tree_1_1_node}{Node}}$<$ Tree $>$ $\ast$second\+Node)
+\item 
+\mbox{\Hypertarget{namespacelab_1_1tree_1_1bstutils_a903d8b629e206b7fa67457080af8ac82}\label{namespacelab_1_1tree_1_1bstutils_a903d8b629e206b7fa67457080af8ac82}} 
+{\footnotesize template$<$typename Tree $>$ }\\void \mbox{\hyperlink{namespacelab_1_1tree_1_1bstutils_a903d8b629e206b7fa67457080af8ac82}{erase\+Sub\+Tree}} (\mbox{\hyperlink{structlab_1_1tree_1_1_node}{Node}}$<$ Tree $>$ $\ast$to\+Delete)
+\begin{DoxyCompactList}\small\item\em Recurrsively erase whole subtree strating from to\+Delete node. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename Tree $>$ }\\\mbox{\hyperlink{structlab_1_1tree_1_1_node}{Node}}$<$ Tree $>$ $\ast$ \mbox{\hyperlink{namespacelab_1_1tree_1_1bstutils_a43aab4806b630b8eaec18066b349d903}{find\+Replacement}} (\mbox{\hyperlink{structlab_1_1tree_1_1_node}{Node}}$<$ Tree $>$ $\ast$node)
+\begin{DoxyCompactList}\small\item\em Find the closest node which can be put in place of given node. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{namespacelab_1_1tree_1_1bstutils_a3ebc48507bf246da19f831bd65088c64}\label{namespacelab_1_1tree_1_1bstutils_a3ebc48507bf246da19f831bd65088c64}} 
+{\footnotesize template$<$typename T $>$ }\\auto {\bfseries splay} (\mbox{\hyperlink{structlab_1_1tree_1_1_node}{Node}}$<$ \mbox{\hyperlink{classlab_1_1tree_1_1_splay_tree}{Splay\+Tree}}$<$ T $>$$>$ $\ast$node) noexcept -\/$>$ \mbox{\hyperlink{structlab_1_1tree_1_1_node}{Node}}$<$ \mbox{\hyperlink{classlab_1_1tree_1_1_splay_tree}{Splay\+Tree}}$<$ T $>$$>$ $\ast$
+\item 
+\mbox{\Hypertarget{namespacelab_1_1tree_1_1bstutils_a585d31803530506d0fbf95cb872d0fd8}\label{namespacelab_1_1tree_1_1bstutils_a585d31803530506d0fbf95cb872d0fd8}} 
+{\footnotesize template$<$typename T $>$ }\\auto {\bfseries merge} (\mbox{\hyperlink{structlab_1_1tree_1_1_node}{Node}}$<$ \mbox{\hyperlink{classlab_1_1tree_1_1_splay_tree}{Splay\+Tree}}$<$ T $>$$>$ $\ast$lhs, \mbox{\hyperlink{structlab_1_1tree_1_1_node}{Node}}$<$ \mbox{\hyperlink{classlab_1_1tree_1_1_splay_tree}{Splay\+Tree}}$<$ T $>$$>$ $\ast$rhs) noexcept
+\item 
+\mbox{\Hypertarget{namespacelab_1_1tree_1_1bstutils_abc93371816ccb66f7ae5650537619a6a}\label{namespacelab_1_1tree_1_1bstutils_abc93371816ccb66f7ae5650537619a6a}} 
+{\footnotesize template$<$typename T $>$ }\\auto {\bfseries split} (\mbox{\hyperlink{structlab_1_1tree_1_1_node}{Node}}$<$ \mbox{\hyperlink{classlab_1_1tree_1_1_splay_tree}{Splay\+Tree}}$<$ T $>$$>$ $\ast$tree, const T \&elem) noexcept -\/$>$ std\+::pair$<$ \mbox{\hyperlink{structlab_1_1tree_1_1_node}{Node}}$<$ \mbox{\hyperlink{classlab_1_1tree_1_1_splay_tree}{Splay\+Tree}}$<$ T $>$$>$ $\ast$, \mbox{\hyperlink{structlab_1_1tree_1_1_node}{Node}}$<$ \mbox{\hyperlink{classlab_1_1tree_1_1_splay_tree}{Splay\+Tree}}$<$ T $>$$>$ $\ast$ $>$
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Set of function to work with binary tree nodes. 
+
+Set of functions and classes that implement algorithms for Splay Tree. 
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{namespacelab_1_1tree_1_1bstutils_a6fc9622aaac48ce4b06d11ca901337f5}\label{namespacelab_1_1tree_1_1bstutils_a6fc9622aaac48ce4b06d11ca901337f5}} 
+\index{lab::tree::bstutils@{lab::tree::bstutils}!clone@{clone}}
+\index{clone@{clone}!lab::tree::bstutils@{lab::tree::bstutils}}
+\doxysubsubsection{\texorpdfstring{clone()}{clone()}}
+{\footnotesize\ttfamily template$<$typename Tree $>$ \\
+auto lab\+::tree\+::bstutils\+::clone (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structlab_1_1tree_1_1_node}{Node}}$<$ Tree $>$ $\ast$}]{node,  }\item[{\mbox{\hyperlink{structlab_1_1tree_1_1_node}{Node}}$<$ Tree $>$ $\ast$}]{parent\+Node = {\ttfamily nullptr} }\end{DoxyParamCaption}) -\/$>$ \mbox{\hyperlink{structlab_1_1tree_1_1_node}{Node}}$<$Tree$>$$\ast$ }
+
+\begin{DoxyReturn}{Returns}
+Deep copy of node 
+\end{DoxyReturn}
+\mbox{\Hypertarget{namespacelab_1_1tree_1_1bstutils_a43aab4806b630b8eaec18066b349d903}\label{namespacelab_1_1tree_1_1bstutils_a43aab4806b630b8eaec18066b349d903}} 
+\index{lab::tree::bstutils@{lab::tree::bstutils}!findReplacement@{findReplacement}}
+\index{findReplacement@{findReplacement}!lab::tree::bstutils@{lab::tree::bstutils}}
+\doxysubsubsection{\texorpdfstring{findReplacement()}{findReplacement()}}
+{\footnotesize\ttfamily template$<$typename Tree $>$ \\
+\mbox{\hyperlink{structlab_1_1tree_1_1_node}{Node}}$<$Tree$>$$\ast$ lab\+::tree\+::bstutils\+::find\+Replacement (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structlab_1_1tree_1_1_node}{Node}}$<$ Tree $>$ $\ast$}]{node }\end{DoxyParamCaption})}
+
+
+
+Find the closest node which can be put in place of given node. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em node} & \mbox{\hyperlink{structlab_1_1tree_1_1_node}{Node}} for which we should find replacement node \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\mbox{\hyperlink{structlab_1_1tree_1_1_node}{Node}} that should replace given node 
+\end{DoxyReturn}
+\mbox{\Hypertarget{namespacelab_1_1tree_1_1bstutils_a3e0f952cb6fa2e6543f07e76ad27f640}\label{namespacelab_1_1tree_1_1bstutils_a3e0f952cb6fa2e6543f07e76ad27f640}} 
+\index{lab::tree::bstutils@{lab::tree::bstutils}!leftRotate@{leftRotate}}
+\index{leftRotate@{leftRotate}!lab::tree::bstutils@{lab::tree::bstutils}}
+\doxysubsubsection{\texorpdfstring{leftRotate()}{leftRotate()}}
+{\footnotesize\ttfamily template$<$typename Tree $>$ \\
+void lab\+::tree\+::bstutils\+::left\+Rotate (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structlab_1_1tree_1_1_node}{Node}}$<$ Tree $>$ $\ast$}]{node }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em node} & right child of current parent after rotation becomes parent \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{namespacelab_1_1tree_1_1bstutils_a2a7076003bc685f80c3baa4c6b626637}\label{namespacelab_1_1tree_1_1bstutils_a2a7076003bc685f80c3baa4c6b626637}} 
+\index{lab::tree::bstutils@{lab::tree::bstutils}!max@{max}}
+\index{max@{max}!lab::tree::bstutils@{lab::tree::bstutils}}
+\doxysubsubsection{\texorpdfstring{max()}{max()}}
+{\footnotesize\ttfamily template$<$typename Tree $>$ \\
+auto lab\+::tree\+::bstutils\+::max (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structlab_1_1tree_1_1_node}{Node}}$<$ Tree $>$ $\ast$}]{node }\end{DoxyParamCaption}) -\/$>$ \mbox{\hyperlink{structlab_1_1tree_1_1_node}{Node}}$<$Tree$>$$\ast$ \hspace{0.3cm}{\ttfamily [noexcept]}}
+
+\begin{DoxyReturn}{Returns}
+\mbox{\hyperlink{structlab_1_1tree_1_1_node}{Node}} with max element in subtree 
+\end{DoxyReturn}
+\mbox{\Hypertarget{namespacelab_1_1tree_1_1bstutils_ad3524e5d4e4c62235df92d2f6a253822}\label{namespacelab_1_1tree_1_1bstutils_ad3524e5d4e4c62235df92d2f6a253822}} 
+\index{lab::tree::bstutils@{lab::tree::bstutils}!min@{min}}
+\index{min@{min}!lab::tree::bstutils@{lab::tree::bstutils}}
+\doxysubsubsection{\texorpdfstring{min()}{min()}}
+{\footnotesize\ttfamily template$<$typename Tree $>$ \\
+auto lab\+::tree\+::bstutils\+::min (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structlab_1_1tree_1_1_node}{Node}}$<$ Tree $>$ $\ast$}]{node }\end{DoxyParamCaption}) -\/$>$ \mbox{\hyperlink{structlab_1_1tree_1_1_node}{Node}}$<$Tree$>$$\ast$ \hspace{0.3cm}{\ttfamily [noexcept]}}
+
+\begin{DoxyReturn}{Returns}
+\mbox{\hyperlink{structlab_1_1tree_1_1_node}{Node}} with min element in subtree 
+\end{DoxyReturn}
+\mbox{\Hypertarget{namespacelab_1_1tree_1_1bstutils_a86067321db5d3a817a7df88ce33c2d92}\label{namespacelab_1_1tree_1_1bstutils_a86067321db5d3a817a7df88ce33c2d92}} 
+\index{lab::tree::bstutils@{lab::tree::bstutils}!rightRotate@{rightRotate}}
+\index{rightRotate@{rightRotate}!lab::tree::bstutils@{lab::tree::bstutils}}
+\doxysubsubsection{\texorpdfstring{rightRotate()}{rightRotate()}}
+{\footnotesize\ttfamily template$<$typename Tree $>$ \\
+void lab\+::tree\+::bstutils\+::right\+Rotate (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structlab_1_1tree_1_1_node}{Node}}$<$ Tree $>$ $\ast$}]{node }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em node} & left child of current parent after rotation becomes parent \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{namespacelab_1_1tree_1_1bstutils_a78d72d83807db1b5f65719727a2aa4ed}\label{namespacelab_1_1tree_1_1bstutils_a78d72d83807db1b5f65719727a2aa4ed}} 
+\index{lab::tree::bstutils@{lab::tree::bstutils}!sibling@{sibling}}
+\index{sibling@{sibling}!lab::tree::bstutils@{lab::tree::bstutils}}
+\doxysubsubsection{\texorpdfstring{sibling()}{sibling()}}
+{\footnotesize\ttfamily template$<$typename Tree $>$ \\
+\mbox{\hyperlink{structlab_1_1tree_1_1_node}{Node}}$<$Tree$>$$\ast$ lab\+::tree\+::bstutils\+::sibling (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structlab_1_1tree_1_1_node}{Node}}$<$ Tree $>$ $\ast$}]{node }\end{DoxyParamCaption})}
+
+\begin{DoxyReturn}{Returns}
+Another child of node parent and nullptr if there is no parent 
+\end{DoxyReturn}

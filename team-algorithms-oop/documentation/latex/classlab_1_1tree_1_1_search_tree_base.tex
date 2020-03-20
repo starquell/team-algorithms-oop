@@ -1,0 +1,67 @@
+\hypertarget{classlab_1_1tree_1_1_search_tree_base}{}\doxysection{lab\+::tree\+::Search\+Tree\+Base$<$ T, Compare, Derived\+Tree $>$ Class Template Reference}
+\label{classlab_1_1tree_1_1_search_tree_base}\index{lab::tree::SearchTreeBase$<$ T, Compare, DerivedTree $>$@{lab::tree::SearchTreeBase$<$ T, Compare, DerivedTree $>$}}
+
+
+Abstract base class for tree implementations.  
+
+
+
+
+{\ttfamily \#include $<$Search\+Tree\+Base.\+hpp$>$}
+
+Inheritance diagram for lab\+::tree\+::Search\+Tree\+Base$<$ T, Compare, Derived\+Tree $>$\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classlab_1_1tree_1_1_search_tree_base}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classlab_1_1tree_1_1_search_tree_base_a1599eab44202e711a2163d6dd7b62a4a}\label{classlab_1_1tree_1_1_search_tree_base_a1599eab44202e711a2163d6dd7b62a4a}} 
+using {\bfseries value\+\_\+type} = T
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classlab_1_1tree_1_1_search_tree_base_a50a669efe675e5c7a2019b19e7044366}\label{classlab_1_1tree_1_1_search_tree_base_a50a669efe675e5c7a2019b19e7044366}} 
+{\bfseries Search\+Tree\+Base} (const \mbox{\hyperlink{classlab_1_1tree_1_1_search_tree_base}{Search\+Tree\+Base}} \&other)
+\item 
+\mbox{\Hypertarget{classlab_1_1tree_1_1_search_tree_base_a3948f1042f059965c990c2a758153ce5}\label{classlab_1_1tree_1_1_search_tree_base_a3948f1042f059965c990c2a758153ce5}} 
+\mbox{\hyperlink{classlab_1_1tree_1_1_search_tree_base}{Search\+Tree\+Base}} \& {\bfseries operator=} (\mbox{\hyperlink{classlab_1_1tree_1_1_search_tree_base}{Search\+Tree\+Base}} other)
+\item 
+\mbox{\Hypertarget{classlab_1_1tree_1_1_search_tree_base_ace661587396b0f75cad004c915647c08}\label{classlab_1_1tree_1_1_search_tree_base_ace661587396b0f75cad004c915647c08}} 
+auto {\bfseries size} () const noexcept -\/$>$ std\+::size\+\_\+t
+\item 
+\mbox{\Hypertarget{classlab_1_1tree_1_1_search_tree_base_acfe7aba1ff9ea442eedba7e1378bee57}\label{classlab_1_1tree_1_1_search_tree_base_acfe7aba1ff9ea442eedba7e1378bee57}} 
+auto {\bfseries compare\+Func} () const noexcept -\/$>$ Compare
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classlab_1_1tree_1_1_search_tree_base_a6256bf8cbde1d00f36a39e8eb1e778de}\label{classlab_1_1tree_1_1_search_tree_base_a6256bf8cbde1d00f36a39e8eb1e778de}} 
+{\bfseries Search\+Tree\+Base} (const Compare \&comp=Compare\{\})
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classlab_1_1tree_1_1_search_tree_base_aaa73cf5561ca2f5699688ee7de528f3e}\label{classlab_1_1tree_1_1_search_tree_base_aaa73cf5561ca2f5699688ee7de528f3e}} 
+std\+::size\+\_\+t {\bfseries \+\_\+size} = 0
+\item 
+\mbox{\Hypertarget{classlab_1_1tree_1_1_search_tree_base_ae8722908f1aa203dbc338dbe4ce16b84}\label{classlab_1_1tree_1_1_search_tree_base_ae8722908f1aa203dbc338dbe4ce16b84}} 
+Compare {\bfseries \+\_\+comp} = Compare\{\}
+\item 
+\mbox{\Hypertarget{classlab_1_1tree_1_1_search_tree_base_a34c5e83a1acb8e98cc206efa5ac50c78}\label{classlab_1_1tree_1_1_search_tree_base_a34c5e83a1acb8e98cc206efa5ac50c78}} 
+\mbox{\hyperlink{structlab_1_1tree_1_1_node}{Node}}$<$ Derived\+Tree $>$ $\ast$ {\bfseries \+\_\+root} = nullptr
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename T, typename Compare, typename Derived\+Tree$>$\newline
+class lab\+::tree\+::\+Search\+Tree\+Base$<$ T, Compare, Derived\+Tree $>$}
+
+Abstract base class for tree implementations. 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/Search\+Tree\+Base.\+hpp\end{DoxyCompactItemize}

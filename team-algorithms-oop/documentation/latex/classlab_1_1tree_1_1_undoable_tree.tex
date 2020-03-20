@@ -1,0 +1,55 @@
+\hypertarget{classlab_1_1tree_1_1_undoable_tree}{}\doxysection{lab\+::tree\+::Undoable\+Tree$<$ Tree $>$ Class Template Reference}
+\label{classlab_1_1tree_1_1_undoable_tree}\index{lab::tree::UndoableTree$<$ Tree $>$@{lab::tree::UndoableTree$<$ Tree $>$}}
+
+
+Class that expand Tree functionality by undo and redo operations.  
+
+
+
+
+{\ttfamily \#include $<$Undoable\+Tree.\+hpp$>$}
+
+Inheritance diagram for lab\+::tree\+::Undoable\+Tree$<$ Tree $>$\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classlab_1_1tree_1_1_undoable_tree}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classlab_1_1tree_1_1_undoable_tree_a4f2f1357995d9d48957f23ccde58ee6e}\label{classlab_1_1tree_1_1_undoable_tree_a4f2f1357995d9d48957f23ccde58ee6e}} 
+using {\bfseries value\+\_\+type} = typename Tree\+::value\+\_\+type
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classlab_1_1tree_1_1_undoable_tree_a16badffaf5e65d0ba680dcccd2e79a81}\label{classlab_1_1tree_1_1_undoable_tree_a16badffaf5e65d0ba680dcccd2e79a81}} 
+{\bfseries Undoable\+Tree} (std\+::initializer\+\_\+list$<$ value\+\_\+type $>$ elems)
+\item 
+\mbox{\Hypertarget{classlab_1_1tree_1_1_undoable_tree_ae33a5db47370466a508271e01c3c9803}\label{classlab_1_1tree_1_1_undoable_tree_ae33a5db47370466a508271e01c3c9803}} 
+{\footnotesize template$<$typename Iter $>$ }\\{\bfseries Undoable\+Tree} (Iter begin, Iter end)
+\item 
+\mbox{\Hypertarget{classlab_1_1tree_1_1_undoable_tree_a12b04b2ec397146b6ee2c575e987b9bb}\label{classlab_1_1tree_1_1_undoable_tree_a12b04b2ec397146b6ee2c575e987b9bb}} 
+void {\bfseries insert} (const value\+\_\+type \&key) override
+\item 
+\mbox{\Hypertarget{classlab_1_1tree_1_1_undoable_tree_a5f53d0ce2eee6b26615196e04aa6326c}\label{classlab_1_1tree_1_1_undoable_tree_a5f53d0ce2eee6b26615196e04aa6326c}} 
+void {\bfseries erase} (const value\+\_\+type \&key) override
+\item 
+\mbox{\Hypertarget{classlab_1_1tree_1_1_undoable_tree_a60e2d6a29fb12cae5e536ba2e6790055}\label{classlab_1_1tree_1_1_undoable_tree_a60e2d6a29fb12cae5e536ba2e6790055}} 
+void {\bfseries undo} ()
+\item 
+\mbox{\Hypertarget{classlab_1_1tree_1_1_undoable_tree_a4c89c0d3d864ee10c39a30492605c54c}\label{classlab_1_1tree_1_1_undoable_tree_a4c89c0d3d864ee10c39a30492605c54c}} 
+void {\bfseries redo} ()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename Tree$>$\newline
+class lab\+::tree\+::\+Undoable\+Tree$<$ Tree $>$}
+
+Class that expand Tree functionality by undo and redo operations. 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/Undoable\+Tree.\+hpp\end{DoxyCompactItemize}
