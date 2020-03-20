@@ -2,7 +2,7 @@
 
 #include "RBNodeUtilities.hpp"
 
-namespace tree::utils {
+namespace lab::tree::rbutils {
 
     /**
      * @brief Implementation of algorithm for node deletion and restore RBTree properties after deletion
@@ -23,41 +23,41 @@ namespace tree::utils {
         void redSiblingCase() {
             DBNParent->color = Node<RedBlackTree<T>>::Red;
             DBNSibling->color = Node<RedBlackTree<T>>::Black;
-            if (utils::isLeftSon(DBNSibling)) {
+            if (bstutils::isLeftSon(DBNSibling)) {
                 /// left case
-                utils::rotateRight(root, DBNParent);
+                rotateRight(root, DBNParent);
             } else {
                 /// right case
-                utils::rotateLeft(root, DBNParent);
+                rotateLeft(root, DBNParent);
             }
             fixBothBlack();
         }
 
         void siblingHasLeftRedChild() {
-            if (utils::isLeftSon(DBNSibling)) {
+            if (bstutils::isLeftSon(DBNSibling)) {
                 /// left left
                 (DBNSibling->left)->color = DBNSibling->color;
                 DBNSibling->color = DBNParent->color;
-                utils::rotateRight(root, DBNParent);
+                rotateRight(root, DBNParent);
             } else {
                 /// right left
                 (DBNSibling->left)->color = DBNParent->color;
-                utils::rotateRight(root, DBNSibling);
-                utils::rotateLeft(root, DBNParent);
+                rotateRight(root, DBNSibling);
+                rotateLeft(root, DBNParent);
             }
         }
 
         void siblingHasRightRedChild() {
-            if (utils::isLeftSon(DBNSibling)) {
+            if (bstutils::isLeftSon(DBNSibling)) {
                 /// left right
                 (DBNSibling->right)->color = DBNParent->color;
-                utils::rotateLeft(root, DBNSibling);
-                utils::rotateRight(root, DBNParent);
+                rotateLeft(root, DBNSibling);
+                rotateRight(root, DBNParent);
             } else {
                 /// right right
                 (DBNSibling->right)->color = DBNSibling->color;
                 DBNSibling->color = DBNParent->color;
-                utils::rotateLeft(root, DBNParent);
+                rotateLeft(root, DBNParent);
             }
         }
 
@@ -73,7 +73,7 @@ namespace tree::utils {
         }
 
         void blackSiblingCase() {
-            if (utils::hasRedChild(DBNSibling)) {
+            if (hasRedChild(DBNSibling)) {
                 /// at least 1 Red child
                 if (DBNSibling->left != nullptr && DBNSibling->left->color == Node<RedBlackTree<T>>::Red) {
                     siblingHasLeftRedChild();
@@ -95,7 +95,7 @@ namespace tree::utils {
                 return;
             }
 
-            DBNSibling = utils::sibling(doubleBlackNode);
+            DBNSibling = bstutils::sibling(doubleBlackNode);
             DBNParent = doubleBlackNode->parent;
 
             if (DBNSibling == nullptr) {
@@ -114,13 +114,13 @@ namespace tree::utils {
                     doubleBlackNode = nodeToDelete;
                     fixBothBlack();
                 } else {
-                    if (utils::sibling(nodeToDelete) != nullptr)
+                    if (bstutils::sibling(nodeToDelete) != nullptr)
                         // sibling is not null, make it Red
-                        utils::sibling(nodeToDelete)->color = Node<RedBlackTree<T>>::Red;
+                        bstutils::sibling(nodeToDelete)->color = Node<RedBlackTree<T>>::Red;
                 }
 
                 // delete node from the tree
-                if (utils::isLeftSon(nodeToDelete)) {
+                if (bstutils::isLeftSon(nodeToDelete)) {
                     parentNodeToDelete->left = nullptr;
                 } else {
                     parentNodeToDelete->right = nullptr;
@@ -133,8 +133,8 @@ namespace tree::utils {
                 nodeToDelete->data = nodeToReplace->data;
                 delete nodeToReplace;
             } else {
-                // Detach nodeToDelete from tree and move nodeToReplace up
-                if (utils::isLeftSon(nodeToDelete)) {
+                /// Detach nodeToDelete from tree and move nodeToReplace up
+                if (bstutils::isLeftSon(nodeToDelete)) {
                     parentNodeToDelete->left = nodeToReplace;
                 } else {
                     parentNodeToDelete->right = nodeToReplace;
@@ -156,7 +156,7 @@ namespace tree::utils {
          * and call functions to replace and delete it for all possible variant
          */
         void eraseNode() {
-            nodeToReplace = utils::findReplacement(nodeToDelete);
+            nodeToReplace = bstutils::findReplacement(nodeToDelete);
             parentNodeToDelete = nodeToDelete->parent;
             bothBlack = ((nodeToReplace == nullptr
                           || nodeToReplace->color == Node<RedBlackTree<T>>::Black)
@@ -167,7 +167,7 @@ namespace tree::utils {
             } else if (nodeToDelete->left == nullptr || nodeToDelete->right == nullptr) {
                 nodeToDeleteHasOnlyOneChild();
             } else { // nodeToDelete has 2 children, swap values with replacement node and recurse
-                utils::swapData(nodeToReplace, nodeToDelete);
+                bstutils::swapData(nodeToReplace, nodeToDelete);
                 nodeToDelete = nodeToReplace;
                 eraseNode();
             }
@@ -175,7 +175,8 @@ namespace tree::utils {
 
     public:
         DeletionFixRBTRee(Node<RedBlackTree<T>>*& _root, Node<RedBlackTree<T>>* _nodeToDelete)
-                : root(_root), nodeToDelete(_nodeToDelete) {
+                : root(_root), nodeToDelete(_nodeToDelete)
+        {
             eraseNode();
             _root = root;
         }

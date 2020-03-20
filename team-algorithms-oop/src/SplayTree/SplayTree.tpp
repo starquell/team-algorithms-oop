@@ -1,28 +1,21 @@
 #pragma once
 
-#include "Splayer.hpp"
+#include <SplayTree/Splayer.hpp>
 
-namespace tree {
+namespace lab::tree {
 
-    template <typename T>
-    void SplayTree<T>::insert (const T& key) {
+    template <typename T, typename Compare>
+    void SplayTree<T, Compare>::insert (const T& key) {
         auto new_node = new Node<SplayTree<T>> {key};
-        if (!_root) {
-            _root = new_node;
-            ++_size;
-            return;
-        }
-        else {
-            utils::insertWithParent(_root, new_node);
-        }
-        _root = utils::splay(new_node);
+        Base::simpleInsert(new_node);
+        _root = bstutils::splay(new_node);
         ++_size;
     }
 
-    template <typename T>
-    void SplayTree<T>::erase (const T& key) {
-        auto found = utils::find(_root, key);
-        auto splayed = utils::splay(found);
+    template <typename T, typename Compare>
+    void SplayTree<T, Compare>::erase (const T& key) {
+        auto found = bstutils::find(_root, key, _comp);
+        auto splayed = bstutils::splay(found);
         if (!splayed) {
             return;
         }
@@ -37,13 +30,13 @@ namespace tree {
             splayed->right = nullptr;
         }
         delete splayed;
-        _root = utils::merge<T>(lhs_tree, rhs_tree);
+        _root = bstutils::merge<T>(lhs_tree, rhs_tree);
         --_size;
     }
 
-    template <typename T>
+    template <typename T, typename Compare>
     template <typename Iter>
-    SplayTree<T>::SplayTree (Iter begin, Iter end)
+    SplayTree<T, Compare>::SplayTree (Iter begin, Iter end)
     {
         _root = nullptr;
         for (; begin != end; ++begin) {
@@ -51,12 +44,17 @@ namespace tree {
         }
     }
 
-    template <typename T>
-    SplayTree<T>::SplayTree (std::initializer_list<T> elems)
+    template <typename T, typename Compare>
+    SplayTree<T, Compare>::SplayTree (std::initializer_list<T> elems)
     {
         _root = nullptr;
         for (const auto& elem : elems) {
             insert(elem);
         }
     }
+
+    template <typename T, typename Compare>
+    SplayTree<T, Compare>::SplayTree (const Compare& comp) noexcept
+        : Base(comp)
+    {}
 }

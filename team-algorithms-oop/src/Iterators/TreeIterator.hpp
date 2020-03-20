@@ -1,12 +1,12 @@
 #pragma once
 
-namespace tree {
+namespace lab::tree {
 
     /**
      *  @brief Interface for tree iterators
      */
     template <typename T, typename DerivedIterator>
-    class IteratorBase {
+    class TreeIterator {
     public:
         using value_type = T;
         using difference_type = std::ptrdiff_t;
@@ -15,7 +15,7 @@ namespace tree {
         using iterator_category = std::forward_iterator_tag;
 
     protected:
-        IteratorBase () noexcept = default;
+        TreeIterator () noexcept = default;
 
     public:
         virtual const T& operator*() noexcept = 0;

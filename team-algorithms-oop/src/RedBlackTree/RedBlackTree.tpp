@@ -1,14 +1,13 @@
 #pragma once
 
-#include "RedBlackTree.hpp"
 #include "InsertionFixRBTree.hpp"
 #include "DeletionFixRBTree.hpp"
 
-namespace tree {
+namespace lab::tree {
 
-    template <typename T>
+    template <typename T, typename Compare>
     template <typename Iter>
-    RedBlackTree<T>::RedBlackTree (Iter begin, Iter end)
+    RedBlackTree<T, Compare>::RedBlackTree (Iter begin, Iter end)
     {
         _root = nullptr;
         for (; begin != end; ++begin) {
@@ -16,29 +15,29 @@ namespace tree {
         }
     }
 
-    template <typename T>
-    RedBlackTree<T>::RedBlackTree (std::initializer_list<T> elems) {
+    template <typename T, typename Compare>
+    RedBlackTree<T, Compare>::RedBlackTree (std::initializer_list<T> elems) {
         for (const auto& elem : elems) {
             insert(elem);
         }
     }
 
-    template <typename T>
-    void RedBlackTree<T>::insert(const T& _data) {
-        auto inputNode = new Node<RedBlackTree<T>>{_data};
-        simpleInsert(inputNode);
+    template <typename T, typename Compare>
+    void RedBlackTree<T, Compare>::insert(const T& _data) {
 
-        utils::InsertionFixRBTree(_root, inputNode);
+        auto inputNode = new Node<RedBlackTree<T>>{_data};
+        Base::simpleInsert(inputNode);
+
+        rbutils::InsertionFixRBTree(_root, inputNode);
         _size++;
     }
 
-    template <typename T>
-    void RedBlackTree<T>::erase(const T& _data) {
+    template <typename T, typename Compare>
+    void RedBlackTree<T, Compare>::erase(const T& _data) {
         if (_root == nullptr) {
             return;
         }
-
-        Node<RedBlackTree<T>>* nodeToDelete = utils::find<RedBlackTree>(_root,  _data);
+        Node<RedBlackTree<T>>* nodeToDelete = bstutils::find(_root,  _data, _comp);
 
         if (nodeToDelete == nullptr) {
             return;
@@ -47,9 +46,13 @@ namespace tree {
         if (nodeToDelete == _root && nodeToDelete->left == nullptr && nodeToDelete->right == nullptr) {
             _root = nullptr;
         } else {
-            utils::DeletionFixRBTRee(_root, nodeToDelete);
+            rbutils::DeletionFixRBTRee(_root, nodeToDelete);
         }
         _size--;
     }
 
+    template <typename T, typename Compare>
+    RedBlackTree<T, Compare>::RedBlackTree (const Compare& comp)
+        : Base(comp)
+    {}
 }

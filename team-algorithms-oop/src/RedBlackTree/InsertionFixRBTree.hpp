@@ -2,7 +2,7 @@
 
 #include "RBNodeUtilities.hpp"
 
-namespace tree::utils {
+namespace lab::tree::rbutils {
 
     /**
      * @brief Implementation of algorithm that restore RBTree properties after insertion
@@ -32,14 +32,14 @@ namespace tree::utils {
             } else {
                 //current node is right child: left rotation
                 if (currNode == currParent->right) {
-                    utils::rotateLeft(root, currParent);
+                    rotateLeft(root, currParent);
                     currNode = currParent;
                     currParent = currNode->parent;
                 }
 
                 //current node is left child: right rotation
-                utils::rotateRight(root, currGrandparent);
-                utils::swapColors(currParent, currGrandparent);
+                rotateRight(root, currGrandparent);
+                swapColors(currParent, currGrandparent);
                 currNode = currParent;
             }
         }
@@ -53,14 +53,14 @@ namespace tree::utils {
             } else {
                 //current node is left child: right rotation
                 if (currNode == currParent->left) {
-                    utils::rotateRight(root, currParent);
+                    rotateRight(root, currParent);
                     currNode = currParent;
                     currParent = currNode->parent;
                 }
 
                 //current node is right child: left rotation
-                utils::rotateLeft(root, currGrandparent);
-                utils::swapColors(currParent, currGrandparent);
+                rotateLeft(root, currGrandparent);
+                swapColors(currParent, currGrandparent);
                 currNode = currParent;
             }
         }

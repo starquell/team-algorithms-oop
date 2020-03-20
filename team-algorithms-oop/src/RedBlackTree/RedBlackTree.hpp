@@ -1,39 +1,41 @@
 #pragma once
 
-#include <iostream>
-#include "../BSTBase.hpp"
+#include <BSTBase.hpp>
 
+#include <functional>
 
-namespace tree {
-    template<typename T>
-    class RedBlackTree : public BSTBase<T, RedBlackTree<T>> {
+namespace lab::tree {
+    template <typename T,
+              typename Compare = std::less<T>>
+    class RedBlackTree : public BSTBase<T, Compare, RedBlackTree<T>> {
 
     private:
         using NodeRBT = Node<RedBlackTree<T>>;
-        using Base = BSTBase<T, RedBlackTree<T>>;
-
-    protected:
-        using Base::_root;
-        using Base::_size;
-        using Base::simpleInsert;
+        using Base = BSTBase<T, Compare, RedBlackTree<T>>;
 
     public:
-        RedBlackTree() = default;
+        explicit RedBlackTree(const Compare& comp = Compare{});
+
+        /**
+        *  @brief Contructs tree with elements from range [begin, end)
+        */
         template <typename Iter>
         RedBlackTree(Iter begin, Iter end);
 
+        /**
+         *  @brief Contructs tree with elements from list
+         */
         RedBlackTree(std::initializer_list<T> elems);
 
         void insert(const T& _data) override;
         void erase(const T& _data) override;
 
-        using Base::Base;
-        using Base::operator=;
-        using Base::begin;
-        using Base::end;
-        using Base::size;
         ~RedBlackTree() override = default;
 
+    protected:
+        using Base::_root;
+        using Base::_size;
+        using Base::_comp;
     };
 
     template<typename T>
@@ -55,4 +57,3 @@ namespace tree {
 }
 
 #include "RedBlackTree.tpp"
-

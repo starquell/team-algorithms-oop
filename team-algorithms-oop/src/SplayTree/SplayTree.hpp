@@ -2,35 +2,45 @@
 
 #include <BSTBase.hpp>
 
-namespace tree {
+#include <functional>
 
-    template <typename T>
-    class SplayTree : public BSTBase<T, SplayTree<T>> {
+namespace lab::tree {
+
+    /**
+     *  @brief Splay Tree implementation
+     */
+
+    template <typename T,
+              typename Compare = std::less<T>>
+    class SplayTree : public BSTBase<T, Compare, SplayTree<T>> {
     private:
-        using Base = BSTBase<T, SplayTree<T>>;
-
+        using Base = BSTBase<T, Compare, SplayTree<T>>;
     public:
-        explicit SplayTree() noexcept = default;
+        /**
+         *  @brief Created tree with no elements
+         */
+        explicit SplayTree(const Compare& comp = Compare{}) noexcept;
 
+        /**
+         *  @brief Contructs tree with elements from range [begin, end)
+         */
         template <typename Iter>
         SplayTree(Iter begin, Iter end);
 
+        /**
+         *  @brief Contructs tree with elements from list
+         */
         SplayTree(std::initializer_list<T> elems);
 
         void insert (const T& key) override;
         void erase (const T& key) override;
-
-        using Base::Base;
-        using Base::operator=;
-        using Base::begin;
-        using Base::end;
-        using Base::size;
 
         ~SplayTree() override = default;
 
     protected:
         using Base::_root;
         using Base::_size;
+        using Base::_comp;
     };
 
     template <typename T>

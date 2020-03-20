@@ -2,7 +2,7 @@
 
 #include <NodeUtilities.hpp>
 
-namespace tree {
+namespace lab::tree {
 
     template <typename T, typename TreeNode>
     bool BSTIterator<T, TreeNode>::operator!= (
@@ -37,7 +37,7 @@ namespace tree {
                 m_curr = nullptr;
                 return *this;
             }
-            if (utils::isLeftSon(m_curr)) {
+            if (bstutils::isLeftSon(m_curr)) {
                 m_curr = m_curr->parent;
                 return *this;
             }
