@@ -3,8 +3,7 @@
 #include <SplayTree/SplayTree.hpp>
 #include <RedBlackTree/RedBlackTree.hpp>
 #include <UndoableTree.hpp>
-
-#include <algorithm>
+#include <TreeDB.hpp>
 
 TEST_CASE("Splay tree", "[splay]") {
 
