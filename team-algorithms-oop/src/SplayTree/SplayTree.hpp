@@ -2,21 +2,24 @@
 
 #include <BSTBase.hpp>
 
-namespace tree {
+#include <functional>
+
+namespace lab::tree {
 
     /**
      *  @brief Splay Tree implementation
      */
 
-    template <typename T>
-    class SplayTree : public BSTBase<T, SplayTree<T>> {
+    template <typename T,
+              typename Compare = std::less<T>>
+    class SplayTree : public BSTBase<T, Compare, SplayTree<T>> {
     private:
-        using Base = BSTBase<T, SplayTree<T>>;
+        using Base = BSTBase<T, Compare, SplayTree<T>>;
     public:
         /**
          *  @brief Created tree with no elements
          */
-        explicit SplayTree() noexcept = default;
+        explicit SplayTree(const Compare& comp = Compare{}) noexcept;
 
         /**
          *  @brief Contructs tree with elements from range [begin, end)
@@ -37,6 +40,7 @@ namespace tree {
     protected:
         using Base::_root;
         using Base::_size;
+        using Base::_comp;
     };
 
     template <typename T>

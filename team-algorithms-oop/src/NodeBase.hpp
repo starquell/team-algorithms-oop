@@ -1,6 +1,6 @@
 #pragma once
 
-namespace tree {
+namespace lab::tree {
 
     /**
      *   @brief Tree node class, use class template specialization

@@ -4,24 +4,20 @@
 #include <Iterators/BSTIterator.hpp>
 #include "NodeUtilities.hpp"
 
-namespace tree {
+namespace lab::tree {
 
     /**
      *   @brief Abstract base class for binary search tree implementations
      */
-    template <typename T, typename DerivedTree>
-    class BSTBase : SearchTreeBase<T, DerivedTree> {
+    template <typename T, typename Compare, typename DerivedTree>
+    class BSTBase : public SearchTreeBase<T, Compare, DerivedTree> {
     protected:
-        explicit BSTBase() = default;
-        void simpleInsert(Node<DerivedTree>* toInsert) {
-            if (_root == nullptr) {
-                _root = toInsert;
-            } else {
-                bstutils::insertWithParent(_root, toInsert);
-            }
-        }
+        explicit BSTBase(const Compare& comp = Compare{});
+
+        void simpleInsert(Node<DerivedTree>* toInsert);
+
     private:
-        using Base = SearchTreeBase<T, DerivedTree>;
+        using Base = SearchTreeBase<T, Compare, DerivedTree>;
 
     public:
         using value_type = T;
@@ -32,18 +28,15 @@ namespace tree {
         virtual void insert (const T& key) = 0;
         virtual void erase (const T& key) = 0;
 
-        using Base::SearchTreeBase;
-        using Base::operator=;
-        using Base::size;
-
-        iterator begin() const;
-        iterator end() const;
+        iterator begin() const noexcept;
+        iterator end() const noexcept ;
 
         ~BSTBase() override = default;
 
     protected:
         using Base::_root;
         using Base::_size;
+        using Base::_comp;
     };
 }
 

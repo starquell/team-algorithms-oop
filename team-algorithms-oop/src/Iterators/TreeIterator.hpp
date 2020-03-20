@@ -1,6 +1,6 @@
 #pragma once
 
-namespace tree {
+namespace lab::tree {
 
     /**
      *  @brief Interface for tree iterators

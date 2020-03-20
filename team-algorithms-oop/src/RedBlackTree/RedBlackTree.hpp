@@ -1,19 +1,20 @@
 #pragma once
 
-#include <iostream>
 #include <BSTBase.hpp>
 
+#include <functional>
 
-namespace tree {
-    template<typename T>
-    class RedBlackTree : public BSTBase<T, RedBlackTree<T>> {
+namespace lab::tree {
+    template <typename T,
+              typename Compare = std::less<T>>
+    class RedBlackTree : public BSTBase<T, Compare, RedBlackTree<T>> {
 
     private:
         using NodeRBT = Node<RedBlackTree<T>>;
-        using Base = BSTBase<T, RedBlackTree<T>>;
+        using Base = BSTBase<T, Compare, RedBlackTree<T>>;
 
     public:
-        RedBlackTree() = default;
+        explicit RedBlackTree(const Compare& comp = Compare{});
 
         /**
         *  @brief Contructs tree with elements from range [begin, end)
@@ -34,7 +35,7 @@ namespace tree {
     protected:
         using Base::_root;
         using Base::_size;
-        using Base::simpleInsert;
+        using Base::_comp;
     };
 
     template<typename T>
@@ -56,4 +57,3 @@ namespace tree {
 }
 
 #include "RedBlackTree.tpp"
-

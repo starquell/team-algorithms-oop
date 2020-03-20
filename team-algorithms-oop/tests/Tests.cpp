@@ -4,14 +4,16 @@
 #include <RedBlackTree/RedBlackTree.hpp>
 #include <UndoableTree.hpp>
 
+#include <algorithm>
+
 TEST_CASE("Splay tree", "[splay]") {
 
-    using namespace tree;
+    using namespace lab::tree;
 
     constexpr std::array elems = {1, 4, 103, 2, 24};
 
     SECTION("Constructor from iterators test") {
-        SplayTree<int> tree(elems.begin(), elems.end());
+        SplayTree<int> tree (elems.begin(), elems.end());
 
         auto it = tree.begin();
 
@@ -20,12 +22,10 @@ TEST_CASE("Splay tree", "[splay]") {
         REQUIRE(*(++it) == 4);
         REQUIRE(*(++it) == 24);
         REQUIRE(*(++it) == 103);
-
-        tree::SplayTree<int> other(tree);
     }
 
     SECTION("Constructor's from iterators test") {
-        tree::SplayTree<int> tree = {elems[0], elems[1], elems[2], elems[3], elems[4]};
+        SplayTree<int> tree = {elems[0], elems[1], elems[2], elems[3], elems[4]};
 
         auto it = tree.begin();
 
@@ -36,6 +36,16 @@ TEST_CASE("Splay tree", "[splay]") {
         REQUIRE(*(++it) == 103);
     }
     SplayTree<int> tree (elems.begin(), elems.end());
+
+    SECTION ("Deep copy") {
+        SplayTree<int> copied(tree);
+
+        REQUIRE(*copied.begin() == 1);
+        REQUIRE(*(copied.begin() + 1) == 2);
+        REQUIRE(*(copied.begin() + 2) == 4);
+        REQUIRE(*(copied.begin() + 3) == 24);
+        REQUIRE(*(copied.begin() + 4) == 103);
+    }
 
     SECTION("Insert") {
         tree.insert(100);
@@ -52,11 +62,23 @@ TEST_CASE("Splay tree", "[splay]") {
     SECTION("Size") {
         REQUIRE(tree.size() == std::distance(elems.begin(), elems.end()));
     }
+
+    SECTION("Other comparator") {
+        SplayTree<int, std::greater<>> tree = {elems[0], elems[1], elems[2], elems[3], elems[4]};
+
+        auto it = tree.begin();
+
+        REQUIRE(*it == 103);
+        REQUIRE(*(++it) == 24);
+        REQUIRE(*(++it) == 4);
+        REQUIRE(*(++it) == 2);
+        REQUIRE(*(++it) == 1);
+    }
 }
 
 TEST_CASE("Red Black Tree", "[RedBlackTree]") {
 
-    using namespace tree;
+    using namespace lab::tree;
 
     constexpr std::array elems = {1, 4, 103, 2, 24};
 
@@ -85,7 +107,7 @@ TEST_CASE("Red Black Tree", "[RedBlackTree]") {
     RedBlackTree<int> rbTree (elems.begin(), elems.end());
 
     SECTION ("Deep copy") {
-        tree::RedBlackTree<int> tree(rbTree);
+        RedBlackTree<int> tree(rbTree);
 
         REQUIRE(*tree.begin() == 1);
         REQUIRE(*(tree.begin() + 1) == 2);
@@ -105,11 +127,23 @@ TEST_CASE("Red Black Tree", "[RedBlackTree]") {
 
         REQUIRE(!rbTree.search(elems[0]));
     }
+
+    SECTION("Other comparator") {
+        RedBlackTree<int, std::greater<>> tree (elems.begin(), elems.end());
+
+        auto it = tree.begin();
+
+        REQUIRE(*it == 103);
+        REQUIRE(*(++it) == 24);
+        REQUIRE(*(++it) == 4);
+        REQUIRE(*(++it) == 2);
+        REQUIRE(*(++it) == 1);
+    }
 }
 
 TEST_CASE("Undoable tree", "[undoable]") {
 
-    using namespace tree;
+    using namespace lab::tree;
 
     constexpr std::array elems = {1, 4, 103, 2, 24};
 

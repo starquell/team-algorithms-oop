@@ -2,7 +2,7 @@
 
 #include <vector>
 
-namespace tree {
+namespace lab::tree {
 
     /**
         @brief Class that expand Tree functionality by undo and redo operations

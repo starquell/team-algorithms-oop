@@ -2,7 +2,7 @@
 
 #include <Iterators/TreeIterator.hpp>
 
-namespace tree {
+namespace lab::tree {
 
     /**
      *  @brief TreeIterator for binary search tree with node that has pointer on parent node

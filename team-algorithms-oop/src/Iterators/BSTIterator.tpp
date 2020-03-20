@@ -2,7 +2,7 @@
 
 #include <NodeUtilities.hpp>
 
-namespace tree {
+namespace lab::tree {
 
     template <typename T, typename TreeNode>
     bool BSTIterator<T, TreeNode>::operator!= (

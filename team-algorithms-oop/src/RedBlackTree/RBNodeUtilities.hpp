@@ -2,7 +2,7 @@
 
 #include "RedBlackTree.hpp"
 
-namespace tree::rbutils {
+namespace lab::tree::rbutils {
 
     template<typename T>
     bool hasRedChild(Node<RedBlackTree<T>>* node) {
