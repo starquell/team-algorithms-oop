@@ -9,7 +9,6 @@ namespace lab::tree {
     /**
      *  @brief Splay Tree implementation
      */
-
     template <typename T,
               typename Compare = std::less<T>>
     class SplayTree : public BSTBase<T, Compare, SplayTree<T>> {

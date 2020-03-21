@@ -10,6 +10,6 @@ namespace lab {
     class TreeDatabase {
 
     private:
-        std::vector<std::variant<tree::UndoableTree<tree::SplayTree
+
     };
 }
