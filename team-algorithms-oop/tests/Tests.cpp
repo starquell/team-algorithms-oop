@@ -4,6 +4,7 @@
 #include <RedBlackTree/RedBlackTree.hpp>
 #include <UndoableTree.hpp>
 #include <AnyTree.hpp>
+#include <treedb/TreeDB.hpp>
 
 TEST_CASE("Splay tree", "[splay]") {
 
@@ -241,5 +242,3 @@ TEST_CASE("Tree container") {
 
     REQUIRE(*any.search(someValue) == *st.search(someValue));
 }
-
-

@@ -8,8 +8,8 @@
 namespace lab {
 
     class TreeDatabase {
+    public:
 
-    private:
 
     };
 }

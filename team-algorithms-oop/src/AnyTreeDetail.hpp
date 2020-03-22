@@ -2,7 +2,7 @@
 
 #include <UndoableTree.hpp>
 
-#include <variant>
+#include <variant/include/boost/variant.hpp>
 #include <tuple>
 
 namespace lab {
@@ -13,20 +13,20 @@ namespace lab {
         struct VariantConcat;
 
         template <typename... Ts>
-        struct VariantConcat <std::variant<Ts...>> {
-            using type = std::variant<Ts...>;
+        struct VariantConcat <boost::variant<Ts...>> {
+            using type = boost::variant<Ts...>;
         };
 
         template <typename... LhsTs, typename... RhsTs>
-        struct VariantConcat <std::variant<LhsTs...>, std::variant<RhsTs...>> {
-            using type = std::variant<LhsTs..., RhsTs...>;
+        struct VariantConcat <boost::variant<LhsTs...>, boost::variant<RhsTs...>> {
+            using type = boost::variant<LhsTs..., RhsTs...>;
         };
 
         template <template <typename, typename> typename Tree,
                   typename ValueType,
                   typename... Compare>
         struct TreeComparatorVariations {
-            using type = std::variant<tree::UndoableTree<Tree<ValueType, Compare>>...>;
+            using type = boost::variant<tree::UndoableTree<Tree<ValueType, Compare>>...>;
         };
 
         template <template <typename, typename> typename Tree,

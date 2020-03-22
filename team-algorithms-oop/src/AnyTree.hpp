@@ -4,7 +4,6 @@
 
 #include <vector>
 
-
 namespace lab::tree {
 
 
@@ -38,18 +37,18 @@ namespace lab::tree {
         }
 
         void insert (const ValueType& value) {
-            std::visit ([&value] (auto&& _tree) {_tree.insert(value);}, m_tree);
+            boost::apply_visitor([&value] (auto&& _tree) {_tree.insert(value);}, m_tree);
             m_valid_iter = false;
         }
 
         void erase (const ValueType& value) {
-            std::visit ([&value] (auto&& _tree) {_tree.erase(value);}, m_tree);
+            boost::apply_visitor([&value] (auto&& _tree) {_tree.erase(value);}, m_tree);
             m_valid_iter = false;
         }
 
         auto search (const ValueType& value) noexcept -> iterator  {
             std::size_t pos{};
-            std::visit ([&] (auto&& _tree) {
+            boost::apply_visitor ([&] (auto&& _tree) {
                 pos = std::distance(_tree.begin(), _tree.search(value));}, m_tree);
             updateIter();
             return m_enumerator.begin() + pos;
@@ -72,14 +71,14 @@ namespace lab::tree {
 
         [[nodiscard]]
         auto size () const noexcept -> std::size_t {
-            return std::visit ([] (auto&& _tree) -> std::size_t {
+            return boost::apply_visitor ([] (auto&& _tree) -> std::size_t {
                 return _tree.size();
             }, m_tree);
         }
 
     private:
         void updateIter () const {
-            std::visit([this] (auto&& _tree) {
+            boost::apply_visitor([this] (auto&& _tree) {
                 m_enumerator = std::vector(_tree.begin(), _tree.end());
             }, m_tree);
             m_valid_iter = true;
@@ -93,4 +92,8 @@ namespace lab::tree {
                          SupportedComparators<Comparators...>,
                          RedBlackTree, SplayTree> m_tree;
     };
+
+
+    template <typename Tree>
+    AnyTree (const Tree& _tree) -> AnyTree <typename Tree::value_type>;
 }
