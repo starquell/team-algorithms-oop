@@ -28,14 +28,14 @@ namespace lab::tree {
     auto BSTBase<T, Compare, DerivedTree>::begin() const noexcept
         -> typename BSTBase<T, Compare, DerivedTree>::iterator
     {
-        return iterator{bstutils::min(_root)};
+        return iterator(bstutils::min(_root));
     }
 
     template <typename T, typename Compare, typename DerivedTree>
     auto BSTBase<T, Compare, DerivedTree>::end() const noexcept
             -> typename BSTBase<T, Compare, DerivedTree>::iterator
     {
-        return iterator{nullptr};
+        return iterator(nullptr);
     }
 
     template <typename T, typename Compare, typename DerivedTree>

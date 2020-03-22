@@ -7,22 +7,23 @@ namespace lab::tree::rbutils {
     /**
      * @brief Implementation of algorithm for node deletion and restore RBTree properties after deletion
      */
-    template <typename T>
+    template <typename T, typename Compare>
     class DeletionFixRBTRee {
     private:
-        Node<RedBlackTree<T>>* root;
-        Node<RedBlackTree<T>>* doubleBlackNode; ///shortly DBN everywhere under
-        Node<RedBlackTree<T>>* DBNSibling;
-        Node<RedBlackTree<T>>* DBNParent;
+        using RBNode = Node<RedBlackTree<T, Compare>>;
+        RBNode* root;
+        RBNode* doubleBlackNode; ///shortly DBN everywhere under
+        RBNode* DBNSibling;
+        RBNode* DBNParent;
 
-        Node<RedBlackTree<T>>* nodeToDelete;
-        Node<RedBlackTree<T>>* nodeToReplace;
-        Node<RedBlackTree<T>>* parentNodeToDelete;
+        RBNode* nodeToDelete;
+        RBNode* nodeToReplace;
+        RBNode* parentNodeToDelete;
         bool bothBlack;
 
         void redSiblingCase() {
-            DBNParent->color = Node<RedBlackTree<T>>::Red;
-            DBNSibling->color = Node<RedBlackTree<T>>::Black;
+            DBNParent->color = RBNode::Red;
+            DBNSibling->color = RBNode::Black;
             if (bstutils::isLeftSon(DBNSibling)) {
                 /// left case
                 rotateRight(root, DBNParent);
@@ -62,25 +63,25 @@ namespace lab::tree::rbutils {
         }
 
         void siblingHasOnlyBlackChildren() {
-            DBNSibling->color = Node<RedBlackTree<T>>::Red;
-            if (DBNParent->color == Node<RedBlackTree<T>>::Black) {
+            DBNSibling->color = RBNode::Red;
+            if (DBNParent->color == RBNode::Black) {
                 doubleBlackNode = DBNParent;
                 fixBothBlack();
             }
             else {
-                DBNParent->color = Node<RedBlackTree<T>>::Black;
+                DBNParent->color = RBNode::Black;
             }
         }
 
         void blackSiblingCase() {
             if (hasRedChild(DBNSibling)) {
                 /// at least 1 Red child
-                if (DBNSibling->left != nullptr && DBNSibling->left->color == Node<RedBlackTree<T>>::Red) {
+                if (DBNSibling->left != nullptr && DBNSibling->left->color == RBNode::Red) {
                     siblingHasLeftRedChild();
                 } else {
                     siblingHasRightRedChild();
                 }
-                DBNParent->color = Node<RedBlackTree<T>>::Black;
+                DBNParent->color = RBNode::Black;
             } else {
                 siblingHasOnlyBlackChildren();
             }
@@ -102,7 +103,7 @@ namespace lab::tree::rbutils {
                 // No sibling, double Black pushed up
                 doubleBlackNode = DBNParent;
                 fixBothBlack();
-            } else if (DBNSibling->color == Node<RedBlackTree<T>>::Red) {
+            } else if (DBNSibling->color == RBNode::Red) {
                 redSiblingCase();
             } else {
                 blackSiblingCase();
@@ -116,7 +117,7 @@ namespace lab::tree::rbutils {
                 } else {
                     if (bstutils::sibling(nodeToDelete) != nullptr)
                         // sibling is not null, make it Red
-                        bstutils::sibling(nodeToDelete)->color = Node<RedBlackTree<T>>::Red;
+                        bstutils::sibling(nodeToDelete)->color = RBNode::Red;
                 }
 
                 // delete node from the tree
@@ -146,7 +147,7 @@ namespace lab::tree::rbutils {
                     doubleBlackNode = nodeToReplace;
                     fixBothBlack();
                 } else {
-                    nodeToReplace->color = Node<RedBlackTree<T>>::Black;
+                    nodeToReplace->color = RBNode::Black;
                 }
             }
         }
@@ -159,8 +160,8 @@ namespace lab::tree::rbutils {
             nodeToReplace = bstutils::findReplacement(nodeToDelete);
             parentNodeToDelete = nodeToDelete->parent;
             bothBlack = ((nodeToReplace == nullptr
-                          || nodeToReplace->color == Node<RedBlackTree<T>>::Black)
-                         && (nodeToDelete->color == Node<RedBlackTree<T>>::Black));
+                          || nodeToReplace->color == RBNode::Black)
+                         && (nodeToDelete->color == RBNode::Black));
 
             if (nodeToReplace == nullptr) {
                 nodeToDeleteIsLeaf();
@@ -174,7 +175,7 @@ namespace lab::tree::rbutils {
         }
 
     public:
-        DeletionFixRBTRee(Node<RedBlackTree<T>>*& _root, Node<RedBlackTree<T>>* _nodeToDelete)
+        DeletionFixRBTRee(RBNode*& _root, RBNode* _nodeToDelete)
                 : root(_root), nodeToDelete(_nodeToDelete)
         {
             eraseNode();

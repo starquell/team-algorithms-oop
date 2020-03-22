@@ -7,19 +7,20 @@ namespace lab::tree::rbutils {
     /**
      * @brief Implementation of algorithm that restore RBTree properties after insertion
      */
-    template <typename T>
+    template <typename T, typename Compare>
     class InsertionFixRBTree {
     private:
-        Node<RedBlackTree<T>>* currParent = nullptr;
-        Node<RedBlackTree<T>>* currGrandparent = nullptr;
-        Node<RedBlackTree<T>>* currNode;
-        Node<RedBlackTree<T>>* currUncle = nullptr;
-        Node<RedBlackTree<T>>* root;
+        using RBNode = Node<RedBlackTree<T, Compare>>;
+        RBNode* currParent = nullptr;
+        RBNode* currGrandparent = nullptr;
+        RBNode* currNode;
+        RBNode* currUncle = nullptr;
+        RBNode* root;
 
         void treeFixingRecoloringCase() {
-            currGrandparent->color = Node<RedBlackTree<T>>::Red;
-            currParent->color = Node<RedBlackTree<T>>::Black;
-            currUncle->color = Node<RedBlackTree<T>>::Black;
+            currGrandparent->color = RBNode::Red;
+            currParent->color = RBNode::Black;
+            currUncle->color = RBNode::Black;
             currNode = currGrandparent;
         }
 
@@ -27,7 +28,7 @@ namespace lab::tree::rbutils {
             currUncle = currGrandparent->right;
 
             //uncle is Red: do only recoloring
-            if (currUncle != nullptr && currUncle->color == Node<RedBlackTree<T>>::Red) {
+            if (currUncle != nullptr && currUncle->color == RBNode::Red) {
                 treeFixingRecoloringCase();
             } else {
                 //current node is right child: left rotation
@@ -48,7 +49,7 @@ namespace lab::tree::rbutils {
             currUncle = currGrandparent->left;
 
             //uncle is Red: do only recoloring
-            if (currUncle != nullptr && currUncle->color == Node<RedBlackTree<T>>::Red) {
+            if (currUncle != nullptr && currUncle->color == RBNode::Red) {
                 treeFixingRecoloringCase();
             } else {
                 //current node is left child: right rotation
@@ -70,11 +71,11 @@ namespace lab::tree::rbutils {
          * @brief Constructor initialize class fields and call functions for all possible situations of violations
          * @param _currNode - the node that we inserted so there can be violations of properties of RBTree
          */
-        InsertionFixRBTree(Node<RedBlackTree<T>>*& _root, Node<RedBlackTree<T>>*& _currNode)
+        InsertionFixRBTree(RBNode*& _root, RBNode*& _currNode)
                : currNode(_currNode), root(_root)
         {
-            while (currNode != root && currNode->color != tree::Node<tree::RedBlackTree<T>>::Black
-                   && currNode->parent->color == tree::Node<tree::RedBlackTree<T>>::Red) {
+            while (currNode != root && currNode->color != RBNode::Black
+                   && currNode->parent->color == RBNode::Red) {
                 currParent = currNode->parent;
                 currGrandparent = currNode->parent->parent;
 
@@ -86,7 +87,7 @@ namespace lab::tree::rbutils {
                 }
             }
             _root = root;
-            _root->color = tree::Node<tree::RedBlackTree<T>>::Black;
+            _root->color = RBNode::Black;
         }
     };
 }

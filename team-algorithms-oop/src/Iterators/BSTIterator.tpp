@@ -4,23 +4,20 @@
 
 namespace lab::tree {
 
-    template <typename T, typename TreeNode>
-    bool BSTIterator<T, TreeNode>::operator!= (
-            const BSTIterator<T, TreeNode>& other) noexcept
+    template <typename Tree>
+    bool BSTIterator<Tree>::operator!= (const BSTIterator& other) noexcept
     {
         return m_curr != other.m_curr;
     }
 
-    template <typename T, typename TreeNode>
-    bool BSTIterator<T, TreeNode>::operator== (
-            const BSTIterator<T, TreeNode>& other) noexcept
+    template <typename Tree>
+    bool BSTIterator<Tree>::operator== (const BSTIterator& other) noexcept
     {
         return m_curr == other.m_curr;
     }
 
-    template <typename T, typename TreeNode>
-    auto BSTIterator<T, TreeNode>::operator++() noexcept
-            -> BSTIterator<T, TreeNode>&
+    template <typename Tree>
+    auto BSTIterator<Tree>::operator++() noexcept -> BSTIterator<Tree>&
     {
         if (m_curr->right) {
             auto s = m_curr->right->data;
@@ -45,30 +42,29 @@ namespace lab::tree {
         }
     }
 
-    template <typename T, typename TreeNode>
-    auto BSTIterator<T, TreeNode>::operator*() noexcept -> const T&
+    template <typename Tree>
+    auto BSTIterator<Tree>::operator*() noexcept -> const BSTIterator<Tree>::value_type&
     {
         return m_curr->data;
     }
 
-    template <typename T, typename TreeNode>
-    BSTIterator<T, TreeNode>::BSTIterator (TreeNode* root) noexcept
+    template <typename Tree>
+    BSTIterator<Tree>::BSTIterator (Node<Tree>* root) noexcept
             : m_curr(root)
     {}
 
-    template <typename T, typename TreeNode>
-    auto BSTIterator<T, TreeNode>::operator+ (int n) const noexcept
-            -> BSTIterator<T, TreeNode>
+    template <typename Tree>
+    auto BSTIterator<Tree>::operator+ (int n) const noexcept -> BSTIterator<Tree>
     {
-        BSTIterator<T, TreeNode> temp(*this);
+        BSTIterator<Tree> temp(*this);
         for (int i = 0; i < n; ++i) {
             ++temp;
         }
         return temp;
     }
 
-    template <typename T, typename TreeNode>
-    BSTIterator<T, TreeNode>::operator bool () const noexcept {
+    template <typename Tree>
+    BSTIterator<Tree>::operator bool () const noexcept {
         return m_curr;
     }
 }

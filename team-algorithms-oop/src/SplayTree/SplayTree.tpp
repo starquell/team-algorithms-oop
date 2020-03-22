@@ -6,7 +6,7 @@ namespace lab::tree {
 
     template <typename T, typename Compare>
     void SplayTree<T, Compare>::insert (const T& key) {
-        auto new_node = new Node<SplayTree<T>> {key};
+        auto new_node = new Node<SplayTree<T, Compare>> {key};
         Base::simpleInsert(new_node);
         _root = bstutils::splay(new_node);
         ++_size;

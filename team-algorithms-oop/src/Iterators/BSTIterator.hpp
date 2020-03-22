@@ -1,24 +1,24 @@
 #pragma once
 
-#include <Iterators/TreeIterator.hpp>
+#include <NodeBase.hpp>
 
 namespace lab::tree {
 
     /**
-     *  @brief TreeIterator for binary search tree with node that has pointer on parent node
+     *  @brief Tree Iterator for binary search tree with node that has pointer on parent node
      */
-    template <typename T, typename TreeNode>
+    template <typename Tree>
     class BSTIterator {
     public:
-        using value_type = T;
+        using value_type = typename Tree::value_type;
         using difference_type = std::ptrdiff_t;
-        using pointer = T*;
-        using reference = T&;
+        using pointer = value_type*;
+        using reference = value_type&;
         using iterator_category = std::forward_iterator_tag;
 
-        explicit BSTIterator (TreeNode* root) noexcept;
+        explicit BSTIterator (Node<Tree>* root) noexcept;
 
-        const T& operator* () noexcept;
+        const value_type& operator* () noexcept;
 
         explicit operator bool () const noexcept ;
 
@@ -30,13 +30,14 @@ namespace lab::tree {
 
         BSTIterator operator+ (int n) const noexcept ;
 
-//        BSTIterator& operator-- () noexcept;
-//
-//        BSTIterator operator- (int n) const noexcept;
-
     private:
-        TreeNode* m_curr;
+        Node<Tree>* m_curr = nullptr;
     };
+
+    template <typename Tree>
+    BSTIterator (Node<Tree>* root) -> BSTIterator<Tree>;
 }
+
+
 
 #include <Iterators/BSTIterator.tpp>

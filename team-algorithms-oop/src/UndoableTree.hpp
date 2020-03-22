@@ -32,6 +32,8 @@ namespace lab::tree {
         void undo();
         void redo();
 
+        ~UndoableTree () override = default;
+
     private:
         std::vector<Operation> m_done;
         std::vector<Operation> m_undone;

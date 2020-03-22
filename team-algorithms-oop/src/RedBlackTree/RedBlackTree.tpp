@@ -25,7 +25,7 @@ namespace lab::tree {
     template <typename T, typename Compare>
     void RedBlackTree<T, Compare>::insert(const T& _data) {
 
-        auto inputNode = new Node<RedBlackTree<T>>{_data};
+        auto inputNode = new Node<RedBlackTree<T, Compare>>{_data};
         Base::simpleInsert(inputNode);
 
         rbutils::InsertionFixRBTree(_root, inputNode);
@@ -37,7 +37,7 @@ namespace lab::tree {
         if (_root == nullptr) {
             return;
         }
-        Node<RedBlackTree<T>>* nodeToDelete = bstutils::find(_root,  _data, _comp);
+        Node<RedBlackTree<T, Compare>>* nodeToDelete = bstutils::find(_root,  _data, _comp);
 
         if (nodeToDelete == nullptr) {
             return;

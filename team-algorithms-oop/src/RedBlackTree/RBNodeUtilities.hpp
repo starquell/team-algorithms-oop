@@ -4,15 +4,15 @@
 
 namespace lab::tree::rbutils {
 
-    template<typename T>
-    bool hasRedChild(Node<RedBlackTree<T>>* node) {
-        return (node->left != nullptr && node->left->color == Node<RedBlackTree<T>>::Color::Red) ||
-               (node->right != nullptr && node->right->color == Node<RedBlackTree<T>>::Color::Red);
+    template <typename RBNode>
+    bool hasRedChild(RBNode* node) {
+        return (node->left != nullptr && node->left->color == RBNode::Color::Red) ||
+               (node->right != nullptr && node->right->color == RBNode::Color::Red);
     }
 
-    template<typename T>
-    void swapColors(Node<RedBlackTree<T>>* firstNode, Node<RedBlackTree<T>>* secondNode) {
-        typename Node<RedBlackTree<T>>::Color temp = firstNode->color;
+    template <typename RBNode>
+    void swapColors(RBNode* firstNode, RBNode* secondNode) {
+        typename RBNode::Color temp = firstNode->color;
         firstNode->color = secondNode->color;
         secondNode->color = temp;
     }
@@ -22,8 +22,8 @@ namespace lab::tree::rbutils {
      * @brief Copy field of toCopy node to toPaste node, but without fields-pointers
      *
      */
-    template <typename T>
-    void copyNodeData (Node<RedBlackTree<T>>* toCopy, Node<RedBlackTree<T>>* toPaste) {
+    template <typename RBNode>
+    void copyNodeData (RBNode* toCopy, RBNode* toPaste) {
         toPaste->data = toCopy->data;
         toPaste->color = toCopy->color;
     }
@@ -31,9 +31,9 @@ namespace lab::tree::rbutils {
     /**
      * @param currNode parent node before rotation
      */
-    template <typename T>
-    void rotateLeft(Node<RedBlackTree<T>>*& _root, Node<RedBlackTree<T>>*& currNode) {
-        Node<RedBlackTree<T>>* currChildRight = currNode->right;
+    template <typename RBNode>
+    void rotateLeft(RBNode*& _root, RBNode*& currNode) {
+        RBNode* currChildRight = currNode->right;
         currNode->right = currChildRight->left;
 
         if (currNode->right != nullptr) {
@@ -57,9 +57,9 @@ namespace lab::tree::rbutils {
     /**
      * @param currNode parent node before rotation
      */
-    template <typename T>
-    void rotateRight(Node<RedBlackTree<T>>*& _root, Node<RedBlackTree<T>>* &currNode) {
-        Node<RedBlackTree<T>>* currChildLeft = currNode->left;
+    template <typename RBNode>
+    void rotateRight(RBNode*& _root, RBNode*& currNode) {
+        RBNode* currChildLeft = currNode->left;
         currNode->left = currChildLeft->right;
 
         if (currNode->left != nullptr) {

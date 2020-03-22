@@ -7,5 +7,5 @@ namespace lab::tree {
      *          for your tree implementations
      */
     template <typename Tree>
-    struct Node;
+    struct Node {};
 }

@@ -10,10 +10,10 @@ namespace lab::tree {
      *  @brief Splay Tree implementation
      */
     template <typename T,
-              typename Compare = std::less<T>>
-    class SplayTree : public BSTBase<T, Compare, SplayTree<T>> {
+              typename Compare = std::less<>>
+    class SplayTree : public BSTBase<T, Compare, SplayTree<T, Compare>> {
     private:
-        using Base = BSTBase<T, Compare, SplayTree<T>>;
+        using Base = BSTBase<T, Compare, SplayTree<T, Compare>>;
     public:
         /**
          *  @brief Created tree with no elements
@@ -42,12 +42,12 @@ namespace lab::tree {
         using Base::_comp;
     };
 
-    template <typename T>
-    struct Node<SplayTree<T>> {
+    template <typename T, typename Compare>
+    struct Node<SplayTree<T, Compare>> {
         T data;
-        Node<SplayTree<T>>* left = nullptr;
-        Node<SplayTree<T>>* right = nullptr;
-        Node<SplayTree<T>>* parent = nullptr;
+        Node<SplayTree<T, Compare>>* left = nullptr;
+        Node<SplayTree<T, Compare>>* right = nullptr;
+        Node<SplayTree<T, Compare>>* parent = nullptr;
     };
 }
 

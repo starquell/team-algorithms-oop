@@ -3,7 +3,7 @@
 #include <SplayTree/SplayTree.hpp>
 #include <RedBlackTree/RedBlackTree.hpp>
 #include <UndoableTree.hpp>
-#include <TreeDB.hpp>
+#include <AnyTree.hpp>
 
 TEST_CASE("Splay tree", "[splay]") {
 
@@ -209,6 +209,37 @@ TEST_CASE("Undoable tree", "[undoable]") {
         tree.redo();
         REQUIRE((tree.search(1000) && tree.search(999)));
     }
+}
+
+TEST_CASE("Tree container") {
+
+    using namespace lab;
+    using namespace lab::tree;
+
+    UndoableTree<RedBlackTree<int>> rb {4, 2, 12};
+    UndoableTree<SplayTree<int, std::greater<>>> st {2, 22, 1234, 5};
+
+    AnyTree<SupportedValueType<int>,
+            SupportedComparators<std::less<>, std::greater<>>> any(rb);
+
+    REQUIRE(any.size() == rb.size());
+    REQUIRE(*any.begin() == *rb.begin());
+
+    constexpr int someValue = 233;
+    rb.insert(someValue);
+    any.insert(someValue);
+
+    REQUIRE(*any.search(someValue) == *rb.search(someValue));
+
+    any.set_tree(st);
+
+    REQUIRE(any.size() == st.size());
+    REQUIRE(*any.begin() == *st.begin());
+
+    st.insert(someValue);
+    any.insert(someValue);
+
+    REQUIRE(*any.search(someValue) == *st.search(someValue));
 }
 
 

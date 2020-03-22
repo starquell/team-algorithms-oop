@@ -14,14 +14,14 @@ namespace lab::tree::bstutils {
     /**
      *  @brief Implementation of splay algorithm for Splay Tree
      */
-    template <typename T>
+    template <typename T, typename Compare>
     class Splayer {
     public:
-        explicit Splayer(Node<SplayTree<T>>* node) noexcept
+        explicit Splayer(Node<SplayTree<T, Compare>>* node) noexcept
                 : m_node(node)
         {}
 
-        auto splay() noexcept -> Node<SplayTree<T>>*
+        auto splay() noexcept -> Node<SplayTree<T, Compare>>*
         {
             if (!m_node) {
                 return nullptr;
@@ -105,17 +105,17 @@ namespace lab::tree::bstutils {
         }
 
     private:
-        Node<SplayTree<T>>* m_node;
+        Node<SplayTree<T, Compare>>* m_node;
     };
 
-    template <typename T>
-    inline auto splay (Node<SplayTree<T>>* node) noexcept -> Node<SplayTree<T>>*
+    template <typename T, typename Compare>
+    inline auto splay (Node<SplayTree<T, Compare>>* node) noexcept -> Node<SplayTree<T, Compare>>*
     {
         return Splayer{node}.splay();
     }
 
-    template <typename T>
-    auto merge (Node<SplayTree<T>>* lhs, Node<SplayTree<T>>* rhs) noexcept {
+    template <typename T, typename Compare>
+    auto merge (Node<SplayTree<T, Compare>>* lhs, Node<SplayTree<T, Compare>>* rhs) noexcept {
         if (!lhs) {
             return rhs;
         }
@@ -130,9 +130,9 @@ namespace lab::tree::bstutils {
         return lhs_root;
     }
 
-    template <typename T>
-    auto split (Node<SplayTree<T>>* tree, const T& elem) noexcept
-                -> std::pair <Node<SplayTree<T>>*, Node<SplayTree<T>>*>
+    template <typename T, typename Compare>
+    auto split (Node<SplayTree<T, Compare>>* tree, const T& elem) noexcept
+                -> std::pair <Node<SplayTree<T, Compare>>*, Node<SplayTree<T, Compare>>*>
     {
         std::vector<Node<SplayTree<T>>*> elems;
         makeOrderedSequence(tree, elems);

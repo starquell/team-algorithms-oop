@@ -17,7 +17,7 @@ namespace lab::tree {
 
     public:
         using value_type = T;
-        using iterator = BSTIterator<T, Node<DerivedTree>>;
+        using iterator = BSTIterator<DerivedTree>;
 
         iterator search (const T& key) noexcept;
 

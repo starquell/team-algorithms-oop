@@ -6,12 +6,12 @@
 
 namespace lab::tree {
     template <typename T,
-              typename Compare = std::less<T>>
-    class RedBlackTree : public BSTBase<T, Compare, RedBlackTree<T>> {
+              typename Compare = std::less<>>
+    class RedBlackTree : public BSTBase<T, Compare, RedBlackTree<T, Compare>> {
 
     private:
         using NodeRBT = Node<RedBlackTree<T>>;
-        using Base = BSTBase<T, Compare, RedBlackTree<T>>;
+        using Base = BSTBase<T, Compare, RedBlackTree<T, Compare>>;
 
     public:
         explicit RedBlackTree(const Compare& comp = Compare{});
@@ -38,9 +38,9 @@ namespace lab::tree {
         using Base::_comp;
     };
 
-    template<typename T>
-    struct Node<RedBlackTree<T>> {
-        using NodeRBT = Node<RedBlackTree<T>>;
+    template <typename T, typename Compare>
+    struct Node<RedBlackTree<T, Compare>> {
+        using NodeRBT = Node<RedBlackTree<T, Compare>>;
 
         enum Color {
             Red,
