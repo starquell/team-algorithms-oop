@@ -32,7 +32,7 @@ namespace lab::tree {
 
         template <typename Tree, typename = std::enable_if<
                   std::is_same_v<typename Tree::value_type, ValueType>>>
-        void set_tree (const Tree& _tree) {
+        void setTree (const Tree& _tree) {
             m_tree = _tree;
             m_valid_iter = false;
         }

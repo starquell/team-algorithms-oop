@@ -231,7 +231,7 @@ TEST_CASE("Tree container") {
 
     REQUIRE(*any.search(someValue) == *rb.search(someValue));
 
-    any.set_tree(st);
+    any.setTree(st);
 
     REQUIRE(any.size() == st.size());
     REQUIRE(*any.begin() == *st.begin());
