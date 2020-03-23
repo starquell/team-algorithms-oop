@@ -83,5 +83,4 @@ namespace lab {
                     "data TEXT"
                     ")");
     }
-
 }

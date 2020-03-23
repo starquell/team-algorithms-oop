@@ -38,6 +38,4 @@ namespace lab::tree {
     BSTIterator (Node<Tree>* root) -> BSTIterator<Tree>;
 }
 
-
-
 #include <BSTIterator.tpp>
