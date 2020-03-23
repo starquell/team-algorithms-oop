@@ -1,8 +1,8 @@
 #pragma once
 
-#include <UndoableTree.hpp>
+#include "../include/UndoableTree.hpp"
 
-#include <variant/include/boost/variant.hpp>
+#include <variant>
 #include <tuple>
 
 namespace lab {
@@ -13,20 +13,20 @@ namespace lab {
         struct VariantConcat;
 
         template <typename... Ts>
-        struct VariantConcat <boost::variant<Ts...>> {
-            using type = boost::variant<Ts...>;
+        struct VariantConcat <std::variant<Ts...>> {
+            using type = std::variant<Ts...>;
         };
 
         template <typename... LhsTs, typename... RhsTs>
-        struct VariantConcat <boost::variant<LhsTs...>, boost::variant<RhsTs...>> {
-            using type = boost::variant<LhsTs..., RhsTs...>;
+        struct VariantConcat <std::variant<LhsTs...>, std::variant<RhsTs...>> {
+            using type = std::variant<LhsTs..., RhsTs...>;
         };
 
         template <template <typename, typename> typename Tree,
                   typename ValueType,
                   typename... Compare>
         struct TreeComparatorVariations {
-            using type = boost::variant<tree::UndoableTree<Tree<ValueType, Compare>>...>;
+            using type = std::variant<tree::UndoableTree<Tree<ValueType, Compare>>...>;
         };
 
         template <template <typename, typename> typename Tree,

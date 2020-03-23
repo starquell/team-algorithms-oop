@@ -1,7 +1,8 @@
 #pragma once
 
-#include <Iterators/BSTIterator.hpp>
-#include "NodeUtilities.hpp"
+#include <BSTIterator.hpp>
+#include <NodeUtilities.hpp>
+
 
 namespace lab::tree {
 
@@ -29,6 +30,9 @@ namespace lab::tree {
 
         BSTBase (const BSTBase& other);
         BSTBase& operator= (DerivedTree other);
+
+        bool operator== (const DerivedTree& other) const noexcept;
+        bool operator!= (const DerivedTree& other) const noexcept;
 
         [[nodiscard]]
         auto size() const noexcept -> std::size_t;

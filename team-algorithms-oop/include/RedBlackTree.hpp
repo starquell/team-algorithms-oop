@@ -6,7 +6,7 @@
 
 namespace lab::tree {
     template <typename T,
-              typename Compare = std::less<>>
+            typename Compare = std::less<>>
     class RedBlackTree : public BSTBase<T, Compare, RedBlackTree<T, Compare>> {
 
     private:
@@ -14,23 +14,24 @@ namespace lab::tree {
         using Base = BSTBase<T, Compare, RedBlackTree<T, Compare>>;
 
     public:
-        explicit RedBlackTree(const Compare& comp = Compare{});
+        explicit RedBlackTree (const Compare& comp = Compare {});
 
         /**
         *  @brief Contructs tree with elements from range [begin, end)
         */
         template <typename Iter>
-        RedBlackTree(Iter begin, Iter end);
+        RedBlackTree (Iter begin, Iter end);
 
         /**
          *  @brief Contructs tree with elements from list
          */
-        RedBlackTree(std::initializer_list<T> elems);
+        RedBlackTree (std::initializer_list<T> elems);
 
-        void insert(const T& _data) override;
-        void erase(const T& _data) override;
+        void insert (const T& _data) override;
 
-        ~RedBlackTree() override = default;
+        void erase (const T& _data) override;
+
+        ~RedBlackTree () override = default;
 
     protected:
         using Base::_root;
@@ -49,11 +50,11 @@ namespace lab::tree {
 
         T data;
         Color color = Red;
-        NodeRBT* left = nullptr;
-        NodeRBT* right = nullptr;
-        NodeRBT* parent = nullptr;
+        NodeRBT*left = nullptr;
+        NodeRBT*right = nullptr;
+        NodeRBT*parent = nullptr;
     };
-
 }
 
-#include "RedBlackTree.tpp"
+
+#include "RedBlackTree/RedBlackTree.tpp"

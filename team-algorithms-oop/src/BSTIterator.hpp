@@ -18,7 +18,7 @@ namespace lab::tree {
 
         explicit BSTIterator (Node<Tree>* root) noexcept;
 
-        const value_type& operator* () noexcept;
+        const value_type& operator* ();
 
         explicit operator bool () const noexcept ;
 
@@ -40,4 +40,4 @@ namespace lab::tree {
 
 
 
-#include <Iterators/BSTIterator.tpp>
+#include <BSTIterator.tpp>

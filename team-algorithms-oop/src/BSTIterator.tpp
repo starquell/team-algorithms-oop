@@ -43,8 +43,11 @@ namespace lab::tree {
     }
 
     template <typename Tree>
-    auto BSTIterator<Tree>::operator*() noexcept -> const BSTIterator<Tree>::value_type&
+    auto BSTIterator<Tree>::operator*() -> const BSTIterator<Tree>::value_type&
     {
+        if (!m_curr) {
+            throw std::out_of_range("No data under iterator.");
+        }
         return m_curr->data;
     }
 

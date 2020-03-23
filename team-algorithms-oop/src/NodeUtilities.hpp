@@ -3,7 +3,7 @@
 #include <NodeBase.hpp>
 
 #include <vector>
-#include <SplayTree/SplayTree.hpp>
+#include "../include/SplayTree.hpp"
 
 /**
  *   @brief Set of function to work with binary tree nodes
@@ -59,6 +59,9 @@ namespace lab::tree::bstutils {
      */
     template <typename Tree>
     auto min (Node<Tree>* node) noexcept -> Node<Tree>* {
+        if (!node) {
+            return nullptr;
+        }
         while (node->left) {
             node = node->left;
         }
@@ -70,6 +73,9 @@ namespace lab::tree::bstutils {
     */
     template <typename Tree>
     auto max (Node<Tree>* node) noexcept -> Node<Tree>* {
+        if (!node) {
+            return nullptr;
+        }
         while (node->right) {
             node = node->right;
         }

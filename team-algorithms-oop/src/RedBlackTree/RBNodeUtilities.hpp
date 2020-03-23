@@ -1,7 +1,5 @@
 #pragma once
 
-#include "RedBlackTree.hpp"
-
 namespace lab::tree::rbutils {
 
     template <typename RBNode>

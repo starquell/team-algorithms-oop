@@ -1,6 +1,9 @@
 #pragma once
 
 #include <NodeUtilities.hpp>
+#include "BSTBase.hpp"
+
+#include <algorithm>
 
 namespace lab::tree {
 
@@ -82,5 +85,15 @@ namespace lab::tree {
     template <typename T, typename Compare, typename DerivedTree>
     auto BSTBase<T, Compare, DerivedTree>::compareFunc () const noexcept -> Compare {
         return _comp;
+    }
+
+    template <typename T, typename Compare, typename DerivedTree>
+    bool BSTBase<T, Compare, DerivedTree>::operator!= (const DerivedTree& other) const noexcept{
+        return !std::equal(begin(), end(), other.begin());
+    }
+
+    template <typename T, typename Compare, typename DerivedTree>
+    bool BSTBase<T, Compare, DerivedTree>::operator== (const DerivedTree& other) const noexcept{
+        return std::equal(begin(), end(), other.begin());
     }
 }

@@ -6,12 +6,15 @@ set(CMAKE_CXX_STANDARD 17)
 set(TESTS_DIR ${CMAKE_SOURCE_DIR}/tests)
 set(SRC_DIR ${CMAKE_SOURCE_DIR}/src)
 set(DEPS_DIR ${CMAKE_SOURCE_DIR}/deps)
+set(INCLUDE_DIR ${CMAKE_SOURCE_DIR}/include)
 
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 
 include_directories(${SRC_DIR})
 include_directories(${DEPS_DIR})
+include_directories(${INCLUDE_DIR})
+
 
 set(LIB_NAME ${PROJECT_NAME}core)
 
@@ -21,3 +24,5 @@ if(ENABLE_TESTS)
 endif()
 
 add_executable(main main.cpp)
+target_link_libraries(main PRIVATE sqlite3)
+
