@@ -13,8 +13,8 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 
 include_directories(${SRC_DIR})
 include_directories(${DEPS_DIR})
+include_directories(${DEPS_DIR}/cereal/include)
 include_directories(${INCLUDE_DIR})
-
 
 set(LIB_NAME ${PROJECT_NAME}core)
 
