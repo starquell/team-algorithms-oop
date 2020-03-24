@@ -29,8 +29,11 @@ namespace lab::tree {
         iterator end() const noexcept;
 
         BSTBase (const BSTBase& other);
+        BSTBase (BSTBase&& other) noexcept;
+
         BSTBase& operator= (DerivedTree other);
 
+        void swap (DerivedTree& other) noexcept;
         bool operator== (const DerivedTree& other) const noexcept;
         bool operator!= (const DerivedTree& other) const noexcept;
 
@@ -47,6 +50,12 @@ namespace lab::tree {
         Compare _comp = Compare{};
         Node<DerivedTree>* _root = nullptr;
     };
+
+    template <typename T, typename Compare, typename Derived>
+    void swap (BSTBase<T, Compare, Derived>& lhs, BSTBase<T, Compare, Derived>& rhs) {
+        lhs.swap(rhs);
+    }
+
 }
 
 #include "BSTBase.tpp"

@@ -1,7 +1,6 @@
 #pragma once
 
 #include <NodeUtilities.hpp>
-#include "BSTBase.hpp"
 
 #include <algorithm>
 
@@ -73,7 +72,7 @@ namespace lab::tree {
     auto BSTBase<T, Compare, DerivedTree>::operator= (DerivedTree other)
         -> BSTBase<T, Compare, DerivedTree>&
     {
-        std::swap (*this, other);
+        swap (*this, other);
         return *this;
     }
 
@@ -95,5 +94,20 @@ namespace lab::tree {
     template <typename T, typename Compare, typename DerivedTree>
     bool BSTBase<T, Compare, DerivedTree>::operator== (const DerivedTree& other) const noexcept{
         return std::equal(begin(), end(), other.begin());
+    }
+
+    template <typename T, typename Compare, typename DerivedTree>
+    BSTBase<T, Compare, DerivedTree>::BSTBase (BSTBase&& other) noexcept
+            : _root (std::exchange(other._root, nullptr)),
+              _comp (other._comp),
+              _size (std::exchange(other._size, 0))
+    {}
+
+    template <typename T, typename Compare, typename DerivedTree>
+    void BSTBase<T, Compare, DerivedTree>::swap (DerivedTree& other) noexcept {
+
+        std::swap(_root, other._root);
+        std::swap(_comp, other._comp);
+        std::swap(_size, other._size);
     }
 }
