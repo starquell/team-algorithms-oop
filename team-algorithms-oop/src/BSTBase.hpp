@@ -33,7 +33,7 @@ namespace lab::tree {
 
         BSTBase& operator= (DerivedTree other);
 
-        friend void swap (BSTBase& lhs, BSTBase& rhs);
+        friend void swap (BSTBase& lhs, BSTBase& rhs) noexcept;
 
         bool operator== (const DerivedTree& other) const noexcept;
         bool operator!= (const DerivedTree& other) const noexcept;
@@ -53,7 +53,7 @@ namespace lab::tree {
     };
 
     template <typename T, typename Compare, typename Derived>
-    void swap (BSTBase<T, Compare, Derived>& lhs, BSTBase<T, Compare, Derived>& rhs) {
+    void swap (BSTBase<T, Compare, Derived>& lhs, BSTBase<T, Compare, Derived>& rhs) noexcept{
         std::swap(lhs._root, rhs._root);
         std::swap(lhs._comp, rhs._comp);
         std::swap(lhs._size, rhs._size);
