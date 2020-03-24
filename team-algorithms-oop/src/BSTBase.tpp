@@ -103,11 +103,4 @@ namespace lab::tree {
               _size (std::exchange(other._size, 0))
     {}
 
-    template <typename T, typename Compare, typename DerivedTree>
-    void BSTBase<T, Compare, DerivedTree>::swap (DerivedTree& other) noexcept {
-
-        std::swap(_root, other._root);
-        std::swap(_comp, other._comp);
-        std::swap(_size, other._size);
-    }
 }
