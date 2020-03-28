@@ -1,6 +1,8 @@
 #pragma once
 
 #include <AnyTreeDetail.hpp>
+#include <RedBlackTree.hpp>
+#include <SplayTree.hpp>
 
 #include <vector>
 #include <functional>
