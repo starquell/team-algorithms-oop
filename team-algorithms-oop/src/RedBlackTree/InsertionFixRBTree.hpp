@@ -2,7 +2,7 @@
 
 #include "RBNodeUtilities.hpp"
 
-namespace lab::tree::rbutils {
+namespace lab::forest::rbutils {
 
     /**
      * @brief Implementation of algorithm that restore RBTree properties after insertion

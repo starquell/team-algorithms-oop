@@ -26,7 +26,7 @@ namespace lab {
                   typename ValueType,
                   typename... Compare>
         struct TreeComparatorVariations {
-            using type = std::variant<tree::UndoableTree<Tree<ValueType, Compare>>...>;
+            using type = std::variant<forest::UndoableTree < Tree<ValueType, Compare>>...>;
         };
 
         template <template <typename, typename> typename Tree,

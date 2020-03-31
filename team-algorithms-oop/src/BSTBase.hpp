@@ -4,10 +4,10 @@
 #include <NodeUtilities.hpp>
 
 
-namespace lab::tree {
+namespace lab::forest {
 
     /**
-     *   @brief Abstract base class for binary search tree implementations
+     *   @brief Abstract base class for binary search forest implementations
      */
     template <typename T, typename Compare, typename DerivedTree>
     class BSTBase {
@@ -31,9 +31,16 @@ namespace lab::tree {
         BSTBase (const BSTBase& other);
         BSTBase (BSTBase&& other) noexcept;
 
-        BSTBase& operator= (DerivedTree other);
+        BSTBase& operator= (DerivedTree other) noexcept;
+        BSTBase& operator= (const BSTBase& other) noexcept = default;
+        BSTBase& operator= (BSTBase&& other) noexcept = default;
 
-        friend void swap (BSTBase& lhs, BSTBase& rhs) noexcept;
+
+        friend void swap (BSTBase& lhs, BSTBase& rhs) noexcept {
+            std::swap(lhs._root, rhs._root);
+            std::swap(lhs._comp, rhs._comp);
+            std::swap(lhs._size, rhs._size);
+        }
 
         bool operator== (const DerivedTree& other) const noexcept;
         bool operator!= (const DerivedTree& other) const noexcept;
@@ -51,14 +58,6 @@ namespace lab::tree {
         Compare _comp = Compare{};
         Node<DerivedTree>* _root = nullptr;
     };
-
-    template <typename T, typename Compare, typename Derived>
-    void swap (BSTBase<T, Compare, Derived>& lhs, BSTBase<T, Compare, Derived>& rhs) noexcept{
-        std::swap(lhs._root, rhs._root);
-        std::swap(lhs._comp, rhs._comp);
-        std::swap(lhs._size, rhs._size);
-    }
-
 }
 
 #include "BSTBase.tpp"

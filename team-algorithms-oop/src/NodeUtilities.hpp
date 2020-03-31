@@ -8,7 +8,7 @@
 /**
  *   @brief Set of function to work with binary tree nodes
  */
-namespace lab::tree::bstutils {
+namespace lab::forest::bstutils {
 
     /**
      *  @brief Returns node with key elem in subtree node
@@ -181,7 +181,7 @@ namespace lab::tree::bstutils {
     }
 
     /**
-     *   @brief Computes std::vector of all nodes of subtree 'node' in increasing order
+     *   @brief Fills std::vector of all nodes of subtree 'node' in increasing order
      */
     template <typename Tree>
     void makeOrderedSequence (Node<Tree>* node, std::vector<Node<Tree>*>& nodes) {

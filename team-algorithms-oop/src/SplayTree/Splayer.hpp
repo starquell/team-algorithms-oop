@@ -9,7 +9,7 @@
 /**
  *  @brief Set of functions and classes that implement algorithms for Splay Tree
  */
-namespace lab::tree::bstutils {
+namespace lab::forest::bstutils {
 
     /**
      *  @brief Implementation of splay algorithm for Splay Tree

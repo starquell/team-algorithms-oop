@@ -6,9 +6,9 @@
 #include <AnyTree.hpp>
 #include <TreeDB.hpp>
 
-TEST_CASE("Splay tree", "[splay]") {
+TEST_CASE("Splay forest", "[splay]") {
 
-    using namespace lab::tree;
+    using namespace lab::forest;
 
     constexpr std::array elems = {1, 4, 103, 2, 24};
 
@@ -79,7 +79,7 @@ TEST_CASE("Splay tree", "[splay]") {
 
 TEST_CASE("Red Black Tree", "[RedBlackTree]") {
 
-    using namespace lab::tree;
+    using namespace lab::forest;
 
     constexpr std::array elems = {1, 4, 103, 2, 24};
 
@@ -142,9 +142,9 @@ TEST_CASE("Red Black Tree", "[RedBlackTree]") {
     }
 }
 
-TEST_CASE("Undoable tree", "[undoable]") {
+TEST_CASE("Undoable forest", "[undoable]") {
 
-    using namespace lab::tree;
+    using namespace lab::forest;
 
     constexpr std::array elems = {1, 4, 103, 2, 24};
 
@@ -216,7 +216,7 @@ TEST_CASE("Undoable tree", "[undoable]") {
 TEST_CASE("Tree container") {
 
     using namespace lab;
-    using namespace lab::tree;
+    using namespace lab::forest;
 
     UndoableTree<RedBlackTree<int>> rb {4, 2, 12};
     UndoableTree<SplayTree<int, std::greater<>>> st {2, 22, 1234, 5};
@@ -247,7 +247,7 @@ TEST_CASE("Tree container") {
 TEST_CASE("Saving trees (no eco activism)") {
 
     using namespace lab;
-    using namespace lab::tree;
+    using namespace lab::forest;
 
     constexpr std::string_view record_name = "test";
     auto& db = TreeDatabase::instance();

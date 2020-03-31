@@ -2,7 +2,9 @@
 
 #include <NodeBase.hpp>
 
-namespace lab::tree {
+#include <iterator>
+
+namespace lab::forest {
 
     /**
      *  @brief Tree Iterator for binary search tree with node that has pointer on parent node

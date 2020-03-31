@@ -4,9 +4,9 @@
 
 #include <functional>
 
-namespace lab::tree {
+namespace lab::forest {
     template <typename T,
-            typename Compare = std::less<>>
+              typename Compare = std::less<>>
     class RedBlackTree : public BSTBase<T, Compare, RedBlackTree<T, Compare>> {
 
     private:
@@ -26,6 +26,12 @@ namespace lab::tree {
          *  @brief Contructs tree with elements from list
          */
         RedBlackTree (std::initializer_list<T> elems);
+
+        RedBlackTree (const RedBlackTree& other) = default;
+        RedBlackTree (RedBlackTree&& other) noexcept = default;
+
+        RedBlackTree& operator= (const RedBlackTree& other) = default;
+        RedBlackTree& operator= (RedBlackTree&& other) noexcept = default;
 
         void insert (const T& _data) override;
 
@@ -50,9 +56,9 @@ namespace lab::tree {
 
         T data;
         Color color = Red;
-        NodeRBT*left = nullptr;
-        NodeRBT*right = nullptr;
-        NodeRBT*parent = nullptr;
+        NodeRBT* left = nullptr;
+        NodeRBT* right = nullptr;
+        NodeRBT* parent = nullptr;
     };
 }
 

@@ -2,7 +2,7 @@
 
 #include <NodeUtilities.hpp>
 
-namespace lab::tree {
+namespace lab::forest {
 
     template <typename Tree>
     bool BSTIterator<Tree>::operator!= (const BSTIterator& other) noexcept

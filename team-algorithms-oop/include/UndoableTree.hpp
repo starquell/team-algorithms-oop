@@ -4,7 +4,7 @@
 
 #include <vector>
 
-namespace lab::tree {
+namespace lab::forest {
 
     /**
         @brief Class that expand Tree functionality by undo and redo operations
@@ -23,7 +23,14 @@ namespace lab::tree {
 
     public:
         explicit UndoableTree() = default;
+
         UndoableTree (std::initializer_list<value_type> elems);
+
+        UndoableTree (const UndoableTree& other) = default;
+        UndoableTree (UndoableTree&& other) noexcept = default;
+
+        UndoableTree& operator= (const UndoableTree& other) = default;
+        UndoableTree& operator= (UndoableTree&& other) noexcept = default;
 
         template <typename Iter>
         UndoableTree (Iter begin, Iter end);

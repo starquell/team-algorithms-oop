@@ -3,8 +3,10 @@
 #include <NodeUtilities.hpp>
 
 #include <algorithm>
+#include "BSTBase.hpp"
 
-namespace lab::tree {
+
+namespace lab::forest {
 
     template <typename T, typename Compare, typename DerivedTree>
     auto BSTBase<T, Compare, DerivedTree>::search (const T& key) noexcept
@@ -69,7 +71,7 @@ namespace lab::tree {
 
 
     template <typename T, typename Compare, typename DerivedTree>
-    auto BSTBase<T, Compare, DerivedTree>::operator= (DerivedTree other)
+    auto BSTBase<T, Compare, DerivedTree>::operator= (DerivedTree other) noexcept
         -> BSTBase<T, Compare, DerivedTree>&
     {
         swap (*this, other);
@@ -102,5 +104,20 @@ namespace lab::tree {
               _comp (other._comp),
               _size (std::exchange(other._size, 0))
     {}
+
+//    template <typename T, typename Compare, typename DerivedTree>
+//    BSTBase<T, Compare, DerivedTree>& BSTBase<T, Compare, DerivedTree>::operator= (const BSTBase& other) noexcept {
+//        BSTBase<T, Compare, DerivedTree> temp (other);
+//        swap(temp, this);
+//        return *this;
+//    }
+//
+//    template <typename T, typename Compare, typename DerivedTree>
+//    BSTBase<T, Compare, DerivedTree>& BSTBase<T, Compare, DerivedTree>::operator= (BSTBase&& other) noexcept {
+//
+//        BSTBase<T, Compare, DerivedTree> temp (other);
+//        swap(temp, this);
+//        return *this;
+//    }
 
 }

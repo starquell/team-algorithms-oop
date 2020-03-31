@@ -1,31 +1,35 @@
 #pragma once
 
 #include <BSTBase.hpp>
-
-
 #include <functional>
 
-namespace lab::tree {
+namespace lab::forest {
 
     /**
      *  @brief Splay Tree implementation
      */
     template <typename T,
-            typename Compare = std::less<>>
+              typename Compare = std::less<>>
     class SplayTree : public BSTBase<T, Compare, SplayTree<T, Compare>> {
     private:
         using Base = BSTBase<T, Compare, SplayTree<T, Compare>>;
     public:
         /**
-         *  @brief Created tree with no elements
+         *  @brief Creates tree with no elements
          */
-        explicit SplayTree (const Compare& comp = Compare {}) noexcept;
+        explicit SplayTree (const Compare& comp = Compare{}) noexcept;
 
         /**
          *  @brief Contructs tree with elements from range [begin, end)
          */
         template <typename Iter>
         SplayTree (Iter begin, Iter end);
+
+        SplayTree (const SplayTree& other) = default;
+        SplayTree (SplayTree&& other) noexcept = default;
+
+        SplayTree& operator= (const SplayTree& other) = default;
+        SplayTree& operator= (SplayTree&& other) noexcept = default;
 
         /**
          *  @brief Contructs tree with elements from list
@@ -47,9 +51,9 @@ namespace lab::tree {
     template <typename T, typename Compare>
     struct Node<SplayTree<T, Compare>> {
         T data;
-        Node<SplayTree<T, Compare>>*left = nullptr;
-        Node<SplayTree<T, Compare>>*right = nullptr;
-        Node<SplayTree<T, Compare>>*parent = nullptr;
+        Node<SplayTree<T, Compare>>* left = nullptr;
+        Node<SplayTree<T, Compare>>* right = nullptr;
+        Node<SplayTree<T, Compare>>* parent = nullptr;
     };
 }
 

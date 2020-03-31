@@ -5,7 +5,7 @@
 #include <vector>
 #include <functional>
 
-namespace lab::tree {
+namespace lab::forest {
 
     /**
      *  @brief Class that can hold object of any tree and gives interface to work with it
@@ -21,18 +21,20 @@ namespace lab::tree {
 
         template <typename Tree, typename = std::enable_if<
                   std::is_same_v<typename Tree::value_type, ValueType>>>
-        AnyTree (const Tree& _tree);
+        AnyTree (Tree _tree);
 
-        template <typename Tree, typename = std::enable_if<
-                  std::is_same_v<typename Tree::value_type, ValueType>>>
-        AnyTree (Tree&& _tree);
+        AnyTree (const AnyTree& other) = default;
+        AnyTree (AnyTree&& other) noexcept = default;
+
+        AnyTree& operator= (const AnyTree& other) = default;
+        AnyTree& operator= (AnyTree&& other) noexcept = default;
 
         /**
-         *  @brief Sets current tree object (copying tree passed as argument)
+         *  @brief Sets current tree object (copying forest passed as argument)
          */
         template <typename Tree, typename = std::enable_if<
                   std::is_same_v<typename Tree::value_type, ValueType>>>
-        void setTree (const Tree& _tree);
+        void setTree (Tree _tree);
 
         void insert (const ValueType& value);
 

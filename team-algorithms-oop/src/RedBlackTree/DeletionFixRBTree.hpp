@@ -2,7 +2,7 @@
 
 #include "RBNodeUtilities.hpp"
 
-namespace lab::tree::rbutils {
+namespace lab::forest::rbutils {
 
     /**
      * @brief Implementation of algorithm for node deletion and restore RBTree properties after deletion
@@ -88,7 +88,7 @@ namespace lab::tree::rbutils {
         }
 
         /**
-         * @brief Restoring balance of the tree when deleted node and replacement node are both black
+         * @brief Restoring balance of the forest when deleted node and replacement node are both black
          *          by rotation and recoloring
          */
         void fixBothBlack() {
@@ -120,7 +120,7 @@ namespace lab::tree::rbutils {
                         bstutils::sibling(nodeToDelete)->color = RBNode::Red;
                 }
 
-                // delete node from the tree
+                // delete node from the forest
                 if (bstutils::isLeftSon(nodeToDelete)) {
                     parentNodeToDelete->left = nullptr;
                 } else {
@@ -134,7 +134,7 @@ namespace lab::tree::rbutils {
                 nodeToDelete->data = nodeToReplace->data;
                 delete nodeToReplace;
             } else {
-                /// Detach nodeToDelete from tree and move nodeToReplace up
+                /// Detach nodeToDelete from forest and move nodeToReplace up
                 if (bstutils::isLeftSon(nodeToDelete)) {
                     parentNodeToDelete->left = nodeToReplace;
                 } else {

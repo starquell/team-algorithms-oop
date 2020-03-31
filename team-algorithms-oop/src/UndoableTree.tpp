@@ -1,6 +1,6 @@
 #pragma once
 
-namespace lab::tree {
+namespace lab::forest {
 
     template <typename Tree>
     void UndoableTree<Tree>::redo() {

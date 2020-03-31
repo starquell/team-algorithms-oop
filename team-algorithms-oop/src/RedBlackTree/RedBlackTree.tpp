@@ -3,7 +3,7 @@
 #include "InsertionFixRBTree.hpp"
 #include "DeletionFixRBTree.hpp"
 
-namespace lab::tree {
+namespace lab::forest {
 
     template <typename T, typename Compare>
     template <typename Iter>

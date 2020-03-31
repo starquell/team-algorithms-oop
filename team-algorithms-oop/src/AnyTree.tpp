@@ -1,19 +1,15 @@
 #pragma once
 
-namespace lab::tree {
+namespace lab::forest {
 
-
+    template <typename>
+    class Check;
     template <typename ValueType, typename... Comparators>
     template <typename Tree, typename>
-    AnyTree<SupportedValueType<ValueType>, SupportedComparators<Comparators...>>::AnyTree (const Tree& _tree)
-         : m_tree (_tree)
+    AnyTree<SupportedValueType<ValueType>, SupportedComparators<Comparators...>>::AnyTree (Tree _tree)
+         : m_tree (std::move(_tree))
     {}
 
-    template <typename ValueType, typename... Comparators>
-    template <typename Tree, typename>
-    AnyTree<SupportedValueType<ValueType>, SupportedComparators<Comparators...>>::AnyTree (Tree&& _tree)
-         : m_tree (std::forward(_tree))
-    {}
 
 
     template <typename ValueType, typename... Comparators>
@@ -62,8 +58,10 @@ namespace lab::tree {
 
     template <typename ValueType, typename... Comparators>
     template <typename Tree, typename>
-    void AnyTree<SupportedValueType<ValueType>, SupportedComparators<Comparators...>>::setTree (const Tree& _tree) {
-        m_tree = _tree;
+    void AnyTree<SupportedValueType<ValueType>, SupportedComparators<Comparators...>>::setTree (Tree _tree) {
+        static_assert(std::is_move_assignable_v<decltype(_tree)>);
+
+        m_tree = std::move(_tree);
         m_valid_iter = false;
     }
 

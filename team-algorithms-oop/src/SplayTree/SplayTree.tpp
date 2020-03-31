@@ -2,7 +2,7 @@
 
 #include <SplayTree/Splayer.hpp>
 
-namespace lab::tree {
+namespace lab::forest {
 
     template <typename T, typename Compare>
     void SplayTree<T, Compare>::insert (const T& key) {

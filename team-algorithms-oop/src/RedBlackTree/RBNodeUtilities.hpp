@@ -1,6 +1,6 @@
 #pragma once
 
-namespace lab::tree::rbutils {
+namespace lab::forest::rbutils {
 
     template <typename RBNode>
     bool hasRedChild(RBNode* node) {
