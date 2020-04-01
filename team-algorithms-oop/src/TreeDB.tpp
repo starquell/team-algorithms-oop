@@ -1,5 +1,12 @@
 #pragma once
 
+#include <cereal/include/cereal/archives/json.hpp>
+#include <cereal/include/cereal/types/vector.hpp>
+#include <cereal/include/cereal/cereal.hpp>
+
+#include <sstream>
+#include <vector>
+
 namespace lab {
 
     TreeDatabase::TreeDatabase ()

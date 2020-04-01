@@ -1,8 +1,9 @@
 #pragma once
 
 #include <NodeUtilities.hpp>
+#include <NodeBase.hpp>
 
-namespace lab::forest {
+namespace lab::forest::detail {
 
     template <typename Tree>
     bool BSTIterator<Tree>::operator!= (const BSTIterator& other) noexcept
@@ -34,7 +35,7 @@ namespace lab::forest {
                 m_curr = nullptr;
                 return *this;
             }
-            if (bstutils::isLeftSon(m_curr)) {
+            if (isLeftSon(m_curr)) {
                 m_curr = m_curr->parent;
                 return *this;
             }

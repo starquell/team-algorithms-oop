@@ -1,20 +1,32 @@
 #pragma once
 
 #include <SplayTree/Splayer.hpp>
+#include "NodeBase.hpp"
 
 namespace lab::forest {
 
+    namespace detail {
+
+        template <typename T, typename Compare>
+        struct Node<SplayTree<T, Compare>> {
+            T data;
+            lab::forest::detail::Node<SplayTree<T, Compare>>* left = nullptr;
+            lab::forest::detail::Node<SplayTree<T, Compare>>* right = nullptr;
+            lab::forest::detail::Node<SplayTree<T, Compare>>* parent = nullptr;
+        };
+    }
+
     template <typename T, typename Compare>
     void SplayTree<T, Compare>::insertImpl (const T& key) {
-        auto new_node = new Node<SplayTree<T, Compare>> {key};
+        auto new_node = new detail::Node<SplayTree<T, Compare>> {key};
         Base::simpleInsert(new_node);
-        _root = bstutils::splay(new_node);
+        _root = detail::splay(new_node);
     }
 
     template <typename T, typename Compare>
     void SplayTree<T, Compare>::eraseImpl (const T& key) {
-        auto found = bstutils::find(_root, key, _comp);
-        auto splayed = bstutils::splay(found);
+        auto found = detail::find(_root, key, _comp);
+        auto splayed = detail::splay(found);
         if (!splayed) {
             return;
         }
@@ -29,7 +41,7 @@ namespace lab::forest {
             splayed->right = nullptr;
         }
         delete splayed;
-        _root = bstutils::merge<T>(lhs_tree, rhs_tree);
+        _root = detail::merge<T>(lhs_tree, rhs_tree);
     }
 
     template <typename T, typename Compare>

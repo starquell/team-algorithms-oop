@@ -11,7 +11,7 @@ namespace lab::forest {
      */
     template <typename T,
               typename Compare = std::less<>>
-    class SplayTree : public BSTBase<T, Compare, SplayTree<T, Compare>> {
+    class SplayTree : public detail::BSTBase<T, Compare, SplayTree<T, Compare>> {
     public:
         /**
          *  @brief Creates tree with no elements
@@ -36,13 +36,21 @@ namespace lab::forest {
         SplayTree (std::initializer_list<T> elems);
 
     private:
-        friend class BSTBase<T, Compare, SplayTree<T, Compare>>;
+        friend class detail::BSTBase<T, Compare, SplayTree<T, Compare>>;
 
+        /**
+         *  @brief Inserts element with key _data to tree
+         *  @attention Must be used only in insert method in BSTBase
+         */
         void insertImpl (const T& key);
 
+        /**
+         *  @brief Erases element with key _data from tree
+         *  @attention Must be used only in insert method in BSTBase
+         */
         void eraseImpl (const T& key);
 
-        using Base = BSTBase<T, Compare, SplayTree<T, Compare>>;
+        using Base = detail::BSTBase<T, Compare, SplayTree<T, Compare>>;
 
     public:
 
@@ -53,14 +61,7 @@ namespace lab::forest {
         using Base::_size;
         using Base::_comp;
     };
-
-    template <typename T, typename Compare>
-    struct Node<SplayTree<T, Compare>> {
-        T data;
-        Node<SplayTree<T, Compare>>* left = nullptr;
-        Node<SplayTree<T, Compare>>* right = nullptr;
-        Node<SplayTree<T, Compare>>* parent = nullptr;
-    };
 }
 
 #include "SplayTree/SplayTree.tpp"
+#include "NodeBase.hpp"

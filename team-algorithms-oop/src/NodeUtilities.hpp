@@ -6,9 +6,9 @@
 #include "../include/SplayTree.hpp"
 
 /**
- *   @brief Set of function to work with binary tree nodes
+ *   @brief Set of functions to work with binary tree nodes
  */
-namespace lab::forest::bstutils {
+namespace lab::forest::detail {
 
     /**
      *  @brief Returns node with key elem in subtree node
@@ -99,7 +99,7 @@ namespace lab::forest::bstutils {
             return nullptr;
         }
 
-        auto newNode = new Node<Tree>();
+        auto newNode = new Node<Tree>{};
         copyNodeData(node, newNode);
         newNode->parent = parentNode;
         newNode->left = clone(node->left, newNode);
@@ -112,11 +112,9 @@ namespace lab::forest::bstutils {
      *  @brief Simple insertion in BST node without parent info, non-recursive approach
      */
     template <typename Tree, typename Compare>
-    auto insert (Node<Tree>* node,
-                 Node<Tree>* to_insert,
-                 const Compare& comp) -> Node<Tree>*
+    auto insert (Node<Tree>* node, Node<Tree>* to_insert, const Compare& comp)
+            -> detail::Node<Tree>*
      {
-
         const auto& key = to_insert->data;
 
         while (true) {
@@ -142,9 +140,9 @@ namespace lab::forest::bstutils {
      *  @brief Simple insertion in BST node with parent info, non-recursive approach
      */
     template <typename Tree, typename Compare>
-    auto insertWithParent (Node<Tree>* node,
-                           Node<Tree>* to_insert,
-                           const Compare& comp) -> Node<Tree>* {
+    auto insertWithParent (Node<Tree>* node, Node<Tree>* to_insert, const Compare& comp)
+            -> Node<Tree>*
+    {
 
         const auto& key = to_insert->data;
 
@@ -220,7 +218,7 @@ namespace lab::forest::bstutils {
      * @return Another child of node parent and nullptr if there is no parent
      */
     template <typename Tree>
-    Node<Tree>* sibling(Node<Tree>* node) {
+    auto sibling(Node<Tree>* node) -> Node<Tree>* {
         if (node->parent == nullptr) {
             return nullptr;
         }
@@ -233,7 +231,7 @@ namespace lab::forest::bstutils {
     }
 
     template <typename Tree>
-    void swapData(Node<Tree>* firstNode, Node<Tree>* secondNode) {
+    void swapData (Node<Tree>* firstNode, Node<Tree>* secondNode) {
         auto temp = firstNode->data;
         firstNode->data = secondNode->data;
         secondNode->data = temp;
@@ -262,7 +260,7 @@ namespace lab::forest::bstutils {
      *
      */
     template <typename Tree>
-    Node<Tree>* findReplacement(Node<Tree>* node) {
+    auto findReplacement(Node<Tree>* node) -> Node<Tree>* {
         // when node have 2 children
         if (node->left != nullptr && node->right != nullptr) {
             return min(node->right);

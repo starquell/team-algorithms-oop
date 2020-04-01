@@ -1,0 +1,64 @@
+\hypertarget{classlab_1_1forest_1_1detail_1_1BSTIterator}{}\section{lab\+:\+:forest\+:\+:detail\+:\+:B\+S\+T\+Iterator$<$ Tree $>$ Class Template Reference}
+\label{classlab_1_1forest_1_1detail_1_1BSTIterator}\index{lab\+::forest\+::detail\+::\+B\+S\+T\+Iterator$<$ Tree $>$@{lab\+::forest\+::detail\+::\+B\+S\+T\+Iterator$<$ Tree $>$}}
+
+
+Tree Iterator for binary search tree with node that has pointer on parent node.  
+
+
+
+
+{\ttfamily \#include $<$B\+S\+T\+Iterator.\+hpp$>$}
+
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classlab_1_1forest_1_1detail_1_1BSTIterator_a7357b7240b452c85e8067df208ec89d4}\label{classlab_1_1forest_1_1detail_1_1BSTIterator_a7357b7240b452c85e8067df208ec89d4}} 
+using {\bfseries value\+\_\+type} = typename Tree\+::value\+\_\+type
+\item 
+\mbox{\Hypertarget{classlab_1_1forest_1_1detail_1_1BSTIterator_a4f51d149bf76cc57d448890cc0a1847b}\label{classlab_1_1forest_1_1detail_1_1BSTIterator_a4f51d149bf76cc57d448890cc0a1847b}} 
+using {\bfseries difference\+\_\+type} = std\+::ptrdiff\+\_\+t
+\item 
+\mbox{\Hypertarget{classlab_1_1forest_1_1detail_1_1BSTIterator_a25fcc22982fc156230809c1562b4acd3}\label{classlab_1_1forest_1_1detail_1_1BSTIterator_a25fcc22982fc156230809c1562b4acd3}} 
+using {\bfseries pointer} = value\+\_\+type $\ast$
+\item 
+\mbox{\Hypertarget{classlab_1_1forest_1_1detail_1_1BSTIterator_a7e8e336f4827a4346403bc968d5c0b55}\label{classlab_1_1forest_1_1detail_1_1BSTIterator_a7e8e336f4827a4346403bc968d5c0b55}} 
+using {\bfseries reference} = value\+\_\+type \&
+\item 
+\mbox{\Hypertarget{classlab_1_1forest_1_1detail_1_1BSTIterator_ae388f96c31ed50439124acf7cdd7f2d5}\label{classlab_1_1forest_1_1detail_1_1BSTIterator_ae388f96c31ed50439124acf7cdd7f2d5}} 
+using {\bfseries iterator\+\_\+category} = std\+::forward\+\_\+iterator\+\_\+tag
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classlab_1_1forest_1_1detail_1_1BSTIterator_aab6cd78d53680a9275af8d14fdbe64bd}\label{classlab_1_1forest_1_1detail_1_1BSTIterator_aab6cd78d53680a9275af8d14fdbe64bd}} 
+{\bfseries B\+S\+T\+Iterator} (\hyperlink{structlab_1_1forest_1_1detail_1_1Node}{Node}$<$ Tree $>$ $\ast$root) noexcept
+\item 
+\mbox{\Hypertarget{classlab_1_1forest_1_1detail_1_1BSTIterator_a80f86589ab32cb6a117629d428289eac}\label{classlab_1_1forest_1_1detail_1_1BSTIterator_a80f86589ab32cb6a117629d428289eac}} 
+const value\+\_\+type \& {\bfseries operator$\ast$} ()
+\item 
+\mbox{\Hypertarget{classlab_1_1forest_1_1detail_1_1BSTIterator_a28ed7b68b601879e7e8d6bf01058180b}\label{classlab_1_1forest_1_1detail_1_1BSTIterator_a28ed7b68b601879e7e8d6bf01058180b}} 
+{\bfseries operator bool} () const noexcept
+\item 
+\mbox{\Hypertarget{classlab_1_1forest_1_1detail_1_1BSTIterator_ae09ae1d84722017cd8890c825d97dc19}\label{classlab_1_1forest_1_1detail_1_1BSTIterator_ae09ae1d84722017cd8890c825d97dc19}} 
+bool {\bfseries operator!=} (const \hyperlink{classlab_1_1forest_1_1detail_1_1BSTIterator}{B\+S\+T\+Iterator} \&other) noexcept
+\item 
+\mbox{\Hypertarget{classlab_1_1forest_1_1detail_1_1BSTIterator_aee69947fed6d365b5b497b6e490f66cb}\label{classlab_1_1forest_1_1detail_1_1BSTIterator_aee69947fed6d365b5b497b6e490f66cb}} 
+bool {\bfseries operator==} (const \hyperlink{classlab_1_1forest_1_1detail_1_1BSTIterator}{B\+S\+T\+Iterator} \&other) noexcept
+\item 
+\mbox{\Hypertarget{classlab_1_1forest_1_1detail_1_1BSTIterator_a04498c2fedc502ecb67beab1fb84b083}\label{classlab_1_1forest_1_1detail_1_1BSTIterator_a04498c2fedc502ecb67beab1fb84b083}} 
+\hyperlink{classlab_1_1forest_1_1detail_1_1BSTIterator}{B\+S\+T\+Iterator} \& {\bfseries operator++} () noexcept
+\item 
+\mbox{\Hypertarget{classlab_1_1forest_1_1detail_1_1BSTIterator_adf006f83bb438a10cc256cf90b19c734}\label{classlab_1_1forest_1_1detail_1_1BSTIterator_adf006f83bb438a10cc256cf90b19c734}} 
+\hyperlink{classlab_1_1forest_1_1detail_1_1BSTIterator}{B\+S\+T\+Iterator} {\bfseries operator+} (int n) const noexcept
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\subsubsection*{template$<$typename Tree$>$\newline
+class lab\+::forest\+::detail\+::\+B\+S\+T\+Iterator$<$ Tree $>$}
+
+Tree Iterator for binary search tree with node that has pointer on parent node. 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/B\+S\+T\+Iterator.\+hpp\end{DoxyCompactItemize}

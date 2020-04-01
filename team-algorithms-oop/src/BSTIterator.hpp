@@ -4,8 +4,7 @@
 
 #include <iterator>
 
-namespace lab::forest {
-
+namespace lab::forest::detail {
     /**
      *  @brief Tree Iterator for binary search tree with node that has pointer on parent node
      */
@@ -39,5 +38,6 @@ namespace lab::forest {
     template <typename Tree>
     BSTIterator (Node<Tree>* root) -> BSTIterator<Tree>;
 }
+
 
 #include <BSTIterator.tpp>

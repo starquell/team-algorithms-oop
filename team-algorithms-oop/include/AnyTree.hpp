@@ -19,6 +19,10 @@ namespace lab::forest {
     public:
         using iterator = typename std::vector<std::reference_wrapper<const ValueType>>::const_iterator;
 
+        /**
+         *  @brief Construct AnyTree object from _tree
+         *  @attention _tree must be instance of template class RedBlackTree or SplayTree
+         */
         template <typename Tree, typename = std::enable_if<
                   std::is_same_v<typename Tree::value_type, ValueType>>>
         AnyTree (Tree _tree);
@@ -30,22 +34,41 @@ namespace lab::forest {
         AnyTree& operator= (AnyTree&& other) noexcept = default;
 
         /**
-         *  @brief Sets current tree object (copying forest passed as argument)
+         *  @brief Sets current tree object (copying tree passed as argument)
          */
         template <typename Tree, typename = std::enable_if<
                   std::is_same_v<typename Tree::value_type, ValueType>>>
         void setTree (Tree _tree);
 
+        /**
+         *  @brief Inserts key to tree
+         */
         void insert (const ValueType& value);
 
+        /**
+         *  @brief Erase element with this key from tree
+         */
         void erase (const ValueType& value);
 
+        /**
+        *  @return Iterator to key in tree, if not found - end()
+        */
         auto search (const ValueType& value) noexcept -> iterator;
 
+        /**
+        *  @return Iterator pointed to the min element in tree
+        */
         auto begin() const noexcept -> iterator;
 
+        /**
+         *  @return Iterator pointed to the element after last in tree
+         *  @warning Use only to check if element is in tree, derefencing causes exception
+         */
         auto end() const noexcept -> iterator;
 
+        /**
+         *  @return Amount of elements in tree
+         */
         [[nodiscard]]
         auto size () const noexcept -> std::size_t;
 

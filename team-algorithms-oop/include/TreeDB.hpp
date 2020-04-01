@@ -3,14 +3,9 @@
 #include <AnyTree.hpp>
 
 #include <sqlite3pp/headeronly_src/sqlite3pp.h>
-#include <cereal/include/cereal/archives/json.hpp>
-#include <cereal/include/cereal/types/vector.hpp>
-#include <cereal/include/cereal/cereal.hpp>
 
 #include <string>
 #include <string_view>
-#include <sstream>
-#include <vector>
 #include <optional>
 
 namespace lab {

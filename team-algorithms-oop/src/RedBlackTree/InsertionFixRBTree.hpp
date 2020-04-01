@@ -1,8 +1,9 @@
 #pragma once
 
 #include "RBNodeUtilities.hpp"
+#include "NodeBase.hpp"
 
-namespace lab::forest::rbutils {
+namespace lab::forest::detail::rbutils {
 
     /**
      * @brief Implementation of algorithm that restore RBTree properties after insertion

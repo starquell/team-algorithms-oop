@@ -3,8 +3,7 @@
 #include <BSTIterator.hpp>
 #include <NodeUtilities.hpp>
 
-
-namespace lab::forest {
+namespace lab::forest::detail {
 
     /**
      *   @brief Abstract base class for binary search tree implementations using CRTP
@@ -20,18 +19,36 @@ namespace lab::forest {
     protected:
         explicit BSTBase (const Compare& comp = Compare{});
 
-        void simpleInsert(Node<DerivedTree>* toInsert);
+        void simpleInsert(lab::forest::detail::Node<DerivedTree>* toInsert);
 
     public:
         using value_type = T;
         using iterator = BSTIterator<DerivedTree>;
 
+        /**
+         *  @return Iterator to key in tree, if not found - end()
+         */
         iterator search (const T& key) noexcept;
 
+        /**
+         *  @brief Inserts key to tree
+         */
         void insert (const T& key);
+
+        /**
+         *  @brief Erase element with this key from tree
+         */
         void erase (const T& key);
 
+        /**
+         *  @return Iterator pointed to the min element in tree
+         */
         iterator begin() const noexcept;
+
+        /**
+         *  @return Iterator pointed to the element after last in tree
+         *  @warning Use only to check if element is in tree, derefencing causes exception
+         */
         iterator end() const noexcept;
 
         BSTBase (const BSTBase& other);
@@ -41,6 +58,9 @@ namespace lab::forest {
         BSTBase& operator= (const BSTBase& other) noexcept = default;
         BSTBase& operator= (BSTBase&& other) noexcept = default;
 
+        /**
+         *  @brief Swaps contents of trees
+         */
         friend void swap (BSTBase& lhs, BSTBase& rhs) noexcept {
             std::swap(lhs._root, rhs._root);
             std::swap(lhs._comp, rhs._comp);
@@ -50,9 +70,15 @@ namespace lab::forest {
         bool operator== (const DerivedTree& other) const noexcept;
         bool operator!= (const DerivedTree& other) const noexcept;
 
+        /**
+         *  @return Amount of elements in tree
+         */
         [[nodiscard]]
         auto size() const noexcept -> std::size_t;
 
+        /**
+         *  @return Function that sets order in tree, default - std::less{}
+         */
         [[nodiscard]]
         auto compareFunc() const noexcept -> Compare;
 
@@ -61,8 +87,9 @@ namespace lab::forest {
     protected:
         std::size_t _size = 0;
         Compare _comp = Compare{};
-        Node<DerivedTree>* _root = nullptr;
+        lab::forest::detail::Node<DerivedTree>* _root = nullptr;
     };
 }
 
 #include "BSTBase.tpp"
+#include "NodeBase.hpp"

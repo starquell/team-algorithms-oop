@@ -3,14 +3,15 @@
 #include <NodeUtilities.hpp>
 
 #include <algorithm>
+#include "NodeBase.hpp"
 
-namespace lab::forest {
+namespace lab::forest::detail {
 
     template <typename T, typename Compare, typename DerivedTree>
     auto BSTBase<T, Compare, DerivedTree>::search (const T& key) noexcept
         -> typename BSTBase<T, Compare, DerivedTree>::iterator
     {
-        auto found = bstutils::find(_root, key, _comp);
+        auto found = detail::find(_root, key, _comp);
         if (found) {
             auto iter = begin();
             while (iter) {
@@ -30,7 +31,7 @@ namespace lab::forest {
     auto BSTBase<T, Compare, DerivedTree>::begin() const noexcept
         -> typename BSTBase<T, Compare, DerivedTree>::iterator
     {
-        return iterator(bstutils::min(_root));
+        return iterator(detail::min(_root));
     }
 
     template <typename T, typename Compare, typename DerivedTree>
@@ -41,18 +42,18 @@ namespace lab::forest {
     }
 
     template <typename T, typename Compare, typename DerivedTree>
-    void BSTBase<T, Compare, DerivedTree>::simpleInsert (Node<DerivedTree>* toInsert) {
+    void BSTBase<T, Compare, DerivedTree>::simpleInsert (lab::forest::detail::Node<DerivedTree>* toInsert) {
         if (_root == nullptr) {
             _root = toInsert;
         } else {
-            bstutils::insertWithParent(_root, toInsert, _comp);
+            detail::insertWithParent(_root, toInsert, _comp);
         }
     }
 
     template <typename T, typename Compare, typename DerivedTree>
     BSTBase<T, Compare, DerivedTree>::~BSTBase ()  {
         if (_root) {
-            bstutils::eraseSubTree(_root);
+            detail::eraseSubTree(_root);
         }
     }
     template <typename T, typename Compare, typename DerivedTree>
@@ -62,7 +63,7 @@ namespace lab::forest {
 
     template <typename T, typename Compare, typename DerivedTree>
     BSTBase<T, Compare, DerivedTree>::BSTBase (const BSTBase& other)
-            : _root(bstutils::clone(other._root)),
+            : _root(detail::clone(other._root)),
               _size(other._size),
               _comp(other._comp)
     {}

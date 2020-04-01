@@ -5,11 +5,12 @@
 #include <algorithm>
 #include <utility>
 #include <cassert>
+#include "NodeBase.hpp"
 
 /**
  *  @brief Set of functions and classes that implement algorithms for Splay Tree
  */
-namespace lab::forest::bstutils {
+namespace lab::forest::detail {
 
     /**
      *  @brief Implementation of splay algorithm for Splay Tree

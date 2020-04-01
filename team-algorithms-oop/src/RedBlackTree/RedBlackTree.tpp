@@ -1,9 +1,29 @@
 #pragma once
 
-#include "InsertionFixRBTree.hpp"
-#include "DeletionFixRBTree.hpp"
+#include <RedBlackTree/InsertionFixRBTree.hpp>
+#include <RedBlackTree/DeletionFixRBTree.hpp>
+#include <NodeBase.hpp>
 
 namespace lab::forest {
+
+    namespace detail {
+
+        template <typename T, typename Compare>
+        struct Node<RedBlackTree<T, Compare>> {
+            using NodeRBT = Node<RedBlackTree<T, Compare>>;
+
+            enum Color {
+                Red,
+                Black
+            };
+
+            T data;
+            Color color = Red;
+            NodeRBT* left = nullptr;
+            NodeRBT* right = nullptr;
+            NodeRBT* parent = nullptr;
+        };
+    }
 
     template <typename T, typename Compare>
     template <typename Iter>
@@ -25,10 +45,10 @@ namespace lab::forest {
     template <typename T, typename Compare>
     void RedBlackTree<T, Compare>::insertImpl(const T& _data) {
 
-        auto inputNode = new Node<RedBlackTree<T, Compare>>{_data};
+        auto inputNode = new detail::Node<RedBlackTree<T, Compare>>{_data};
         Base::simpleInsert(inputNode);
 
-        rbutils::InsertionFixRBTree(_root, inputNode);
+        detail::rbutils::InsertionFixRBTree(_root, inputNode);
     }
 
     template <typename T, typename Compare>
@@ -36,7 +56,7 @@ namespace lab::forest {
         if (_root == nullptr) {
             return;
         }
-        Node<RedBlackTree<T, Compare>>* nodeToDelete = bstutils::find(_root,  _data, _comp);
+        detail::Node<RedBlackTree<T, Compare>>* nodeToDelete = detail::find(_root, _data, _comp);
 
         if (nodeToDelete == nullptr) {
             return;
@@ -45,7 +65,7 @@ namespace lab::forest {
         if (nodeToDelete == _root && nodeToDelete->left == nullptr && nodeToDelete->right == nullptr) {
             _root = nullptr;
         } else {
-            rbutils::DeletionFixRBTRee(_root, nodeToDelete);
+            detail::rbutils::DeletionFixRBTRee(_root, nodeToDelete);
         }
     }
 
