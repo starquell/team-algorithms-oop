@@ -7,7 +7,13 @@
 namespace lab::forest {
 
     /**
-     *   @brief Abstract base class for binary search forest implementations
+     *   @brief Abstract base class for binary search tree implementations using CRTP
+     *
+     *   Provides BST iterator, representing elements in increasing order and begin(), end() methods.
+     *   Provides search and size methods, copy and move constuctors, copy and move
+     *   assigment operators, and swap function.
+     *   Requires insertImpl(const T& key) and eraseImpl(const T& key) methods in derived class.
+     *   Implementation details like root and size are protected.
      */
     template <typename T, typename Compare, typename DerivedTree>
     class BSTBase {
@@ -22,8 +28,8 @@ namespace lab::forest {
 
         iterator search (const T& key) noexcept;
 
-        virtual void insert (const T& key) = 0;
-        virtual void erase (const T& key) = 0;
+        void insert (const T& key);
+        void erase (const T& key);
 
         iterator begin() const noexcept;
         iterator end() const noexcept;
@@ -34,7 +40,6 @@ namespace lab::forest {
         BSTBase& operator= (DerivedTree other) noexcept;
         BSTBase& operator= (const BSTBase& other) noexcept = default;
         BSTBase& operator= (BSTBase&& other) noexcept = default;
-
 
         friend void swap (BSTBase& lhs, BSTBase& rhs) noexcept {
             std::swap(lhs._root, rhs._root);
@@ -51,7 +56,7 @@ namespace lab::forest {
         [[nodiscard]]
         auto compareFunc() const noexcept -> Compare;
 
-        virtual ~BSTBase();
+        ~BSTBase();
 
     protected:
         std::size_t _size = 0;

@@ -7,12 +7,11 @@ namespace lab::forest {
 
     /**
      *  @brief Splay Tree implementation
+     *  T - type of value stored in tree, Compare - comparison function class for elements in tree
      */
     template <typename T,
               typename Compare = std::less<>>
     class SplayTree : public BSTBase<T, Compare, SplayTree<T, Compare>> {
-    private:
-        using Base = BSTBase<T, Compare, SplayTree<T, Compare>>;
     public:
         /**
          *  @brief Creates tree with no elements
@@ -36,11 +35,18 @@ namespace lab::forest {
          */
         SplayTree (std::initializer_list<T> elems);
 
-        void insert (const T& key) override;
+    private:
+        friend class BSTBase<T, Compare, SplayTree<T, Compare>>;
 
-        void erase (const T& key) override;
+        void insertImpl (const T& key);
 
-        ~SplayTree () override = default;
+        void eraseImpl (const T& key);
+
+        using Base = BSTBase<T, Compare, SplayTree<T, Compare>>;
+
+    public:
+
+        ~SplayTree() = default;
 
     protected:
         using Base::_root;

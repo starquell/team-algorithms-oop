@@ -5,14 +5,14 @@
 #include <functional>
 
 namespace lab::forest {
+
+    /**
+    *  @brief Red-Black Tree implementation
+    *  T - type of value stored in tree, Compare - comparison function class for elements in tree
+    */
     template <typename T,
               typename Compare = std::less<>>
     class RedBlackTree : public BSTBase<T, Compare, RedBlackTree<T, Compare>> {
-
-    private:
-        using NodeRBT = Node<RedBlackTree<T>>;
-        using Base = BSTBase<T, Compare, RedBlackTree<T, Compare>>;
-
     public:
         explicit RedBlackTree (const Compare& comp = Compare {});
 
@@ -33,11 +33,17 @@ namespace lab::forest {
         RedBlackTree& operator= (const RedBlackTree& other) = default;
         RedBlackTree& operator= (RedBlackTree&& other) noexcept = default;
 
-        void insert (const T& _data) override;
+    private:
+        friend class BSTBase<T, Compare, RedBlackTree<T, Compare>>;
 
-        void erase (const T& _data) override;
+        void insertImpl (const T& _data);
+        void eraseImpl (const T& _data);
 
-        ~RedBlackTree () override = default;
+        using NodeRBT = Node<RedBlackTree<T>>;
+        using Base = BSTBase<T, Compare, RedBlackTree<T, Compare>>;
+
+    public:
+        ~RedBlackTree () = default;
 
     protected:
         using Base::_root;

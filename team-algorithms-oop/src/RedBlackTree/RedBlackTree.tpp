@@ -11,29 +11,28 @@ namespace lab::forest {
     {
         _root = nullptr;
         for (; begin != end; ++begin) {
-            insert(*begin);
+            this->insert(*begin);
         }
     }
 
     template <typename T, typename Compare>
     RedBlackTree<T, Compare>::RedBlackTree (std::initializer_list<T> elems) {
         for (const auto& elem : elems) {
-            insert(elem);
+            this->insert(elem);
         }
     }
 
     template <typename T, typename Compare>
-    void RedBlackTree<T, Compare>::insert(const T& _data) {
+    void RedBlackTree<T, Compare>::insertImpl(const T& _data) {
 
         auto inputNode = new Node<RedBlackTree<T, Compare>>{_data};
         Base::simpleInsert(inputNode);
 
         rbutils::InsertionFixRBTree(_root, inputNode);
-        _size++;
     }
 
     template <typename T, typename Compare>
-    void RedBlackTree<T, Compare>::erase(const T& _data) {
+    void RedBlackTree<T, Compare>::eraseImpl(const T& _data) {
         if (_root == nullptr) {
             return;
         }
@@ -48,7 +47,6 @@ namespace lab::forest {
         } else {
             rbutils::DeletionFixRBTRee(_root, nodeToDelete);
         }
-        _size--;
     }
 
     template <typename T, typename Compare>

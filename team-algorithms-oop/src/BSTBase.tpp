@@ -3,8 +3,6 @@
 #include <NodeUtilities.hpp>
 
 #include <algorithm>
-#include "BSTBase.hpp"
-
 
 namespace lab::forest {
 
@@ -105,19 +103,15 @@ namespace lab::forest {
               _size (std::exchange(other._size, 0))
     {}
 
-//    template <typename T, typename Compare, typename DerivedTree>
-//    BSTBase<T, Compare, DerivedTree>& BSTBase<T, Compare, DerivedTree>::operator= (const BSTBase& other) noexcept {
-//        BSTBase<T, Compare, DerivedTree> temp (other);
-//        swap(temp, this);
-//        return *this;
-//    }
-//
-//    template <typename T, typename Compare, typename DerivedTree>
-//    BSTBase<T, Compare, DerivedTree>& BSTBase<T, Compare, DerivedTree>::operator= (BSTBase&& other) noexcept {
-//
-//        BSTBase<T, Compare, DerivedTree> temp (other);
-//        swap(temp, this);
-//        return *this;
-//    }
+    template <typename T, typename Compare, typename DerivedTree>
+    void BSTBase<T, Compare, DerivedTree>::insert (const T& key) {
+        static_cast<DerivedTree*>(this)->insertImpl(key);
+        ++_size;
+    }
 
+    template <typename T, typename Compare, typename DerivedTree>
+    void BSTBase<T, Compare, DerivedTree>::erase (const T& key) {
+        static_cast<DerivedTree*>(this)->eraseImpl(key);
+        --_size;
+    }
 }

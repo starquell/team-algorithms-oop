@@ -10,8 +10,6 @@ namespace lab::forest {
          : m_tree (std::move(_tree))
     {}
 
-
-
     template <typename ValueType, typename... Comparators>
     auto AnyTree <SupportedValueType<ValueType>, SupportedComparators<Comparators...>>::size () const noexcept -> std::size_t {
         return std::visit ([] (auto&& _tree) -> std::size_t {
@@ -68,7 +66,7 @@ namespace lab::forest {
     template <typename ValueType, typename... Comparators>
     void AnyTree<SupportedValueType<ValueType>, SupportedComparators<Comparators...>>::updateIter () const {
         std::visit([this] (auto&& _tree) {
-                    m_enumerator = std::vector(_tree.begin(), _tree.end());
+                    m_enumerator.assign(_tree.begin(), _tree.end());
                     }, m_tree);
         m_valid_iter = true;
     }

@@ -5,15 +5,14 @@
 namespace lab::forest {
 
     template <typename T, typename Compare>
-    void SplayTree<T, Compare>::insert (const T& key) {
+    void SplayTree<T, Compare>::insertImpl (const T& key) {
         auto new_node = new Node<SplayTree<T, Compare>> {key};
         Base::simpleInsert(new_node);
         _root = bstutils::splay(new_node);
-        ++_size;
     }
 
     template <typename T, typename Compare>
-    void SplayTree<T, Compare>::erase (const T& key) {
+    void SplayTree<T, Compare>::eraseImpl (const T& key) {
         auto found = bstutils::find(_root, key, _comp);
         auto splayed = bstutils::splay(found);
         if (!splayed) {
@@ -31,25 +30,22 @@ namespace lab::forest {
         }
         delete splayed;
         _root = bstutils::merge<T>(lhs_tree, rhs_tree);
-        --_size;
     }
 
     template <typename T, typename Compare>
     template <typename Iter>
     SplayTree<T, Compare>::SplayTree (Iter begin, Iter end)
     {
-        _root = nullptr;
         for (; begin != end; ++begin) {
-            insert(*begin);
+            this->insert(*begin);
         }
     }
 
     template <typename T, typename Compare>
     SplayTree<T, Compare>::SplayTree (std::initializer_list<T> elems)
     {
-        _root = nullptr;
         for (const auto& elem : elems) {
-            insert(elem);
+            this->insert(elem);
         }
     }
 

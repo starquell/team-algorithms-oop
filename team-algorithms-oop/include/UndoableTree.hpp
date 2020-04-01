@@ -10,12 +10,17 @@ namespace lab::forest {
         @brief Class that expand Tree functionality by undo and redo operations
      */
     template <typename Tree>
-    class UndoableTree : public Tree {
+    class UndoableTree {
     public:
         using value_type = typename Tree::value_type;
+        using iterator = typename Tree::iterator;
+
     private:
         struct Operation {
-            enum class Type {Insertion, Erasing};
+            enum class Type {
+                Insertion,
+                Erasing
+            };
 
             Type type;
             value_type value;
@@ -35,17 +40,32 @@ namespace lab::forest {
         template <typename Iter>
         UndoableTree (Iter begin, Iter end);
 
-        void insert (const value_type& key) override;
-        void erase (const value_type& key) override;
+        void insert (const value_type& key);
+        void erase (const value_type& key);
 
         void undo();
         void redo();
 
-        ~UndoableTree () override = default;
+        iterator search (const value_type& key) noexcept;
+
+        iterator begin() const noexcept;
+        iterator end() const noexcept;
+
+        [[nodiscard]]
+        auto size() const noexcept -> std::size_t;
+
+        [[nodiscard]]
+        auto compareFunc() const noexcept;
+
+        bool operator== (const UndoableTree& other) const noexcept;
+        bool operator!= (const UndoableTree& other) const noexcept;
+
+        ~UndoableTree() = default;
 
     private:
         std::vector<Operation> m_done;
         std::vector<Operation> m_undone;
+        Tree _tree;
     };
 }
 

@@ -9,10 +9,10 @@ namespace lab::forest {
         }
         const Operation& last = m_undone.back();
         if (last.type == Operation::Type::Insertion) {
-            Tree::insert(last.value);
+            _tree.insert(last.value);
         }
         else {
-            Tree::erase(last.value);
+            _tree.erase(last.value);
         }
         m_done.push_back(std::move(m_undone.back()));
         m_undone.pop_back();
@@ -25,10 +25,10 @@ namespace lab::forest {
         }
         const Operation& last = m_done.back();
         if (last.type == Operation::Type::Insertion) {
-            Tree::erase(last.value);
+            _tree.erase(last.value);
         }
         else {
-            Tree::insert(last.value);
+            _tree.insert(last.value);
         }
 
         m_undone.push_back(std::move(m_done.back()));
@@ -37,18 +37,18 @@ namespace lab::forest {
 
     template <typename Tree>
     void UndoableTree<Tree>::erase (const value_type& key) {
-        const auto size_before = Tree::size();
-        Tree::erase(key);
-        if (Tree::size() == size_before - 1) {
+        const auto size_before = _tree.size();
+        _tree.erase(key);
+        if (_tree.size() == size_before - 1) {
             m_done.push_back({Operation::Type::Erasing, key});
         }
     }
 
     template <typename Tree>
     void UndoableTree<Tree>::insert (const value_type& key) {
-        const auto size_before = Tree::size();
-        Tree::insert(key);
-        if (Tree::size() == size_before + 1) {
+        const auto size_before = _tree.size();
+        _tree.insert(key);
+        if (_tree.size() == size_before + 1) {
             m_done.push_back({Operation::Type::Insertion, key});
         }
     }
@@ -56,10 +56,47 @@ namespace lab::forest {
     template <typename Tree>
     template <typename Iter>
     UndoableTree<Tree>::UndoableTree (Iter begin, Iter end)
-            : Tree (begin, end)
+            : _tree (begin, end)
     {}
         template <typename Tree>
     UndoableTree<Tree>::UndoableTree (std::initializer_list<value_type> elems)
-            : Tree (elems)
+            : _tree (elems)
     {}
+
+    template <typename Tree>
+    auto UndoableTree<Tree>::search (const value_type& key) noexcept -> typename UndoableTree<Tree>::iterator {
+
+        return _tree.search(key);
+    }
+
+    template <typename Tree>
+    auto UndoableTree<Tree>::begin () const noexcept -> typename UndoableTree<Tree>::iterator {
+        return _tree.begin();
+    }
+
+    template <typename Tree>
+    auto UndoableTree<Tree>::end () const noexcept -> typename UndoableTree<Tree>::iterator {
+        return _tree.end();
+    }
+
+    template <typename Tree>
+    auto UndoableTree<Tree>::size () const noexcept -> std::size_t {
+
+        return _tree.size();
+    }
+
+    template <typename Tree>
+    auto UndoableTree<Tree>::compareFunc () const noexcept {
+        return _tree.compareFunc();
+    }
+
+    template <typename Tree>
+    bool UndoableTree<Tree>::operator== (const UndoableTree& other) const noexcept {
+        return _tree == other._tree;
+    }
+
+    template <typename Tree>
+    bool UndoableTree<Tree>::operator!= (const UndoableTree& other) const noexcept {
+        return _tree != other._tree;
+    }
 }
