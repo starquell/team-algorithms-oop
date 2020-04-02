@@ -266,7 +266,7 @@ TEST_CASE("Saving trees (no eco activism)") {
 
         REQUIRE(std::equal(rb.begin(), rb.end(), loaded->begin()));
     }
-
+                
     SECTION("Removing") {
         db.remove(record_name);
 

@@ -4,6 +4,7 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 CONFIG += c++1z
 
+LIBS += -lsqlite3
 TARGET = team-algorithms-oop
 TEMPLATE = app
 
@@ -12,11 +13,14 @@ DEFINES += QT_DEPRECATED_WARNINGS
 INCLUDEPATH += include \
             src \
             src/SplayTree \
-            srs/RedBlackTree
+            srs/RedBlackTree \
+            deps \
+            deps/cereal/include
 
 SOURCES += \
         gui/main.cpp \
-        gui/mainwindow.cpp 
+        gui/mainwindow.cpp  
+
 
 HEADERS += \
         gui/mainwindow.h \
@@ -45,4 +49,7 @@ HEADERS += \
 
 FORMS += \
         gui/mainwindow.ui
+
+RESOURCES += \
+    resourses.qrc
 

@@ -1,6 +1,12 @@
 #include "mainwindow.h"
 #include <QApplication>
-#include "AnyTree.hpp"
+
+#include <SplayTree.hpp>
+#include <RedBlackTree.hpp>
+#include <UndoableTree.hpp>
+
+
+using namespace lab;
 
 int main(int argc, char *argv[])
 {

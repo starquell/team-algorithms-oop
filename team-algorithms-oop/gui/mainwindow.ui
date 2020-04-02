@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>643</width>
-    <height>446</height>
+    <width>1199</width>
+    <height>779</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -17,17 +17,165 @@
    <widget class="QStackedWidget" name="stackedWidget">
     <property name="geometry">
      <rect>
-      <x>10</x>
-      <y>10</y>
-      <width>621</width>
-      <height>401</height>
+      <x>0</x>
+      <y>0</y>
+      <width>1191</width>
+      <height>691</height>
      </rect>
     </property>
-    <property name="currentIndex">
-     <number>0</number>
+    <property name="styleSheet">
+     <string notr="true">#stackedWidget{
+background-color:gray;
+}</string>
     </property>
-    <widget class="QWidget" name="page"/>
-    <widget class="QWidget" name="page_2"/>
+    <property name="currentIndex">
+     <number>2</number>
+    </property>
+    <widget class="QWidget" name="page">
+     <widget class="QPushButton" name="BluePill">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>190</y>
+        <width>561</width>
+        <height>271</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">#BluePill{
+background-color: transparent;
+border-image: url(:pics/Blue.png);
+background: none;
+border: none;
+background-repeat: none;
+border-radius:100%;
+}
+
+#BluePill:hover{
+	background-color: blue;
+}
+</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="RedPill">
+      <property name="geometry">
+       <rect>
+        <x>600</x>
+        <y>190</y>
+        <width>571</width>
+        <height>271</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">#RedPill{
+background-color: transparent;
+border-image: url(:pics/Red.png);
+background: none;
+border: none;
+background-repeat: none;
+border-radius:100px;
+}
+
+#RedPill:hover{
+background-color:red;
+}</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="page_2">
+     <widget class="QListView" name="DBlist">
+      <property name="geometry">
+       <rect>
+        <x>50</x>
+        <y>30</y>
+        <width>271</width>
+        <height>551</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">#DBlist{
+background-color:yellow;
+border-style:solid;
+border-radius:10px;
+border-width:3px;
+}
+</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="lineEdit">
+      <property name="geometry">
+       <rect>
+        <x>690</x>
+        <y>320</y>
+        <width>291</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">#lineEdit{
+border-width:3px;
+border-style:solid;
+border-radius:10px;
+}
+
+#lineEdit:hover{
+border-width:5px;
+border-color:red;
+}</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="CreateNew">
+      <property name="geometry">
+       <rect>
+        <x>1010</x>
+        <y>320</y>
+        <width>111</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">#CreateNew{
+background-color:transparent;
+border-style: solid;
+border-width: 3px;
+border-radius:10px;
+border-color:black;
+}
+
+#CreateNew:hover{
+background-color:silver;
+}
+
+#CreateNew:pressed{
+background-color:white;
+}
+</string>
+      </property>
+      <property name="text">
+       <string>Create</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="LoadButton">
+      <property name="geometry">
+       <rect>
+        <x>50</x>
+        <y>590</y>
+        <width>271</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>PushButton</string>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="page_3"/>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menuBar">
@@ -35,7 +183,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>643</width>
+     <width>1199</width>
      <height>23</height>
     </rect>
    </property>

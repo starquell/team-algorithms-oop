@@ -19,6 +19,8 @@ namespace lab::tree {
     template <typename ValueType, typename... Comparators>
     class AnyTree <SupportedValueType<ValueType>, SupportedComparators<Comparators...>> {
     public:
+
+        AnyTree () = default;
         using iterator = typename std::vector<ValueType>::const_iterator;
 
         template <typename Tree, typename = std::enable_if<
