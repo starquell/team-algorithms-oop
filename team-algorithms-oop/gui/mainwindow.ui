@@ -29,7 +29,7 @@ background-color:gray;
 }</string>
     </property>
     <property name="currentIndex">
-     <number>2</number>
+     <number>1</number>
     </property>
     <widget class="QWidget" name="page">
      <widget class="QPushButton" name="BluePill">
@@ -93,16 +93,17 @@ background-color:red;
       <property name="geometry">
        <rect>
         <x>50</x>
-        <y>30</y>
-        <width>271</width>
-        <height>551</height>
+        <y>50</y>
+        <width>321</width>
+        <height>451</height>
        </rect>
       </property>
       <property name="styleSheet">
        <string notr="true">#DBlist{
 background-color:yellow;
 border-style:solid;
-border-radius:10px;
+border-top-right-radius:10px;
+border-top-left-radius:10px;
 border-width:3px;
 }
 </string>
@@ -111,8 +112,8 @@ border-width:3px;
      <widget class="QLineEdit" name="lineEdit">
       <property name="geometry">
        <rect>
-        <x>690</x>
-        <y>320</y>
+        <x>460</x>
+        <y>240</y>
         <width>291</width>
         <height>41</height>
        </rect>
@@ -129,12 +130,18 @@ border-width:5px;
 border-color:red;
 }</string>
       </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="placeholderText">
+       <string>Enter name of new tree</string>
+      </property>
      </widget>
      <widget class="QPushButton" name="CreateNew">
       <property name="geometry">
        <rect>
-        <x>1010</x>
-        <y>320</y>
+        <x>770</x>
+        <y>240</y>
         <width>111</width>
         <height>41</height>
        </rect>
@@ -165,15 +172,82 @@ background-color:white;
       <property name="geometry">
        <rect>
         <x>50</x>
-        <y>590</y>
-        <width>271</width>
+        <y>500</y>
+        <width>321</width>
         <height>41</height>
        </rect>
       </property>
+      <property name="styleSheet">
+       <string notr="true">#LoadButton{
+background-color:transparent;
+border-style: solid;
+border-width: 3px;
+border-bottom-right-radius:10px;
+border-bottom-left-radius:10px;
+border-color:black;
+}
+
+#LoadButton:hover{
+background-color:silver;
+}
+
+#LoadButton:pressed{
+background-color:white;
+}</string>
+      </property>
       <property name="text">
-       <string>PushButton</string>
+       <string>Load</string>
       </property>
      </widget>
+     <widget class="QRadioButton" name="Less">
+      <property name="geometry">
+       <rect>
+        <x>740</x>
+        <y>400</y>
+        <width>123</width>
+        <height>24</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>std::less</string>
+      </property>
+      <property name="checked">
+       <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="QRadioButton" name="Greater">
+      <property name="geometry">
+       <rect>
+        <x>740</x>
+        <y>430</y>
+        <width>123</width>
+        <height>24</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>std::greater</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label">
+      <property name="geometry">
+       <rect>
+        <x>464</x>
+        <y>180</y>
+        <width>131</width>
+        <height>71</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <zorder>CreateNew</zorder>
+     <zorder>DBlist</zorder>
+     <zorder>lineEdit</zorder>
+     <zorder>LoadButton</zorder>
+     <zorder>Less</zorder>
+     <zorder>Greater</zorder>
+     <zorder>label</zorder>
     </widget>
     <widget class="QWidget" name="page_3"/>
    </widget>

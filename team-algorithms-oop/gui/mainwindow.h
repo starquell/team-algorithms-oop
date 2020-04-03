@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QStringListModel>
 #include <string>
 
 #include <SplayTree.hpp>
@@ -13,6 +14,7 @@
 
 namespace lab {
 
+class TreeDatabase;
 
 
 enum CurPage{Pills, DB, TreeUI};
@@ -51,8 +53,15 @@ private:
     Ui::MainWindow *ui;
     CurPage _state;
     std::string _curTreeName;
-    //TreeDatabase& _db = TreeDatabase::instance();
-    //tree::AnyTree<SupportedValueType<std::string>, SupportedComparators<std::less<>, std::greater<>>> _tree;
+    TreeDatabase& _db;
+    tree::AnyTree<SupportedValueType<std::string>, SupportedComparators<std::less<>, std::greater<>>> _tree;
+    QStringListModel* _dbModel;
+
+    void _getToDBPage();
+
+    void _getToPillsPage();
+
+    void _getToTreeUIPage();
 };
 }
 #endif // MAINWINDOW_H

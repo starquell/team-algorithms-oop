@@ -1,9 +1,8 @@
 #include "mainwindow.h"
 #include <QApplication>
 
-#include <SplayTree.hpp>
-#include <RedBlackTree.hpp>
-#include <UndoableTree.hpp>
+
+
 
 
 using namespace lab;
