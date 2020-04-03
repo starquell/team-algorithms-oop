@@ -16,6 +16,8 @@ include_directories(${DEPS_DIR})
 include_directories(${DEPS_DIR}/cereal/include)
 include_directories(${INCLUDE_DIR})
 
+find_package(benchmark REQUIRED)
+
 set(LIB_NAME ${PROJECT_NAME}core)
 
 option(ENABLE_TESTS "Build tests for project" ON)
@@ -23,5 +25,9 @@ if(ENABLE_TESTS)
     add_subdirectory(${TESTS_DIR})
 endif()
 
+#set(CMAKE_CXX_FLAGS_DEBUG "-O3")
+
 add_executable(main main.cpp)
 target_link_libraries(main PRIVATE sqlite3)
+
+

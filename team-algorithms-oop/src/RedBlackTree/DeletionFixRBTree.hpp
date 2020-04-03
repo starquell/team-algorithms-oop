@@ -1,8 +1,9 @@
 #pragma once
 
 #include "RBNodeUtilities.hpp"
+#include "NodeBase.hpp"
 
-namespace lab::tree::rbutils {
+namespace lab::forest::detail::rbutils {
 
     /**
      * @brief Implementation of algorithm for node deletion and restore RBTree properties after deletion
@@ -24,7 +25,7 @@ namespace lab::tree::rbutils {
         void redSiblingCase() {
             DBNParent->color = RBNode::Red;
             DBNSibling->color = RBNode::Black;
-            if (bstutils::isLeftSon(DBNSibling)) {
+            if (isLeftSon(DBNSibling)) {
                 /// left case
                 rotateRight(root, DBNParent);
             } else {
@@ -35,7 +36,7 @@ namespace lab::tree::rbutils {
         }
 
         void siblingHasLeftRedChild() {
-            if (bstutils::isLeftSon(DBNSibling)) {
+            if (isLeftSon(DBNSibling)) {
                 /// left left
                 (DBNSibling->left)->color = DBNSibling->color;
                 DBNSibling->color = DBNParent->color;
@@ -49,7 +50,7 @@ namespace lab::tree::rbutils {
         }
 
         void siblingHasRightRedChild() {
-            if (bstutils::isLeftSon(DBNSibling)) {
+            if (isLeftSon(DBNSibling)) {
                 /// left right
                 (DBNSibling->right)->color = DBNParent->color;
                 rotateLeft(root, DBNSibling);
@@ -88,7 +89,7 @@ namespace lab::tree::rbutils {
         }
 
         /**
-         * @brief Restoring balance of the tree when deleted node and replacement node are both black
+         * @brief Restoring balance of the forest when deleted node and replacement node are both black
          *          by rotation and recoloring
          */
         void fixBothBlack() {
@@ -96,7 +97,7 @@ namespace lab::tree::rbutils {
                 return;
             }
 
-            DBNSibling = bstutils::sibling(doubleBlackNode);
+            DBNSibling = sibling(doubleBlackNode);
             DBNParent = doubleBlackNode->parent;
 
             if (DBNSibling == nullptr) {
@@ -115,13 +116,13 @@ namespace lab::tree::rbutils {
                     doubleBlackNode = nodeToDelete;
                     fixBothBlack();
                 } else {
-                    if (bstutils::sibling(nodeToDelete) != nullptr)
+                    if (sibling(nodeToDelete) != nullptr)
                         // sibling is not null, make it Red
-                        bstutils::sibling(nodeToDelete)->color = RBNode::Red;
+                        sibling(nodeToDelete)->color = RBNode::Red;
                 }
 
-                // delete node from the tree
-                if (bstutils::isLeftSon(nodeToDelete)) {
+                // delete node from the forest
+                if (isLeftSon(nodeToDelete)) {
                     parentNodeToDelete->left = nullptr;
                 } else {
                     parentNodeToDelete->right = nullptr;
@@ -134,8 +135,8 @@ namespace lab::tree::rbutils {
                 nodeToDelete->data = nodeToReplace->data;
                 delete nodeToReplace;
             } else {
-                /// Detach nodeToDelete from tree and move nodeToReplace up
-                if (bstutils::isLeftSon(nodeToDelete)) {
+                /// Detach nodeToDelete from forest and move nodeToReplace up
+                if (isLeftSon(nodeToDelete)) {
                     parentNodeToDelete->left = nodeToReplace;
                 } else {
                     parentNodeToDelete->right = nodeToReplace;
@@ -157,7 +158,7 @@ namespace lab::tree::rbutils {
          * and call functions to replace and delete it for all possible variant
          */
         void eraseNode() {
-            nodeToReplace = bstutils::findReplacement(nodeToDelete);
+            nodeToReplace = findReplacement(nodeToDelete);
             parentNodeToDelete = nodeToDelete->parent;
             bothBlack = ((nodeToReplace == nullptr
                           || nodeToReplace->color == RBNode::Black)
@@ -168,7 +169,7 @@ namespace lab::tree::rbutils {
             } else if (nodeToDelete->left == nullptr || nodeToDelete->right == nullptr) {
                 nodeToDeleteHasOnlyOneChild();
             } else { // nodeToDelete has 2 children, swap values with replacement node and recurse
-                bstutils::swapData(nodeToReplace, nodeToDelete);
+                swapData(nodeToReplace, nodeToDelete);
                 nodeToDelete = nodeToReplace;
                 eraseNode();
             }

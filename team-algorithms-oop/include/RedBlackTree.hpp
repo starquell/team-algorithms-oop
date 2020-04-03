@@ -4,15 +4,15 @@
 
 #include <functional>
 
-namespace lab::tree {
+namespace lab::forest {
+
+    /**
+     *   @brief Red-Black Tree implementation
+     *   T - type of value stored in tree, Compare - comparison function class for elements in tree
+     */
     template <typename T,
-            typename Compare = std::less<>>
-    class RedBlackTree : public BSTBase<T, Compare, RedBlackTree<T, Compare>> {
-
-    private:
-        using NodeRBT = Node<RedBlackTree<T>>;
-        using Base = BSTBase<T, Compare, RedBlackTree<T, Compare>>;
-
+              typename Compare = std::less<>>
+    class RedBlackTree : public detail::BSTBase<T, Compare, RedBlackTree<T, Compare>> {
     public:
         explicit RedBlackTree (const Compare& comp = Compare {});
 
@@ -27,34 +27,38 @@ namespace lab::tree {
          */
         RedBlackTree (std::initializer_list<T> elems);
 
-        void insert (const T& _data) override;
+        RedBlackTree (const RedBlackTree& other) = default;
+        RedBlackTree (RedBlackTree&& other) noexcept = default;
 
-        void erase (const T& _data) override;
+        RedBlackTree& operator= (const RedBlackTree& other) = default;
+        RedBlackTree& operator= (RedBlackTree&& other) noexcept = default;
 
-        ~RedBlackTree () override = default;
+    private:
+        friend class detail::BSTBase<T, Compare, RedBlackTree<T, Compare>>;
+
+        /**
+         *  @brief Inserts element with key _data to tree
+         *  @attention Must be used only in insert method in BSTBase
+         */
+        void insertImpl (const T& _data);
+
+        /**
+         *  @brief Erases element with key _data from tree
+         *  @attention Must be used only in insert method in BSTBase
+         */
+        void eraseImpl (const T& _data);
+
+        using NodeRBT = lab::forest::detail::Node<RedBlackTree<T>>;
+        using Base = detail::BSTBase<T, Compare, RedBlackTree<T, Compare>>;
+
+    public:
+        ~RedBlackTree () = default;
 
     protected:
         using Base::_root;
         using Base::_size;
         using Base::_comp;
     };
-
-    template <typename T, typename Compare>
-    struct Node<RedBlackTree<T, Compare>> {
-        using NodeRBT = Node<RedBlackTree<T, Compare>>;
-
-        enum Color {
-            Red,
-            Black
-        };
-
-        T data;
-        Color color = Red;
-        NodeRBT*left = nullptr;
-        NodeRBT*right = nullptr;
-        NodeRBT*parent = nullptr;
-    };
 }
 
-
-#include "RedBlackTree/RedBlackTree.tpp"
+#include <RedBlackTree/RedBlackTree.tpp>

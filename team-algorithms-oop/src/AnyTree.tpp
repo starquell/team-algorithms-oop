@@ -1,20 +1,12 @@
 #pragma once
 
-namespace lab::tree {
-
-
-    template <typename ValueType, typename... Comparators>
-    template <typename Tree, typename>
-    AnyTree<SupportedValueType<ValueType>, SupportedComparators<Comparators...>>::AnyTree (const Tree& _tree)
-         : m_tree (_tree)
-    {}
+namespace lab::forest {
 
     template <typename ValueType, typename... Comparators>
     template <typename Tree, typename>
-    AnyTree<SupportedValueType<ValueType>, SupportedComparators<Comparators...>>::AnyTree (Tree&& _tree)
-         : m_tree (std::forward(_tree))
+    AnyTree<SupportedValueType<ValueType>, SupportedComparators<Comparators...>>::AnyTree (Tree _tree)
+         : m_tree (std::move(_tree))
     {}
-
 
     template <typename ValueType, typename... Comparators>
     auto AnyTree <SupportedValueType<ValueType>, SupportedComparators<Comparators...>>::size () const noexcept -> std::size_t {
@@ -62,15 +54,15 @@ namespace lab::tree {
 
     template <typename ValueType, typename... Comparators>
     template <typename Tree, typename>
-    void AnyTree<SupportedValueType<ValueType>, SupportedComparators<Comparators...>>::setTree (const Tree& _tree) {
-        m_tree = _tree;
+    void AnyTree<SupportedValueType<ValueType>, SupportedComparators<Comparators...>>::setTree (Tree _tree) {
+        m_tree = std::move(_tree);
         m_valid_iter = false;
     }
 
     template <typename ValueType, typename... Comparators>
     void AnyTree<SupportedValueType<ValueType>, SupportedComparators<Comparators...>>::updateIter () const {
         std::visit([this] (auto&& _tree) {
-                    m_enumerator = std::vector(_tree.begin(), _tree.end());
+                    m_enumerator.assign(_tree.begin(), _tree.end());
                     }, m_tree);
         m_valid_iter = true;
     }

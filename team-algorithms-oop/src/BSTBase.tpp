@@ -1,17 +1,17 @@
 #pragma once
 
 #include <NodeUtilities.hpp>
-#include "BSTBase.hpp"
 
 #include <algorithm>
+#include "NodeBase.hpp"
 
-namespace lab::tree {
+namespace lab::forest::detail {
 
     template <typename T, typename Compare, typename DerivedTree>
     auto BSTBase<T, Compare, DerivedTree>::search (const T& key) noexcept
         -> typename BSTBase<T, Compare, DerivedTree>::iterator
     {
-        auto found = bstutils::find(_root, key, _comp);
+        auto found = detail::find(_root, key, _comp);
         if (found) {
             auto iter = begin();
             while (iter) {
@@ -31,7 +31,7 @@ namespace lab::tree {
     auto BSTBase<T, Compare, DerivedTree>::begin() const noexcept
         -> typename BSTBase<T, Compare, DerivedTree>::iterator
     {
-        return iterator(bstutils::min(_root));
+        return iterator(detail::min(_root));
     }
 
     template <typename T, typename Compare, typename DerivedTree>
@@ -42,18 +42,18 @@ namespace lab::tree {
     }
 
     template <typename T, typename Compare, typename DerivedTree>
-    void BSTBase<T, Compare, DerivedTree>::simpleInsert (Node<DerivedTree>* toInsert) {
+    void BSTBase<T, Compare, DerivedTree>::simpleInsert (lab::forest::detail::Node<DerivedTree>* toInsert) {
         if (_root == nullptr) {
             _root = toInsert;
         } else {
-            bstutils::insertWithParent(_root, toInsert, _comp);
+            detail::insertWithParent(_root, toInsert, _comp);
         }
     }
 
     template <typename T, typename Compare, typename DerivedTree>
     BSTBase<T, Compare, DerivedTree>::~BSTBase ()  {
         if (_root) {
-            bstutils::eraseSubTree(_root);
+            detail::eraseSubTree(_root);
         }
     }
     template <typename T, typename Compare, typename DerivedTree>
@@ -63,17 +63,17 @@ namespace lab::tree {
 
     template <typename T, typename Compare, typename DerivedTree>
     BSTBase<T, Compare, DerivedTree>::BSTBase (const BSTBase& other)
-            : _root(bstutils::clone(other._root)),
+            : _root(detail::clone(other._root)),
               _size(other._size),
               _comp(other._comp)
     {}
 
 
     template <typename T, typename Compare, typename DerivedTree>
-    auto BSTBase<T, Compare, DerivedTree>::operator= (DerivedTree other)
+    auto BSTBase<T, Compare, DerivedTree>::operator= (DerivedTree other) noexcept
         -> BSTBase<T, Compare, DerivedTree>&
     {
-        std::swap (*this, other);
+        swap (*this, other);
         return *this;
     }
 
@@ -95,5 +95,24 @@ namespace lab::tree {
     template <typename T, typename Compare, typename DerivedTree>
     bool BSTBase<T, Compare, DerivedTree>::operator== (const DerivedTree& other) const noexcept{
         return std::equal(begin(), end(), other.begin());
+    }
+
+    template <typename T, typename Compare, typename DerivedTree>
+    BSTBase<T, Compare, DerivedTree>::BSTBase (BSTBase&& other) noexcept
+            : _root (std::exchange(other._root, nullptr)),
+              _comp (other._comp),
+              _size (std::exchange(other._size, 0))
+    {}
+
+    template <typename T, typename Compare, typename DerivedTree>
+    void BSTBase<T, Compare, DerivedTree>::insert (const T& key) {
+        static_cast<DerivedTree*>(this)->insertImpl(key);
+        ++_size;
+    }
+
+    template <typename T, typename Compare, typename DerivedTree>
+    void BSTBase<T, Compare, DerivedTree>::erase (const T& key) {
+        static_cast<DerivedTree*>(this)->eraseImpl(key);
+        --_size;
     }
 }
