@@ -18,7 +18,7 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
     ui->stackedWidget->setCurrentIndex(0);
-    _curTreeName = "";
+    _curTreeName = "Default Tree";
     _state = CurPage::Pills;
     _getToDBPage();
 
@@ -51,12 +51,67 @@ void MainWindow::_getToTreeUIPage(){
 
 void MainWindow::on_BluePill_clicked()
 {
-    ui->stackedWidget->setCurrentIndex(1);
+
+    auto loadedTree = _db.load<forest::SplayTree<std::string, std::greater<>>>(_curTreeName);
+
+    if(loadedTree == std::nullopt)
+        _tree.setTree(forest::SplayTree<std::string>());
+    else
+        _tree.setTree(loadedTree);
+    _getToTreeUIPage();
 }
 
 void MainWindow::on_RedPill_clicked()
 {
-    ui->stackedWidget->setCurrentIndex(1);
+    _getToTreeUIPage();
 }
 
+void MainWindow::on_CreateNew_clicked()
+{
+    if (ui->Less->isChecked())
+        _cmp = CmpType::Less;
+    else
+        _cmp = CmpType::Greater;
+    _curTreeName = ui->lineEdit->text().toStdString();
+    _getToPillsPage();
 }
+
+
+
+
+void MainWindow::on_LoadButton_clicked()
+{
+
+}
+
+void MainWindow::on_Undo_clicked()
+{
+
+}
+
+void MainWindow::on_Redo_clicked()
+{
+
+}
+
+void MainWindow::on_InsertButton_clicked()
+{
+
+}
+
+void MainWindow::on_Search_clicked()
+{
+
+}
+
+void MainWindow::on_DeleteButton_clicked()
+{
+
+}
+
+void MainWindow::on_pushButton_clicked()
+{
+
+}
+
+}//kjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjnnnnnnnnnnnnnnnnnnnn

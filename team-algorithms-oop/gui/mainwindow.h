@@ -18,6 +18,7 @@ class TreeDatabase;
 
 
 enum CurPage{Pills, DB, TreeUI};
+enum CmpType{Less, Greater};
 
 /*class TreeDatabase;*/
 /*
@@ -49,12 +50,29 @@ private slots:
 
     void on_RedPill_clicked();
 
+    void on_CreateNew_clicked();
+
+    void on_LoadButton_clicked();
+
+    void on_Undo_clicked();
+
+    void on_Redo_clicked();
+
+    void on_InsertButton_clicked();
+
+    void on_Search_clicked();
+
+    void on_DeleteButton_clicked();
+
+    void on_pushButton_clicked();
+
 private:
     Ui::MainWindow *ui;
     CurPage _state;
+    CmpType _cmp;
     std::string _curTreeName;
     TreeDatabase& _db;
-    tree::AnyTree<SupportedValueType<std::string>, SupportedComparators<std::less<>, std::greater<>>> _tree;
+    forest::AnyTree<SupportedValueType<std::string>, SupportedComparators<std::less<>, std::greater<>>> _tree;
     QStringListModel* _dbModel;
 
     void _getToDBPage();
