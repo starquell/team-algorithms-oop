@@ -124,7 +124,7 @@ namespace lab::forest::detail {
             return lhs;
         }
         auto max_in_lhs = max(lhs);
-        assert (max_in_lhs->data < min(rhs)->data);
+     //   assert (max_in_lhs->data < min(rhs)->data);
         auto lhs_root = splay(max_in_lhs);
         lhs_root->right = rhs;
         lhs_root->right->parent = lhs_root;

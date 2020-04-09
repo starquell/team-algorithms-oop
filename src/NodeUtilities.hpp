@@ -3,7 +3,7 @@
 #include <NodeBase.hpp>
 
 #include <vector>
-#include "../include/SplayTree.hpp"
+#include <cassert>
 
 /**
  *   @brief Set of functions to work with binary tree nodes

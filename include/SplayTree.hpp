@@ -19,7 +19,7 @@ namespace lab::forest {
         explicit SplayTree (const Compare& comp = Compare{}) noexcept;
 
         /**
-         *  @brief Contructs tree with elements from range [begin, end)
+         *  @brief Constructs tree with elements from range [begin, end)
          */
         template <typename Iter>
         SplayTree (Iter begin, Iter end);
@@ -31,7 +31,7 @@ namespace lab::forest {
         SplayTree& operator= (SplayTree&& other) noexcept = default;
 
         /**
-         *  @brief Contructs tree with elements from list
+         *  @brief Constructs tree with elements from list
          */
         SplayTree (std::initializer_list<T> elems);
 

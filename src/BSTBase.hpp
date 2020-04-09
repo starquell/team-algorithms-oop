@@ -19,7 +19,7 @@ namespace lab::forest::detail {
     protected:
         explicit BSTBase (const Compare& comp = Compare{});
 
-        void simpleInsert(lab::forest::detail::Node<DerivedTree>* toInsert);
+        bool simpleInsert(Node<DerivedTree>* toInsert);
 
     public:
         using value_type = T;

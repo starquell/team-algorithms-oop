@@ -42,11 +42,14 @@ namespace lab::forest::detail {
     }
 
     template <typename T, typename Compare, typename DerivedTree>
-    void BSTBase<T, Compare, DerivedTree>::simpleInsert (lab::forest::detail::Node<DerivedTree>* toInsert) {
+    bool BSTBase<T, Compare, DerivedTree>::simpleInsert (lab::forest::detail::Node<DerivedTree>* toInsert)
+    {
         if (_root == nullptr) {
             _root = toInsert;
+            return _root;
         } else {
             detail::insertWithParent(_root, toInsert, _comp);
+            return toInsert->parent;
         }
     }
 
@@ -107,12 +110,10 @@ namespace lab::forest::detail {
     template <typename T, typename Compare, typename DerivedTree>
     void BSTBase<T, Compare, DerivedTree>::insert (const T& key) {
         static_cast<DerivedTree*>(this)->insertImpl(key);
-        ++_size;
     }
 
     template <typename T, typename Compare, typename DerivedTree>
     void BSTBase<T, Compare, DerivedTree>::erase (const T& key) {
         static_cast<DerivedTree*>(this)->eraseImpl(key);
-        --_size;
     }
 }

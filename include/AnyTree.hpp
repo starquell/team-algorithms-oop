@@ -1,6 +1,8 @@
 #pragma once
 
 #include <AnyTreeDetail.hpp>
+#include <SplayTree.hpp>
+#include <RedBlackTree.hpp>
 
 #include <vector>
 #include <functional>
@@ -17,12 +19,16 @@ namespace lab::forest {
     template <typename ValueType, typename... Comparators>
     class AnyTree <SupportedValueType<ValueType>, SupportedComparators<Comparators...>> {
     public:
-        using iterator = typename std::vector<std::reference_wrapper<const ValueType>>::const_iterator;
+        using iterator = typename std::vector<ValueType>::const_iterator;
+        using value_type = ValueType;
 
         /**
          *  @brief Construct AnyTree object from _tree
          *  @attention _tree must be instance of template class RedBlackTree or SplayTree
          */
+
+        AnyTree () = default;
+
         template <typename Tree, typename = std::enable_if<
                   std::is_same_v<typename Tree::value_type, ValueType>>>
         AnyTree (Tree _tree);
@@ -72,17 +78,30 @@ namespace lab::forest {
         [[nodiscard]]
         auto size () const noexcept -> std::size_t;
 
+        /**
+        *  @brief Undos last done operation (insert or erase) in tree
+        *  @attention To undo undo operation - use redo
+        */
+        void undo();
+
+        /**
+         *  @brief Redos last undone operation (insert or erase) in tree
+         */
+        void redo();
+
     private:
         void updateIter () const;
 
     private:
-        mutable std::vector <std::reference_wrapper<const ValueType>> m_enumerator;
+        mutable std::vector <ValueType> m_enumerator;
         mutable bool m_valid_iter = false;
 
         TreeVariantType <SupportedValueType<ValueType>,
                          SupportedComparators<Comparators...>,
                          RedBlackTree, SplayTree> m_tree;
     };
+
+
 
     template <typename Tree>
     AnyTree (const Tree& _tree) -> AnyTree <typename Tree::value_type>;

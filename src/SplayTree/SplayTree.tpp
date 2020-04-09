@@ -19,8 +19,13 @@ namespace lab::forest {
     template <typename T, typename Compare>
     void SplayTree<T, Compare>::insertImpl (const T& key) {
         auto new_node = new detail::Node<SplayTree<T, Compare>> {key};
-        Base::simpleInsert(new_node);
-        _root = detail::splay(new_node);
+        if (Base::simpleInsert(new_node)) {
+            _root = detail::splay(new_node);
+            ++_size;
+        }
+        else {
+            delete new_node;
+        }
     }
 
     template <typename T, typename Compare>
@@ -42,6 +47,7 @@ namespace lab::forest {
         }
         delete splayed;
         _root = detail::merge<T>(lhs_tree, rhs_tree);
+        --_size;
     }
 
     template <typename T, typename Compare>

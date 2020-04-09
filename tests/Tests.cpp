@@ -6,16 +6,21 @@
 #include <AnyTree.hpp>
 #include <TreeDB.hpp>
 
-TEST_CASE("Splay forest", "[splay]") {
+#include <tuple>
 
-    using namespace lab::forest;
+using namespace lab::forest;
 
-    constexpr std::array elems = {1, 4, 103, 2, 24};
+TEMPLATE_TEST_CASE("Red-Black and Splay Tree", "[basic]",
+                  (std::tuple <SplayTree<int>, SplayTree<int, std::greater<>>>),
+                  (std::tuple <RedBlackTree<int>, RedBlackTree<int, std::greater<>>>))
+{
+
+    static constexpr std::array elems = {1, 4, 103, 2, 24};
 
     SECTION("Constructor from iterators test") {
-        const SplayTree<int> tree (elems.begin(), elems.end());
+         std::tuple_element_t<0, TestType> tree (elems.begin(), elems.end());
 
-        auto it = tree.begin();
+         auto it = tree.begin();
 
         REQUIRE(*it == 1);
         REQUIRE(*(++it) == 2);
@@ -25,7 +30,7 @@ TEST_CASE("Splay forest", "[splay]") {
     }
 
     SECTION("Constructor's from iterators test") {
-        const SplayTree<int> tree = {elems[0], elems[1], elems[2], elems[3], elems[4]};
+        const std::tuple_element_t<0, TestType>  tree = {elems[0], elems[1], elems[2], elems[3], elems[4]};
 
         auto it = tree.begin();
 
@@ -36,10 +41,10 @@ TEST_CASE("Splay forest", "[splay]") {
         REQUIRE(*(++it) == 103);
     }
 
-    SplayTree<int> tree (elems.begin(), elems.end());
+    std::tuple_element_t<0, TestType> tree (elems.begin(), elems.end());
 
     SECTION ("Deep copy") {
-        const SplayTree<int> copied(tree);
+        const std::tuple_element_t<0, TestType>  copied(tree);
 
         REQUIRE(*copied.begin() == 1);
         REQUIRE(*(copied.begin() + 1) == 2);
@@ -65,7 +70,7 @@ TEST_CASE("Splay forest", "[splay]") {
     }
 
     SECTION("Other comparator") {
-        const SplayTree<int, std::greater<>> tree = {elems[0], elems[1], elems[2], elems[3], elems[4]};
+        const std::tuple_element_t<1, TestType>  tree = {elems[0], elems[1], elems[2], elems[3], elems[4]};
 
         auto it = tree.begin();
 
@@ -77,24 +82,24 @@ TEST_CASE("Splay forest", "[splay]") {
     }
 }
 
-TEST_CASE("Red Black Tree", "[RedBlackTree]") {
+TEMPLATE_TEST_CASE("Undoable forest", "[undoable]", (SplayTree<int>), (RedBlackTree<int>)) {
 
     using namespace lab::forest;
 
     constexpr std::array elems = {1, 4, 103, 2, 24};
 
     SECTION("Constructor's from iterators") {
-        const RedBlackTree<int> rbTree(elems.begin(), elems.end());
+         UndoableTree<TestType> tree (elems.begin(), elems.end());
 
-        REQUIRE(*rbTree.begin() == 1);
-        REQUIRE(*(rbTree.begin() + 1) == 2);
-        REQUIRE(*(rbTree.begin() + 2) == 4);
-        REQUIRE(*(rbTree.begin() + 3) == 24);
-        REQUIRE(*(rbTree.begin() + 4) == 103);
+        REQUIRE(*tree.begin() == 1);
+        REQUIRE(*(tree.begin() + 1) == 2);
+        REQUIRE(*(tree.begin() + 2) == 4);
+        REQUIRE(*(tree.begin() + 3) == 24);
+        REQUIRE(*(tree.begin() + 4) == 103);
     }
 
     SECTION("Constructor's from initialize list") {
-        const RedBlackTree<int> tree {elems[0], elems[1], elems[2], elems[3], elems[4]};
+        const UndoableTree<TestType> tree {elems[0], elems[1], elems[2], elems[3], elems[4]};
 
         auto it = tree.begin();
 
@@ -105,75 +110,10 @@ TEST_CASE("Red Black Tree", "[RedBlackTree]") {
         REQUIRE(*(++it) == 103);
     }
 
-    RedBlackTree<int> rbTree (elems.begin(), elems.end());
+    UndoableTree<TestType> tree (elems.begin(), elems.end());
 
     SECTION ("Deep copy") {
-        const RedBlackTree<int> tree(rbTree);
-
-        REQUIRE(*tree.begin() == 1);
-        REQUIRE(*(tree.begin() + 1) == 2);
-        REQUIRE(*(tree.begin() + 2) == 4);
-        REQUIRE(*(tree.begin() + 3) == 24);
-        REQUIRE(*(tree.begin() + 4) == 103);
-    }
-
-    SECTION("Insert") {
-        rbTree.insert(100);
-        REQUIRE(rbTree.search(100));
-    }
-
-    SECTION("Erase") {
-        REQUIRE(rbTree.search(elems[0]));
-        rbTree.erase(elems[0]);
-
-        REQUIRE(!rbTree.search(elems[0]));
-    }
-
-    SECTION("Other comparator") {
-        const RedBlackTree<int, std::greater<>> tree (elems.begin(), elems.end());
-
-        auto it = tree.begin();
-
-        REQUIRE(*it == 103);
-        REQUIRE(*(++it) == 24);
-        REQUIRE(*(++it) == 4);
-        REQUIRE(*(++it) == 2);
-        REQUIRE(*(++it) == 1);
-    }
-}
-
-TEST_CASE("Undoable forest", "[undoable]") {
-
-    using namespace lab::forest;
-
-    constexpr std::array elems = {1, 4, 103, 2, 24};
-
-    SECTION("Constructor's from iterators") {
-        const UndoableTree<SplayTree<int>> tree (elems.begin(), elems.end());
-
-        REQUIRE(*tree.begin() == 1);
-        REQUIRE(*(tree.begin() + 1) == 2);
-        REQUIRE(*(tree.begin() + 2) == 4);
-        REQUIRE(*(tree.begin() + 3) == 24);
-        REQUIRE(*(tree.begin() + 4) == 103);
-    }
-
-    SECTION("Constructor's from initialize list") {
-        const UndoableTree<SplayTree<int>> tree {elems[0], elems[1], elems[2], elems[3], elems[4]};
-
-        auto it = tree.begin();
-
-        REQUIRE(*it == 1);
-        REQUIRE(*(++it) == 2);
-        REQUIRE(*(++it) == 4);
-        REQUIRE(*(++it) == 24);
-        REQUIRE(*(++it) == 103);
-    }
-
-    UndoableTree<SplayTree<int>> tree (elems.begin(), elems.end());
-
-    SECTION ("Deep copy") {
-        const UndoableTree<SplayTree<int>> copy (tree);
+        const UndoableTree<TestType> copy (tree);
 
         REQUIRE(*tree.begin() == 1);
         REQUIRE(*(tree.begin() + 1) == 2);
@@ -213,35 +153,43 @@ TEST_CASE("Undoable forest", "[undoable]") {
     }
 }
 
-TEST_CASE("Tree container") {
+TEMPLATE_TEST_CASE("Tree container", "[any]", (UndoableTree<RedBlackTree<int>>),
+                                              (UndoableTree<SplayTree<int, std::greater<>>>)) {
 
     using namespace lab;
     using namespace lab::forest;
 
-    UndoableTree<RedBlackTree<int>> rb {4, 2, 12};
-    UndoableTree<SplayTree<int, std::greater<>>> st {2, 22, 1234, 5};
+    TestType base = {2, 22, 1234, 5};
 
     AnyTree<SupportedValueType<int>,
-            SupportedComparators<std::less<>, std::greater<>>> any(rb);
+            SupportedComparators<std::less<>, std::greater<>>> any(base);
 
-    REQUIRE(any.size() == rb.size());
-    REQUIRE(std::equal(rb.begin(), rb.end(), any.begin()));
+    REQUIRE(any.size() == base.size());
+    REQUIRE(std::equal(base.begin(), base.end(), any.begin()));
 
-    constexpr int someValue = 233;
-    rb.insert(someValue);
+    static constexpr int someValue = 233;
+
+    base.insert(someValue);
     any.insert(someValue);
 
-    REQUIRE(*any.search(someValue) == *rb.search(someValue));
+    REQUIRE(*any.search(someValue) == *base.search(someValue));
 
-    any.setTree(st);
+    base.erase(someValue);
+    any.erase(someValue);
 
-    REQUIRE(any.size() == st.size());
-    REQUIRE(*any.begin() == *st.begin());
+    REQUIRE((base.search(someValue) == base.end()
+             && any.search(someValue) == any.end()));
 
-    st.insert(someValue);
-    any.insert(someValue);
+    base.undo();
+    any.undo();
+    REQUIRE (*any.search(someValue) == *base.search(someValue));
 
-    REQUIRE(*any.search(someValue) == *st.search(someValue));
+    base.redo();
+    any.redo();
+
+    REQUIRE((base.search(someValue) == base.end()
+             && any.search(someValue) == any.end()));
+
 }
 
 TEST_CASE("Saving trees (no eco activism)") {

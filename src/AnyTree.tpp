@@ -20,7 +20,7 @@ namespace lab::forest {
         if (!m_valid_iter) {
             updateIter();
         }
-        return m_enumerator.begin();
+        return m_enumerator.end();
     }
 
     template <typename ValueType, typename... Comparators>
@@ -36,7 +36,9 @@ namespace lab::forest {
         std::size_t pos{};
         std::visit ([&] (auto&& _tree) {
                        pos = std::distance(_tree.begin(), _tree.search(value));}, m_tree);
-        updateIter();
+        if (!m_valid_iter) {
+            updateIter();
+        }
         return m_enumerator.begin() + pos;
     }
 
@@ -50,6 +52,18 @@ namespace lab::forest {
     void AnyTree<SupportedValueType<ValueType>, SupportedComparators<Comparators...>>::insert (const ValueType& value) {
           std::visit([&value] (auto&& _tree) {_tree.insert(value);}, m_tree);
           m_valid_iter = false;
+    }
+
+    template<typename ValueType, typename... Comparators>
+    void AnyTree<SupportedValueType<ValueType>, SupportedComparators<Comparators...>>::undo() {
+        std::visit([] (auto&& tree) {tree.undo();}, m_tree);
+        m_valid_iter = false;
+    }
+
+    template<typename ValueType, typename... Comparators>
+    void AnyTree<SupportedValueType<ValueType>, SupportedComparators<Comparators...>>::redo() {
+        std::visit([] (auto&& tree) {tree.redo();}, m_tree);
+        m_valid_iter = false;
     }
 
     template <typename ValueType, typename... Comparators>

@@ -46,9 +46,13 @@ namespace lab::forest {
     void RedBlackTree<T, Compare>::insertImpl(const T& _data) {
 
         auto inputNode = new detail::Node<RedBlackTree<T, Compare>>{_data};
-        Base::simpleInsert(inputNode);
-
-        detail::rbutils::InsertionFixRBTree(_root, inputNode);
+        if (Base::simpleInsert(inputNode)) {
+            detail::rbutils::InsertionFixRBTree(_root, inputNode);
+            ++_size;
+        }
+        else {
+            delete inputNode;
+        }
     }
 
     template <typename T, typename Compare>
@@ -67,6 +71,7 @@ namespace lab::forest {
         } else {
             detail::rbutils::DeletionFixRBTRee(_root, nodeToDelete);
         }
+        --_size;
     }
 
     template <typename T, typename Compare>
