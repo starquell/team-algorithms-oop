@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1199</width>
-    <height>779</height>
+    <height>948</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -17,10 +17,10 @@
    <widget class="QStackedWidget" name="stackedWidget">
     <property name="geometry">
      <rect>
-      <x>0</x>
-      <y>0</y>
-      <width>1191</width>
-      <height>691</height>
+      <x>60</x>
+      <y>10</y>
+      <width>1019</width>
+      <height>619</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -225,7 +225,7 @@ background-color:white;
        </rect>
       </property>
       <property name="text">
-       <string>std::greater</string>
+       <string>std::&amp;greater</string>
       </property>
      </widget>
      <widget class="QLabel" name="label">
@@ -254,9 +254,9 @@ background-color:white;
       <property name="geometry">
        <rect>
         <x>250</x>
-        <y>390</y>
+        <y>240</y>
         <width>191</width>
-        <height>31</height>
+        <height>41</height>
        </rect>
       </property>
       <property name="styleSheet">
@@ -284,14 +284,14 @@ background-color:white;
       <property name="geometry">
        <rect>
         <x>250</x>
-        <y>200</y>
+        <y>20</y>
         <width>521</width>
-        <height>191</height>
+        <height>221</height>
        </rect>
       </property>
       <property name="styleSheet">
        <string notr="true">#textEdit{
-background-color:yellow;
+background: rgb(2,49,36);;
 border-style:solid;
 border-top-right-radius:10px;
 border-top-left-radius:10px;
@@ -304,9 +304,9 @@ border-width:3px;
       <property name="geometry">
        <rect>
         <x>580</x>
-        <y>390</y>
+        <y>240</y>
         <width>191</width>
-        <height>31</height>
+        <height>41</height>
        </rect>
       </property>
       <property name="styleSheet">
@@ -334,10 +334,28 @@ background-color:white;
       <property name="geometry">
        <rect>
         <x>60</x>
-        <y>280</y>
-        <width>99</width>
-        <height>26</height>
+        <y>90</y>
+        <width>131</width>
+        <height>41</height>
        </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">#Undo{
+background-color:transparent;
+border-style: solid;
+border-width: 3px;
+border-top-left-radius:10px;
+border-top-right-radius:10px;
+border-color:black;
+}
+
+#Undo:hover{
+background-color:silver;
+}
+
+#Undo:pressed{
+background-color:white;
+}</string>
       </property>
       <property name="text">
        <string>&lt;&lt; Undo</string>
@@ -346,11 +364,29 @@ background-color:white;
      <widget class="QPushButton" name="Redo">
       <property name="geometry">
        <rect>
-        <x>840</x>
-        <y>280</y>
-        <width>99</width>
-        <height>26</height>
+        <x>60</x>
+        <y>130</y>
+        <width>131</width>
+        <height>41</height>
        </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">#Redo{
+background-color:transparent;
+border-style: solid;
+border-width: 3px;
+border-bottom-left-radius:10px;
+border-bottom-right-radius:10px;
+border-color:black;
+}
+
+#Redo:hover{
+background-color:silver;
+}
+
+#Redo:pressed{
+background-color:white;
+}</string>
       </property>
       <property name="text">
        <string>Redo &gt;&gt;</string>
@@ -359,39 +395,131 @@ background-color:white;
      <widget class="QPushButton" name="Search">
       <property name="geometry">
        <rect>
-        <x>460</x>
-        <y>390</y>
-        <width>99</width>
-        <height>26</height>
+        <x>440</x>
+        <y>240</y>
+        <width>141</width>
+        <height>41</height>
        </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">#Search{
+background-color:transparent;
+border-style: solid;
+border-width: 3px;
+border-color:black;
+}
+
+#Search:hover{
+background-color:silver;
+}
+
+#Search:pressed{
+background-color:white;
+}</string>
       </property>
       <property name="text">
        <string>Search</string>
       </property>
      </widget>
-     <widget class="QTextBrowser" name="textBrowser">
+     <widget class="QTextBrowser" name="TreeOutput">
       <property name="geometry">
        <rect>
-        <x>250</x>
-        <y>450</y>
-        <width>521</width>
-        <height>192</height>
+        <x>50</x>
+        <y>360</y>
+        <width>941</width>
+        <height>281</height>
        </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">#TreeOutput{
+background-color:silver;
+border-style: solid;
+border-width: 3px;
+border-top-left-radius:10px;
+border-top-right-radius:10px;
+border-bottom-left-radius:10px;
+border-bottom-right-radius:10px;
+border-color:black;
+}
+
+</string>
       </property>
      </widget>
      <widget class="QPushButton" name="pushButton">
       <property name="geometry">
        <rect>
-        <x>450</x>
-        <y>650</y>
-        <width>99</width>
-        <height>26</height>
+        <x>250</x>
+        <y>310</y>
+        <width>521</width>
+        <height>41</height>
        </rect>
       </property>
+      <property name="styleSheet">
+       <string notr="true">#pushButton{
+background-color:transparent;
+border-style: solid;
+border-width: 3px;
+border-top-left-radius:10px;
+border-top-right-radius:10px;
+border-bottom-left-radius:10px;
+border-bottom-right-radius:10px;
+border-color:black;
+}
+
+#pushButton:hover{
+background-color:silver;
+}
+
+#pushButton:pressed{
+background-color:white;
+}</string>
+      </property>
       <property name="text">
-       <string>PushButton</string>
+       <string>Print tree</string>
       </property>
      </widget>
+     <widget class="QPushButton" name="SaveButton">
+      <property name="geometry">
+       <rect>
+        <x>830</x>
+        <y>110</y>
+        <width>141</width>
+        <height>51</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">#SaveButton{
+background-color:transparent;
+border-style: solid;
+border-width: 3px;
+border-top-left-radius:10px;
+border-top-right-radius:10px;
+border-bottom-left-radius:10px;
+border-bottom-right-radius:10px;
+border-color:black;
+}
+
+#SaveButton:hover{
+background-color:silver;
+}
+
+#SaveButton:pressed{
+background-color:white;
+}</string>
+      </property>
+      <property name="text">
+       <string>Save tree to db</string>
+      </property>
+     </widget>
+     <zorder>textEdit</zorder>
+     <zorder>InsertButton</zorder>
+     <zorder>DeleteButton</zorder>
+     <zorder>Undo</zorder>
+     <zorder>Redo</zorder>
+     <zorder>Search</zorder>
+     <zorder>TreeOutput</zorder>
+     <zorder>pushButton</zorder>
+     <zorder>SaveButton</zorder>
     </widget>
    </widget>
   </widget>

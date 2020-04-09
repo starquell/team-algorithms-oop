@@ -66,6 +66,8 @@ private slots:
 
     void on_pushButton_clicked();
 
+    void on_SaveButton_clicked();
+
 private:
     Ui::MainWindow *ui;
     CurPage _state;
@@ -80,6 +82,9 @@ private:
     void _getToPillsPage();
 
     void _getToTreeUIPage();
+
+    void _setCmp();
+
 };
 }
 #endif // MAINWINDOW_H

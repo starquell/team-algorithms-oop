@@ -49,38 +49,62 @@ void MainWindow::_getToTreeUIPage(){
     ui->stackedWidget->setCurrentIndex(2);
 }
 
+void MainWindow::_setCmp(){
+    if (ui->Less->isChecked())
+        _cmp = CmpType::Less;
+    else
+        _cmp = CmpType::Greater;
+}
 void MainWindow::on_BluePill_clicked()
 {
 
-    auto loadedTree = _db.load<forest::SplayTree<std::string, std::greater<>>>(_curTreeName);
-
-    if(loadedTree == std::nullopt)
-        _tree.setTree(forest::SplayTree<std::string>());
-    else
-        _tree.setTree(loadedTree);
+    if (_cmp == lab::CmpType::Less){
+        auto loadedTree = _db.load<forest::UndoableTree<forest::SplayTree<std::string>>>(_curTreeName);
+        if(loadedTree == std::nullopt)
+            _tree.setTree(forest::UndoableTree<forest::SplayTree<std::string>>());
+        else
+            _tree.setTree(loadedTree.value());
+    }
+    else{
+        auto loadedTree = _db.load<forest::UndoableTree<forest::SplayTree<std::string>>>(_curTreeName);
+        if(loadedTree == std::nullopt)
+            _tree.setTree(forest::UndoableTree<forest::SplayTree<std::string, std::greater<>>>());
+        else
+            _tree.setTree(loadedTree.value());
+    }
     _getToTreeUIPage();
 }
 
 void MainWindow::on_RedPill_clicked()
 {
+    if (_cmp == lab::CmpType::Less){
+        auto loadedTree = _db.load<forest::UndoableTree<forest::RedBlackTree<std::string>>>(_curTreeName);
+        if(loadedTree == std::nullopt)
+            _tree.setTree(forest::UndoableTree<forest::RedBlackTree<std::string>>());
+        else
+            _tree.setTree(loadedTree.value());
+    }
+    else{
+        auto loadedTree = _db.load<forest::UndoableTree<forest::RedBlackTree<std::string>>>(_curTreeName);
+        if(loadedTree == std::nullopt)
+            _tree.setTree(forest::UndoableTree<forest::RedBlackTree<std::string, std::greater<>>>());
+        else
+            _tree.setTree(loadedTree.value());
+    }
     _getToTreeUIPage();
 }
 
 void MainWindow::on_CreateNew_clicked()
 {
-    if (ui->Less->isChecked())
-        _cmp = CmpType::Less;
-    else
-        _cmp = CmpType::Greater;
+    _setCmp();  
     _curTreeName = ui->lineEdit->text().toStdString();
     _getToPillsPage();
 }
 
-
-
-
 void MainWindow::on_LoadButton_clicked()
 {
+    _setCmp();
+
 
 }
 
@@ -114,4 +138,14 @@ void MainWindow::on_pushButton_clicked()
 
 }
 
+void MainWindow::on_SaveButton_clicked()
+{
+    _tree.insert("govno");
+    _db.save(_tree, _curTreeName);
+    _getToDBPage();
+
+}
+
 }//kjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjnnnnnnnnnnnnnnnnnnnn
+
+
