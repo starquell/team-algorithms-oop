@@ -19,6 +19,7 @@ namespace lab::forest {
     template <typename ValueType, typename... Comparators>
     class AnyTree <SupportedValueType<ValueType>, SupportedComparators<Comparators...>> {
     public:
+
         using iterator = typename std::vector<ValueType>::const_iterator;
         using value_type = ValueType;
 
@@ -29,9 +30,11 @@ namespace lab::forest {
 
         AnyTree () = default;
 
-        template <typename Tree, typename = std::enable_if<
-                  std::is_same_v<typename Tree::value_type, ValueType>>>
-        AnyTree (Tree _tree);
+        /**
+         *  Constructs AnyTree from any tree (pretty obvious)
+         */
+        template <typename Tree>
+        AnyTree (const Tree& _tree);
 
         AnyTree (const AnyTree& other) = default;
         AnyTree (AnyTree&& other) noexcept = default;
@@ -40,11 +43,14 @@ namespace lab::forest {
         AnyTree& operator= (AnyTree&& other) noexcept = default;
 
         /**
-         *  @brief Sets current tree object (copying tree passed as argument)
-         */
-        template <typename Tree, typename = std::enable_if<
-                  std::is_same_v<typename Tree::value_type, ValueType>>>
-        void setTree (Tree _tree);
+        *  @brief Sets current tree object (copying tree passed as argument)
+        */
+        template <typename Tree, typename = std::enable_if<detail::is_template_instantiation<Tree,
+                                                                                             UndoableTree,
+                                                                                             RedBlackTree>>>
+        AnyTree& operator= (const Tree& other);
+
+
 
         /**
          *  @brief Inserts key to tree

@@ -3,10 +3,25 @@
 namespace lab::forest {
 
     template <typename ValueType, typename... Comparators>
-    template <typename Tree, typename>
-    AnyTree<SupportedValueType<ValueType>, SupportedComparators<Comparators...>>::AnyTree (Tree _tree)
-         : m_tree (std::move(_tree))
+    template <typename Tree>
+    AnyTree<SupportedValueType<ValueType>, SupportedComparators<Comparators...>>::AnyTree (const Tree& _tree)
+         : m_tree (_tree)
     {}
+
+    template <typename ValueType, typename... Comparators>
+    template <typename Tree, typename>
+    AnyTree<SupportedValueType<ValueType>, SupportedComparators<Comparators...>>&
+    AnyTree<SupportedValueType<ValueType>, SupportedComparators<Comparators...>>::operator= (const Tree& other) {
+
+         if constexpr (detail::is_template_instantiation<Tree, UndoableTree>) {
+            m_tree = other;
+         }
+         else {
+             m_tree = UndoableTree {other};
+         }
+         return *this;
+    }
+
 
     template <typename ValueType, typename... Comparators>
     auto AnyTree <SupportedValueType<ValueType>, SupportedComparators<Comparators...>>::size () const noexcept -> std::size_t {
@@ -63,13 +78,6 @@ namespace lab::forest {
     template<typename ValueType, typename... Comparators>
     void AnyTree<SupportedValueType<ValueType>, SupportedComparators<Comparators...>>::redo() {
         std::visit([] (auto&& tree) {tree.redo();}, m_tree);
-        m_valid_iter = false;
-    }
-
-    template <typename ValueType, typename... Comparators>
-    template <typename Tree, typename>
-    void AnyTree<SupportedValueType<ValueType>, SupportedComparators<Comparators...>>::setTree (Tree _tree) {
-        m_tree = std::move(_tree);
         m_valid_iter = false;
     }
 

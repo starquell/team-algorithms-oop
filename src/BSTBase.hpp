@@ -54,9 +54,8 @@ namespace lab::forest::detail {
         BSTBase (const BSTBase& other);
         BSTBase (BSTBase&& other) noexcept;
 
-        BSTBase& operator= (DerivedTree other) noexcept;
-        BSTBase& operator= (const BSTBase& other) noexcept = default;
-        BSTBase& operator= (BSTBase&& other) noexcept = default;
+        BSTBase& operator= (const BSTBase& other) noexcept;
+        BSTBase& operator= (BSTBase&& other) noexcept;
 
         /**
          *  @brief Swaps contents of trees

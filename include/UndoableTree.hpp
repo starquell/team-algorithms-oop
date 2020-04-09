@@ -37,6 +37,10 @@ namespace lab::forest {
         UndoableTree& operator= (const UndoableTree& other) = default;
         UndoableTree& operator= (UndoableTree&& other) noexcept = default;
 
+        UndoableTree (const Tree& tree);
+
+        UndoableTree (Tree&& tree);
+
         template <typename Iter>
         UndoableTree (Iter begin, Iter end);
 

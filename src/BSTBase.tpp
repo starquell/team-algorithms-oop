@@ -4,6 +4,8 @@
 
 #include <algorithm>
 #include "NodeBase.hpp"
+#include "BSTBase.hpp"
+
 
 namespace lab::forest::detail {
 
@@ -71,15 +73,6 @@ namespace lab::forest::detail {
               _comp(other._comp)
     {}
 
-
-    template <typename T, typename Compare, typename DerivedTree>
-    auto BSTBase<T, Compare, DerivedTree>::operator= (DerivedTree other) noexcept
-        -> BSTBase<T, Compare, DerivedTree>&
-    {
-        swap (*this, other);
-        return *this;
-    }
-
     template <typename T, typename Compare, typename DerivedTree>
     BSTBase<T, Compare, DerivedTree>::BSTBase (const Compare& comp)
             : _comp(comp)
@@ -103,7 +96,7 @@ namespace lab::forest::detail {
     template <typename T, typename Compare, typename DerivedTree>
     BSTBase<T, Compare, DerivedTree>::BSTBase (BSTBase&& other) noexcept
             : _root (std::exchange(other._root, nullptr)),
-              _comp (other._comp),
+              _comp (std::move(other._comp)),
               _size (std::exchange(other._size, 0))
     {}
 
@@ -115,5 +108,31 @@ namespace lab::forest::detail {
     template <typename T, typename Compare, typename DerivedTree>
     void BSTBase<T, Compare, DerivedTree>::erase (const T& key) {
         static_cast<DerivedTree*>(this)->eraseImpl(key);
+    }
+
+    template<typename T, typename Compare, typename DerivedTree>
+    BSTBase<T, Compare, DerivedTree>&
+    BSTBase<T, Compare, DerivedTree>::operator=(const BSTBase &other) noexcept {
+
+        if (&other == this) {
+            return *this;
+        }
+
+        _root = detail::clone(other._root);
+        _size = other._size;
+        _comp = other._comp;
+
+        return *this;
+    }
+
+    template<typename T, typename Compare, typename DerivedTree>
+    BSTBase<T, Compare, DerivedTree>&
+    BSTBase<T, Compare, DerivedTree>::operator=(BSTBase&& other) noexcept {
+
+        _root = std::exchange(other._root, nullptr),
+        _comp = std::move(other._comp);
+        _size = std::exchange(other._size, 0);
+
+        return *this;
     }
 }

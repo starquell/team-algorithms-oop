@@ -5,7 +5,7 @@
 #include <variant>
 #include <tuple>
 
-namespace lab {
+namespace lab::forest {
 
     namespace detail {
 
@@ -57,5 +57,22 @@ namespace lab {
               typename CompareTuple,
               template <typename, typename> typename... Trees>
     using TreeVariantType = typename detail::TreeVariant <ValueTypeTuple, CompareTuple, Trees...>::type;
+
+
+    namespace detail {
+
+        template <typename InputType, template<typename...> typename Template>
+        struct is_template_instantiation_t : std::false_type {};
+
+        template <typename... InputParams, template<typename...> typename Template>
+        struct is_template_instantiation_t <Template <InputParams...>, Template> : std::true_type {};
+
+        template <typename InputType, template<typename...> typename Template>
+        constexpr inline bool is_template_instantiation = is_template_instantiation_t<InputType, Template>::value;
+
+        template<typename InputType, template<typename...> typename... Templates>
+        constexpr inline bool is_template_instantiation_of_templates =
+                (is_template_instantiation<InputType, Templates> || ...);
+    }
 }
 

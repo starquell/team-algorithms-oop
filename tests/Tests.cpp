@@ -164,6 +164,8 @@ TEMPLATE_TEST_CASE("Tree container", "[any]", (UndoableTree<RedBlackTree<int>>),
     AnyTree<SupportedValueType<int>,
             SupportedComparators<std::less<>, std::greater<>>> any(base);
 
+    any = base;
+
     REQUIRE(any.size() == base.size());
     REQUIRE(std::equal(base.begin(), base.end(), any.begin()));
 

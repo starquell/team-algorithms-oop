@@ -3,6 +3,16 @@
 namespace lab::forest {
 
     template <typename Tree>
+    UndoableTree<Tree>::UndoableTree (const Tree& tree)
+            : _tree (tree)
+    {}
+
+    template <typename Tree>
+    UndoableTree<Tree>::UndoableTree (Tree&& tree)
+            : _tree (std::move(tree))
+    {}
+
+    template <typename Tree>
     void UndoableTree<Tree>::redo() {
         if (m_undone.empty()) {
             return;
