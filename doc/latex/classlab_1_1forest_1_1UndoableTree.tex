@@ -1,0 +1,128 @@
+\hypertarget{classlab_1_1forest_1_1UndoableTree}{}\section{lab\+:\+:forest\+:\+:Undoable\+Tree$<$ Tree $>$ Class Template Reference}
+\label{classlab_1_1forest_1_1UndoableTree}\index{lab\+::forest\+::\+Undoable\+Tree$<$ Tree $>$@{lab\+::forest\+::\+Undoable\+Tree$<$ Tree $>$}}
+
+
+Class that expand Tree functionality by undo and redo operations.  
+
+
+
+
+{\ttfamily \#include $<$Undoable\+Tree.\+hpp$>$}
+
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classlab_1_1forest_1_1UndoableTree_aaf637f922a0a607faf87df1122c16275}\label{classlab_1_1forest_1_1UndoableTree_aaf637f922a0a607faf87df1122c16275}} 
+using {\bfseries value\+\_\+type} = typename Tree\+::value\+\_\+type
+\item 
+\mbox{\Hypertarget{classlab_1_1forest_1_1UndoableTree_ab044c0d5b07e9eb29aae99c7d275de0d}\label{classlab_1_1forest_1_1UndoableTree_ab044c0d5b07e9eb29aae99c7d275de0d}} 
+using {\bfseries iterator} = typename Tree\+::iterator
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classlab_1_1forest_1_1UndoableTree_ac77c3e18c250430b5e13bd015eff0946}\label{classlab_1_1forest_1_1UndoableTree_ac77c3e18c250430b5e13bd015eff0946}} 
+{\bfseries Undoable\+Tree} (std\+::initializer\+\_\+list$<$ value\+\_\+type $>$ elems)
+\item 
+\mbox{\Hypertarget{classlab_1_1forest_1_1UndoableTree_a2c2edafd4a90b4cc0b12212fb6682287}\label{classlab_1_1forest_1_1UndoableTree_a2c2edafd4a90b4cc0b12212fb6682287}} 
+{\bfseries Undoable\+Tree} (const \hyperlink{classlab_1_1forest_1_1UndoableTree}{Undoable\+Tree} \&other)=default
+\item 
+\mbox{\Hypertarget{classlab_1_1forest_1_1UndoableTree_a6827813d5b65bbd4af5a8dd8ca8d6adc}\label{classlab_1_1forest_1_1UndoableTree_a6827813d5b65bbd4af5a8dd8ca8d6adc}} 
+{\bfseries Undoable\+Tree} (\hyperlink{classlab_1_1forest_1_1UndoableTree}{Undoable\+Tree} \&\&other) noexcept=default
+\item 
+\mbox{\Hypertarget{classlab_1_1forest_1_1UndoableTree_a88123444da2ca4a1068de8d9bf0f04f6}\label{classlab_1_1forest_1_1UndoableTree_a88123444da2ca4a1068de8d9bf0f04f6}} 
+\hyperlink{classlab_1_1forest_1_1UndoableTree}{Undoable\+Tree} \& {\bfseries operator=} (const \hyperlink{classlab_1_1forest_1_1UndoableTree}{Undoable\+Tree} \&other)=default
+\item 
+\mbox{\Hypertarget{classlab_1_1forest_1_1UndoableTree_a38b331baf68b85d65e8bbf85f40f8d95}\label{classlab_1_1forest_1_1UndoableTree_a38b331baf68b85d65e8bbf85f40f8d95}} 
+\hyperlink{classlab_1_1forest_1_1UndoableTree}{Undoable\+Tree} \& {\bfseries operator=} (\hyperlink{classlab_1_1forest_1_1UndoableTree}{Undoable\+Tree} \&\&other) noexcept=default
+\item 
+\mbox{\Hypertarget{classlab_1_1forest_1_1UndoableTree_ab0247c252d8c3ad9fa79c5f2d791a1e3}\label{classlab_1_1forest_1_1UndoableTree_ab0247c252d8c3ad9fa79c5f2d791a1e3}} 
+{\footnotesize template$<$typename Iter $>$ }\\{\bfseries Undoable\+Tree} (Iter \hyperlink{classlab_1_1forest_1_1UndoableTree_a70250f012747174b8935cf9fe5fe72ed}{begin}, Iter \hyperlink{classlab_1_1forest_1_1UndoableTree_af404b6bb41ddad0291cf2ab22deee478}{end})
+\item 
+\mbox{\Hypertarget{classlab_1_1forest_1_1UndoableTree_aed97dba3340b6aec26acac81d23c8525}\label{classlab_1_1forest_1_1UndoableTree_aed97dba3340b6aec26acac81d23c8525}} 
+void \hyperlink{classlab_1_1forest_1_1UndoableTree_aed97dba3340b6aec26acac81d23c8525}{insert} (const value\+\_\+type \&key)
+\begin{DoxyCompactList}\small\item\em Inserts key to tree. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classlab_1_1forest_1_1UndoableTree_a5d24d3854ab12114b6d6184ecdd21f56}\label{classlab_1_1forest_1_1UndoableTree_a5d24d3854ab12114b6d6184ecdd21f56}} 
+void \hyperlink{classlab_1_1forest_1_1UndoableTree_a5d24d3854ab12114b6d6184ecdd21f56}{erase} (const value\+\_\+type \&key)
+\begin{DoxyCompactList}\small\item\em Erase element with this key from tree. \end{DoxyCompactList}\item 
+void \hyperlink{classlab_1_1forest_1_1UndoableTree_a4f19003d8156b047de5ff2869d5ac316}{undo} ()
+\begin{DoxyCompactList}\small\item\em Undos last done operation (insert or erase) in tree. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classlab_1_1forest_1_1UndoableTree_a809f804c937c5963f4370ec7312eae0e}\label{classlab_1_1forest_1_1UndoableTree_a809f804c937c5963f4370ec7312eae0e}} 
+void \hyperlink{classlab_1_1forest_1_1UndoableTree_a809f804c937c5963f4370ec7312eae0e}{redo} ()
+\begin{DoxyCompactList}\small\item\em Redos last undone operation (insert or erase) in tree. \end{DoxyCompactList}\item 
+iterator \hyperlink{classlab_1_1forest_1_1UndoableTree_a6e21757708a93c084d55f2b95874d8df}{search} (const value\+\_\+type \&key) noexcept
+\item 
+\mbox{\Hypertarget{classlab_1_1forest_1_1UndoableTree_a70250f012747174b8935cf9fe5fe72ed}\label{classlab_1_1forest_1_1UndoableTree_a70250f012747174b8935cf9fe5fe72ed}} 
+auto \hyperlink{classlab_1_1forest_1_1UndoableTree_a70250f012747174b8935cf9fe5fe72ed}{begin} () const noexcept -\/$>$ iterator
+\begin{DoxyCompactList}\small\item\em Inserts key to tree. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classlab_1_1forest_1_1UndoableTree_af404b6bb41ddad0291cf2ab22deee478}\label{classlab_1_1forest_1_1UndoableTree_af404b6bb41ddad0291cf2ab22deee478}} 
+auto \hyperlink{classlab_1_1forest_1_1UndoableTree_af404b6bb41ddad0291cf2ab22deee478}{end} () const noexcept -\/$>$ iterator
+\begin{DoxyCompactList}\small\item\em Erase element with this key from tree. \end{DoxyCompactList}\item 
+auto \hyperlink{classlab_1_1forest_1_1UndoableTree_a072971d83f1ef40d64f182f0246732ad}{size} () const noexcept -\/$>$ std\+::size\+\_\+t
+\item 
+auto \hyperlink{classlab_1_1forest_1_1UndoableTree_a359735c6419c5ec92e89f18a29d0a189}{compare\+Func} () const noexcept
+\item 
+\mbox{\Hypertarget{classlab_1_1forest_1_1UndoableTree_a35bf2be1b8f96375aee133feef6447b9}\label{classlab_1_1forest_1_1UndoableTree_a35bf2be1b8f96375aee133feef6447b9}} 
+bool {\bfseries operator==} (const \hyperlink{classlab_1_1forest_1_1UndoableTree}{Undoable\+Tree} \&other) const noexcept
+\item 
+\mbox{\Hypertarget{classlab_1_1forest_1_1UndoableTree_aaf614d1b26cca3a935adaf7badb2a493}\label{classlab_1_1forest_1_1UndoableTree_aaf614d1b26cca3a935adaf7badb2a493}} 
+bool {\bfseries operator!=} (const \hyperlink{classlab_1_1forest_1_1UndoableTree}{Undoable\+Tree} \&other) const noexcept
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\subsubsection*{template$<$typename Tree$>$\newline
+class lab\+::forest\+::\+Undoable\+Tree$<$ Tree $>$}
+
+Class that expand Tree functionality by undo and redo operations. 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classlab_1_1forest_1_1UndoableTree_a359735c6419c5ec92e89f18a29d0a189}\label{classlab_1_1forest_1_1UndoableTree_a359735c6419c5ec92e89f18a29d0a189}} 
+\index{lab\+::forest\+::\+Undoable\+Tree@{lab\+::forest\+::\+Undoable\+Tree}!compare\+Func@{compare\+Func}}
+\index{compare\+Func@{compare\+Func}!lab\+::forest\+::\+Undoable\+Tree@{lab\+::forest\+::\+Undoable\+Tree}}
+\subsubsection{\texorpdfstring{compare\+Func()}{compareFunc()}}
+{\footnotesize\ttfamily template$<$typename Tree $>$ \\
+auto \hyperlink{classlab_1_1forest_1_1UndoableTree}{lab\+::forest\+::\+Undoable\+Tree}$<$ Tree $>$\+::compare\+Func (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [noexcept]}}
+
+\begin{DoxyReturn}{Returns}
+Function that sets order in tree, default -\/ std\+::less\{\} 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classlab_1_1forest_1_1UndoableTree_a6e21757708a93c084d55f2b95874d8df}\label{classlab_1_1forest_1_1UndoableTree_a6e21757708a93c084d55f2b95874d8df}} 
+\index{lab\+::forest\+::\+Undoable\+Tree@{lab\+::forest\+::\+Undoable\+Tree}!search@{search}}
+\index{search@{search}!lab\+::forest\+::\+Undoable\+Tree@{lab\+::forest\+::\+Undoable\+Tree}}
+\subsubsection{\texorpdfstring{search()}{search()}}
+{\footnotesize\ttfamily template$<$typename Tree $>$ \\
+iterator \hyperlink{classlab_1_1forest_1_1UndoableTree}{lab\+::forest\+::\+Undoable\+Tree}$<$ Tree $>$\+::search (\begin{DoxyParamCaption}\item[{const value\+\_\+type \&}]{key }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [noexcept]}}
+
+\begin{DoxyReturn}{Returns}
+Iterator to key in tree, if not found -\/ \hyperlink{classlab_1_1forest_1_1UndoableTree_af404b6bb41ddad0291cf2ab22deee478}{end()} 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classlab_1_1forest_1_1UndoableTree_a072971d83f1ef40d64f182f0246732ad}\label{classlab_1_1forest_1_1UndoableTree_a072971d83f1ef40d64f182f0246732ad}} 
+\index{lab\+::forest\+::\+Undoable\+Tree@{lab\+::forest\+::\+Undoable\+Tree}!size@{size}}
+\index{size@{size}!lab\+::forest\+::\+Undoable\+Tree@{lab\+::forest\+::\+Undoable\+Tree}}
+\subsubsection{\texorpdfstring{size()}{size()}}
+{\footnotesize\ttfamily template$<$typename Tree $>$ \\
+auto \hyperlink{classlab_1_1forest_1_1UndoableTree}{lab\+::forest\+::\+Undoable\+Tree}$<$ Tree $>$\+::size (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const -\/$>$  std\+::size\+\_\+t\hspace{0.3cm}{\ttfamily [noexcept]}}
+
+\begin{DoxyReturn}{Returns}
+Amount of elements in tree 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classlab_1_1forest_1_1UndoableTree_a4f19003d8156b047de5ff2869d5ac316}\label{classlab_1_1forest_1_1UndoableTree_a4f19003d8156b047de5ff2869d5ac316}} 
+\index{lab\+::forest\+::\+Undoable\+Tree@{lab\+::forest\+::\+Undoable\+Tree}!undo@{undo}}
+\index{undo@{undo}!lab\+::forest\+::\+Undoable\+Tree@{lab\+::forest\+::\+Undoable\+Tree}}
+\subsubsection{\texorpdfstring{undo()}{undo()}}
+{\footnotesize\ttfamily template$<$typename Tree $>$ \\
+void \hyperlink{classlab_1_1forest_1_1UndoableTree}{lab\+::forest\+::\+Undoable\+Tree}$<$ Tree $>$\+::undo (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Undos last done operation (insert or erase) in tree. 
+
+\begin{DoxyAttention}{Attention}
+To undo undo operation -\/ use redo 
+\end{DoxyAttention}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/Undoable\+Tree.\+hpp\end{DoxyCompactItemize}

@@ -1,0 +1,6 @@
+[submodule "team-algorithms-oop/deps/sqlite3pp"]
+	path = team-algorithms-oop/deps/sqlite3pp
+	url = https://github.com/iwongu/sqlite3pp.git
+[submodule "team-algorithms-oop/deps/cereal"]
+	path = team-algorithms-oop/deps/cereal
+	url = https://github.com/USCiLab/cereal.git

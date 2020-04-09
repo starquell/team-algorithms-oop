@@ -1,0 +1,73 @@
+\hypertarget{classlab_1_1forest_1_1RedBlackTree}{}\section{lab\+:\+:forest\+:\+:Red\+Black\+Tree$<$ T, Compare $>$ Class Template Reference}
+\label{classlab_1_1forest_1_1RedBlackTree}\index{lab\+::forest\+::\+Red\+Black\+Tree$<$ T, Compare $>$@{lab\+::forest\+::\+Red\+Black\+Tree$<$ T, Compare $>$}}
+
+
+Red-\/\+Black Tree implementation T -\/ type of value stored in tree, Compare -\/ comparison function class for elements in tree.  
+
+
+
+
+{\ttfamily \#include $<$Red\+Black\+Tree.\+hpp$>$}
+
+
+
+Inheritance diagram for lab\+:\+:forest\+:\+:Red\+Black\+Tree$<$ T, Compare $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=241pt]{classlab_1_1forest_1_1RedBlackTree__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for lab\+:\+:forest\+:\+:Red\+Black\+Tree$<$ T, Compare $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=241pt]{classlab_1_1forest_1_1RedBlackTree__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classlab_1_1forest_1_1RedBlackTree_a50e09d93668a4ad79e2cb90e43fc8136}\label{classlab_1_1forest_1_1RedBlackTree_a50e09d93668a4ad79e2cb90e43fc8136}} 
+{\bfseries Red\+Black\+Tree} (const Compare \&comp=Compare \{\})
+\item 
+\mbox{\Hypertarget{classlab_1_1forest_1_1RedBlackTree_aa067218aae3ec9bdd1be4ece7d6c4ff7}\label{classlab_1_1forest_1_1RedBlackTree_aa067218aae3ec9bdd1be4ece7d6c4ff7}} 
+{\footnotesize template$<$typename Iter $>$ }\\\hyperlink{classlab_1_1forest_1_1RedBlackTree_aa067218aae3ec9bdd1be4ece7d6c4ff7}{Red\+Black\+Tree} (Iter \hyperlink{classlab_1_1forest_1_1detail_1_1BSTBase_aee57d4461130971ad187ea41bc8e4e74}{begin}, Iter \hyperlink{classlab_1_1forest_1_1detail_1_1BSTBase_ad2ea364cc61d5581a861d1aab3734129}{end})
+\begin{DoxyCompactList}\small\item\em Contructs tree with elements from range \mbox{[}begin, end) \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classlab_1_1forest_1_1RedBlackTree_ac1098111d7495f6640b531344496456b}\label{classlab_1_1forest_1_1RedBlackTree_ac1098111d7495f6640b531344496456b}} 
+\hyperlink{classlab_1_1forest_1_1RedBlackTree_ac1098111d7495f6640b531344496456b}{Red\+Black\+Tree} (std\+::initializer\+\_\+list$<$ T $>$ elems)
+\begin{DoxyCompactList}\small\item\em Contructs tree with elements from list. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classlab_1_1forest_1_1RedBlackTree_a80a7256b0b3f65d1592d653754d780c0}\label{classlab_1_1forest_1_1RedBlackTree_a80a7256b0b3f65d1592d653754d780c0}} 
+{\bfseries Red\+Black\+Tree} (const \hyperlink{classlab_1_1forest_1_1RedBlackTree}{Red\+Black\+Tree} \&other)=default
+\item 
+\mbox{\Hypertarget{classlab_1_1forest_1_1RedBlackTree_a4b53ce03c8b61782fcd49e372cbd8b85}\label{classlab_1_1forest_1_1RedBlackTree_a4b53ce03c8b61782fcd49e372cbd8b85}} 
+{\bfseries Red\+Black\+Tree} (\hyperlink{classlab_1_1forest_1_1RedBlackTree}{Red\+Black\+Tree} \&\&other) noexcept=default
+\item 
+\mbox{\Hypertarget{classlab_1_1forest_1_1RedBlackTree_a903afb4432a34d898c818e97a2b18a26}\label{classlab_1_1forest_1_1RedBlackTree_a903afb4432a34d898c818e97a2b18a26}} 
+\hyperlink{classlab_1_1forest_1_1RedBlackTree}{Red\+Black\+Tree} \& {\bfseries operator=} (const \hyperlink{classlab_1_1forest_1_1RedBlackTree}{Red\+Black\+Tree} \&other)=default
+\item 
+\mbox{\Hypertarget{classlab_1_1forest_1_1RedBlackTree_a1f2866ff748b05991b8c4d4501db64ca}\label{classlab_1_1forest_1_1RedBlackTree_a1f2866ff748b05991b8c4d4501db64ca}} 
+\hyperlink{classlab_1_1forest_1_1RedBlackTree}{Red\+Black\+Tree} \& {\bfseries operator=} (\hyperlink{classlab_1_1forest_1_1RedBlackTree}{Red\+Black\+Tree} \&\&other) noexcept=default
+\end{DoxyCompactItemize}
+\subsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classlab_1_1forest_1_1RedBlackTree_a0366a00ceb99298e94189e0ae094e6d9}\label{classlab_1_1forest_1_1RedBlackTree_a0366a00ceb99298e94189e0ae094e6d9}} 
+class {\bfseries detail\+::\+B\+S\+T\+Base$<$ T, Compare, Red\+Black\+Tree$<$ T, Compare $>$ $>$}
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+\subsubsection*{template$<$typename T, typename Compare = std\+::less$<$$>$$>$\newline
+class lab\+::forest\+::\+Red\+Black\+Tree$<$ T, Compare $>$}
+
+Red-\/\+Black Tree implementation T -\/ type of value stored in tree, Compare -\/ comparison function class for elements in tree. 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/Red\+Black\+Tree.\+hpp\end{DoxyCompactItemize}
