@@ -20,7 +20,7 @@ namespace lab::forest {
         if (!m_valid_iter) {
             updateIter();
         }
-        return m_enumerator.begin();
+        return m_enumerator.end();
     }
 
     template <typename ValueType, typename... Comparators>

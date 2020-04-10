@@ -19,7 +19,8 @@ namespace lab::forest {
     public:
 
         AnyTree () = default;
-        using iterator = typename std::vector<ValueType>::const_iterator;
+        using iterator = typename std::vector<std::reference_wrapper<const ValueType>>::const_iterator;
+                using value_type = ValueType;
 
         /**
          *  @brief Construct AnyTree object from _tree

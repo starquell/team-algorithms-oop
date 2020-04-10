@@ -23,7 +23,7 @@ namespace lab {
     template <typename Tree>
     void TreeDatabase::save (const Tree& _tree, std::string_view name) {
 
-        std::vector temp (_tree.begin(), _tree.end());
+        std::vector <typename Tree::value_type> temp (_tree.begin(), _tree.end());
         std::string data;
         {
             std::ostringstream ss;

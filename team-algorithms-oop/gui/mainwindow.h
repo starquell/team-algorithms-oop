@@ -76,6 +76,7 @@ private:
     TreeDatabase& _db;
     forest::AnyTree<SupportedValueType<std::string>, SupportedComparators<std::less<>, std::greater<>>> _tree;
     QStringListModel* _dbModel;
+    std::vector<std::string> _loadedNames;
 
     void _getToDBPage();
 

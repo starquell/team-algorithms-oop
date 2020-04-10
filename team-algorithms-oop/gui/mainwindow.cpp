@@ -32,9 +32,9 @@ MainWindow::~MainWindow()
 void MainWindow::_getToDBPage(){
     ui->stackedWidget->setCurrentIndex(1);
     _dbModel = new QStringListModel(this);
-    auto namesFromDB = _db.loadNames();
+    _loadedNames = _db.loadNames();
     QStringList treeNames;
-    for (const auto& name: _db.loadNames())
+    for (const auto& name: _loadedNames)
         treeNames << QString::fromStdString(name);
     _dbModel->setStringList(treeNames);
     ui->DBlist->setModel(_dbModel);
@@ -66,7 +66,7 @@ void MainWindow::on_BluePill_clicked()
             _tree.setTree(loadedTree.value());
     }
     else{
-        auto loadedTree = _db.load<forest::UndoableTree<forest::SplayTree<std::string>>>(_curTreeName);
+        auto loadedTree = _db.load<forest::UndoableTree<forest::SplayTree<std::string, std::greater<>>>>(_curTreeName);
         if(loadedTree == std::nullopt)
             _tree.setTree(forest::UndoableTree<forest::SplayTree<std::string, std::greater<>>>());
         else
@@ -85,7 +85,7 @@ void MainWindow::on_RedPill_clicked()
             _tree.setTree(loadedTree.value());
     }
     else{
-        auto loadedTree = _db.load<forest::UndoableTree<forest::RedBlackTree<std::string>>>(_curTreeName);
+        auto loadedTree = _db.load<forest::UndoableTree<forest::RedBlackTree<std::string, std::greater<>>>>(_curTreeName);
         if(loadedTree == std::nullopt)
             _tree.setTree(forest::UndoableTree<forest::RedBlackTree<std::string, std::greater<>>>());
         else
@@ -104,13 +104,14 @@ void MainWindow::on_CreateNew_clicked()
 void MainWindow::on_LoadButton_clicked()
 {
     _setCmp();
+    _curTreeName = _loadedNames[ui->DBlist->currentIndex().row()];
+    _getToPillsPage();
 
 
 }
 
 void MainWindow::on_Undo_clicked()
 {
-
 }
 
 void MainWindow::on_Redo_clicked()
@@ -120,27 +121,50 @@ void MainWindow::on_Redo_clicked()
 
 void MainWindow::on_InsertButton_clicked()
 {
-
+    ui->TreeOutput->clear();
+    auto toInsert = ui->textEdit->toPlainText().toStdString();
+    if (toInsert == "")
+        return;
+    ui->textEdit->clear();
+    _tree.insert(toInsert);
+    ui->TreeOutput->insertPlainText(QString::fromStdString("INSERTED : \n" + toInsert));
 }
 
 void MainWindow::on_Search_clicked()
 {
+    ui->TreeOutput->clear();
+    auto toSearch = ui->textEdit->toPlainText().toStdString();
+    if (toSearch == "")
+        return;
+    ui->textEdit->clear();
+    if (_tree.search(toSearch) != _tree.end())
+        ui->TreeOutput->insertPlainText(QString::fromStdString("WAS FOUND:\n" + toSearch));
+    else
+        ui->TreeOutput->insertPlainText(QString::fromStdString("WASN`T FOUND:\n" + toSearch));
 
 }
 
 void MainWindow::on_DeleteButton_clicked()
 {
-
+    ui->TreeOutput->clear();
+    auto toDelete = ui->textEdit->toPlainText().toStdString();
+    if (toDelete == "")
+        return;
+    _tree.erase(toDelete);
+    ui->textEdit->clear();
+    ui->TreeOutput->insertPlainText(QString::fromStdString("DELETED:\n" + toDelete));
 }
 
 void MainWindow::on_pushButton_clicked()
 {
-
+    ui->TreeOutput->clear();
+    ui->TreeOutput->insertPlainText("PRINTED TREE:");
+    for( const auto& i: _tree)
+        ui->TreeOutput->insertPlainText("\n    ->" + QString::fromStdString(i));
 }
 
 void MainWindow::on_SaveButton_clicked()
 {
-    _tree.insert("govno");
     _db.save(_tree, _curTreeName);
     _getToDBPage();
 
