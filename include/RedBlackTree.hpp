@@ -59,6 +59,9 @@ namespace lab::forest {
         using Base::_size;
         using Base::_comp;
     };
+
+    template <typename Iter, typename Compare = std::less<>>
+    RedBlackTree (Iter, Iter) -> RedBlackTree <typename std::iterator_traits<Iter>::value_type, Compare>;
 }
 
 #include <RedBlackTree/RedBlackTree.tpp>

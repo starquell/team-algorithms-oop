@@ -81,7 +81,7 @@ using namespace lab;
     }
 
     {
-        forest::UndoableTree tree (forest::RedBlackTree {"aaa", "bbb"});
+        forest::UndoableTree tree (forest::RedBlackTree <std::string> {"aaa", "bbb"});
 
         tree.insert("s");
 
@@ -101,7 +101,7 @@ using namespace lab;
 
         any = forest::RedBlackTree<double, std::greater<>>{};
         
-        any = forest::UndoableTree <forest::SplayTree<int>>{};
+        any = forest::UndoableTree <forest::SplayTree<double>>{};
     }
 
 ```

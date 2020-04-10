@@ -61,6 +61,9 @@ namespace lab::forest {
         using Base::_size;
         using Base::_comp;
     };
+
+    template <typename Iter, typename Compare = std::less<>>
+    SplayTree (Iter, Iter) -> SplayTree <typename std::iterator_traits<Iter>::value_type, Compare>;
 }
 
 #include "SplayTree/SplayTree.tpp"
