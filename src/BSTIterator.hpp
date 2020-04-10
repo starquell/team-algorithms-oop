@@ -1,8 +1,8 @@
 #pragma once
 
 #include <NodeBase.hpp>
-
 #include <iterator>
+
 
 namespace lab::forest::detail {
     /**
