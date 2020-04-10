@@ -5,9 +5,9 @@
 #include <variant>
 #include <tuple>
 
-namespace lab::forest {
+namespace lab {
 
-    namespace detail {
+    namespace forest::detail {
 
         template <typename...>
         struct VariantConcat;
@@ -56,7 +56,7 @@ namespace lab::forest {
     template <typename ValueTypeTuple,
               typename CompareTuple,
               template <typename, typename> typename... Trees>
-    using TreeVariantType = typename detail::TreeVariant <ValueTypeTuple, CompareTuple, Trees...>::type;
+    using TreeVariantType = typename forest::detail::TreeVariant <ValueTypeTuple, CompareTuple, Trees...>::type;
 
 
     namespace detail {

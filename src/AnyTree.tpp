@@ -13,7 +13,7 @@ namespace lab::forest {
     AnyTree<SupportedValueType<ValueType>, SupportedComparators<Comparators...>>&
     AnyTree<SupportedValueType<ValueType>, SupportedComparators<Comparators...>>::operator= (const Tree& other) {
 
-         if constexpr (detail::is_template_instantiation<Tree, UndoableTree>) {
+         if constexpr (lab::detail::is_template_instantiation<Tree, UndoableTree>) {
             m_tree = other;
          }
          else {

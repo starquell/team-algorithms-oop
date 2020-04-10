@@ -45,9 +45,8 @@ namespace lab::forest {
         /**
         *  @brief Sets current tree object (copying tree passed as argument)
         */
-        template <typename Tree, typename = std::enable_if<detail::is_template_instantiation<Tree,
-                                                                                             UndoableTree,
-                                                                                             RedBlackTree>>>
+        template <typename Tree, typename = std::enable_if<
+                lab::detail::is_template_instantiation<Tree, UndoableTree, RedBlackTree>>>
         AnyTree& operator= (const Tree& other);
 
 
