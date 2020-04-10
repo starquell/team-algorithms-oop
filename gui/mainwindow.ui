@@ -1,0 +1,648 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1199</width>
+    <height>948</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <widget class="QWidget" name="centralWidget">
+   <layout class="QGridLayout" name="gridLayout">
+    <item row="0" column="0">
+     <widget class="QStackedWidget" name="stackedWidget">
+      <property name="styleSheet">
+       <string notr="true">#stackedWidget{
+background-color:#e6ffff;
+}</string>
+      </property>
+      <property name="currentIndex">
+       <number>1</number>
+      </property>
+      <widget class="QWidget" name="page">
+       <layout class="QGridLayout" name="gridLayout_5">
+        <item row="1" column="2">
+         <widget class="QPushButton" name="RedPill">
+          <property name="minimumSize">
+           <size>
+            <width>571</width>
+            <height>271</height>
+           </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">#RedPill{
+background-color: transparent;
+border-image: url(:pics/Red.png);
+background: none;
+border: none;
+background-repeat: none;
+border-radius:100px;
+}
+
+#RedPill:hover{
+background-color:red;
+}</string>
+          </property>
+          <property name="text">
+           <string/>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="1">
+         <spacer name="horizontalSpacer">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>16</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item row="2" column="0">
+         <widget class="QLabel" name="label_3">
+          <property name="text">
+           <string>You will use Splay tree</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignHCenter|Qt::AlignTop</set>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="0">
+         <widget class="QPushButton" name="BluePill">
+          <property name="minimumSize">
+           <size>
+            <width>561</width>
+            <height>271</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>561</width>
+            <height>271</height>
+           </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">#BluePill{
+background-color: transparent;
+border-image: url(:pics/Blue.png);
+background: none;
+border: none;
+background-repeat: none;
+border-radius:100%;
+}
+
+#BluePill:hover{
+	background-color: blue;
+}
+</string>
+          </property>
+          <property name="text">
+           <string/>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="0">
+         <widget class="QLabel" name="label_4">
+          <property name="layoutDirection">
+           <enum>Qt::LeftToRight</enum>
+          </property>
+          <property name="text">
+           <string>If you take the blue pill</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignBottom|Qt::AlignHCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="2">
+         <widget class="QLabel" name="label_5">
+          <property name="text">
+           <string>If you take the red pill</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignBottom|Qt::AlignHCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="2">
+         <widget class="QLabel" name="label_6">
+          <property name="text">
+           <string>You will use Red Black tree</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignHCenter|Qt::AlignTop</set>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="page_2">
+       <layout class="QGridLayout" name="gridLayout_6">
+        <item row="0" column="3">
+         <widget class="QLabel" name="label">
+          <property name="text">
+           <string/>
+          </property>
+         </widget>
+        </item>
+        <item row="6" column="0">
+         <widget class="QPushButton" name="LoadButton">
+          <property name="minimumSize">
+           <size>
+            <width>321</width>
+            <height>41</height>
+           </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">#LoadButton{
+background-color:transparent;
+border-style: solid;
+border-width: 3px;
+border-radius:10px;
+border-color:black;
+}
+
+#LoadButton:hover{
+background-color:silver;
+}
+
+#LoadButton:pressed{
+background-color:white;
+}</string>
+          </property>
+          <property name="text">
+           <string>Load</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="4">
+         <widget class="QPushButton" name="CreateNew">
+          <property name="minimumSize">
+           <size>
+            <width>111</width>
+            <height>41</height>
+           </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">#CreateNew{
+background-color:transparent;
+border-style: solid;
+border-width: 3px;
+border-radius:10px;
+border-color:black;
+}
+
+#CreateNew:hover{
+background-color:silver;
+}
+
+#CreateNew:pressed{
+background-color:white;
+}
+</string>
+          </property>
+          <property name="text">
+           <string>Create</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="2">
+         <widget class="QLineEdit" name="lineEdit">
+          <property name="minimumSize">
+           <size>
+            <width>291</width>
+            <height>41</height>
+           </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">#lineEdit{
+border-width:3px;
+border-style:solid;
+border-radius:10px;
+}
+
+#lineEdit:hover{
+border-width:5px;
+border-color:red;
+}</string>
+          </property>
+          <property name="text">
+           <string/>
+          </property>
+          <property name="placeholderText">
+           <string>Enter name of new tree</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="2">
+         <layout class="QFormLayout" name="formLayout_4">
+          <item row="0" column="0">
+           <widget class="QLabel" name="label_2">
+            <property name="styleSheet">
+             <string notr="true">#label_2{
+border-style:solid;
+border-width:3px;
+border-radius:10px
+}</string>
+            </property>
+            <property name="text">
+             <string>Choose comparator:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="QRadioButton" name="Less">
+            <property name="styleSheet">
+             <string notr="true">#Less{
+border-top-style: solid;
+border-left-style:solid;
+border-right-style:solid;
+border-width:3px;
+border-color:black;
+border-top-right-radius: 10px;
+border-top-left-radius:10px;
+}
+#Less:hover{
+border-width:5px;
+border-color:red;
+}</string>
+            </property>
+            <property name="text">
+             <string>Fro&amp;m least to greatest</string>
+            </property>
+            <property name="checked">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="1">
+           <widget class="QRadioButton" name="Greater">
+            <property name="styleSheet">
+             <string notr="true">#Greater{
+border-bottom-style: solid;
+border-left-style:solid;
+border-right-style:solid;
+border-width:3px;
+border-color:black;
+border-bottom-right-radius: 10px;
+border-bottom-left-radius:10px;
+}
+#Greater:hover{
+border-width:5px;
+border-color:red;
+}</string>
+            </property>
+            <property name="text">
+             <string>From greatest to least</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item row="1" column="0" rowspan="4">
+         <widget class="QListView" name="DBlist">
+          <property name="minimumSize">
+           <size>
+            <width>321</width>
+            <height>451</height>
+           </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">#DBlist{
+background-color:pink;
+border-style:solid;
+border-top-right-radius:10px;
+border-top-left-radius:10px;
+border-bottom-right-radius:10px;
+border-bottom-left-radius:10px;
+border-width:3px;
+}
+</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="0">
+         <widget class="QLabel" name="label_7">
+          <property name="styleSheet">
+           <string notr="true">#label_7{
+border-style:solid;
+border-color:black;
+border-radius:10px;
+border-width:3px;
+}</string>
+          </property>
+          <property name="text">
+           <string>Load tree from DB or create new</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="page_3">
+       <layout class="QGridLayout" name="gridLayout_4">
+        <item row="0" column="0">
+         <widget class="QPushButton" name="Undo">
+          <property name="minimumSize">
+           <size>
+            <width>131</width>
+            <height>61</height>
+           </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">#Undo{
+background-color:transparent;
+border-style: solid;
+border-width: 3px;
+border-top-left-radius:10px;
+border-top-right-radius:10px;
+border-color:black;
+}
+
+#Undo:hover{
+background-color:silver;
+}
+
+#Undo:pressed{
+background-color:white;
+}</string>
+          </property>
+          <property name="text">
+           <string>&lt;&lt; Undo</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="1" rowspan="2" colspan="3">
+         <widget class="QTextEdit" name="textEdit">
+          <property name="minimumSize">
+           <size>
+            <width>521</width>
+            <height>221</height>
+           </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">#textEdit{
+background: rgb(2,49,36);
+color:white;
+border-style:solid;
+border-top-right-radius:10px;
+border-top-left-radius:10px;
+border-width:3px;
+}
+</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="4" rowspan="2">
+         <widget class="QPushButton" name="SaveButton">
+          <property name="minimumSize">
+           <size>
+            <width>141</width>
+            <height>51</height>
+           </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">#SaveButton{
+background-color:transparent;
+border-style: solid;
+border-width: 3px;
+border-top-left-radius:10px;
+border-top-right-radius:10px;
+border-bottom-left-radius:10px;
+border-bottom-right-radius:10px;
+border-color:black;
+}
+
+#SaveButton:hover{
+background-color:silver;
+}
+
+#SaveButton:pressed{
+background-color:white;
+}</string>
+          </property>
+          <property name="text">
+           <string>Save tree to db</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="0">
+         <widget class="QPushButton" name="Redo">
+          <property name="minimumSize">
+           <size>
+            <width>131</width>
+            <height>61</height>
+           </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">#Redo{
+background-color:transparent;
+border-style: solid;
+border-width: 3px;
+border-bottom-left-radius:10px;
+border-bottom-right-radius:10px;
+border-color:black;
+}
+
+#Redo:hover{
+background-color:silver;
+}
+
+#Redo:pressed{
+background-color:white;
+}</string>
+          </property>
+          <property name="text">
+           <string>Redo &gt;&gt;</string>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="1">
+         <widget class="QPushButton" name="InsertButton">
+          <property name="minimumSize">
+           <size>
+            <width>191</width>
+            <height>41</height>
+           </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">#InsertButton{
+background-color:transparent;
+border-style: solid;
+border-width: 3px;
+border-bottom-left-radius:10px;
+border-color:black;
+}
+
+#InsertButton:hover{
+background-color:silver;
+}
+
+#InsertButton:pressed{
+background-color:white;
+}</string>
+          </property>
+          <property name="text">
+           <string>Insert</string>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="2">
+         <widget class="QPushButton" name="Search">
+          <property name="minimumSize">
+           <size>
+            <width>141</width>
+            <height>41</height>
+           </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">#Search{
+background-color:transparent;
+border-style: solid;
+border-width: 3px;
+border-color:black;
+}
+
+#Search:hover{
+background-color:silver;
+}
+
+#Search:pressed{
+background-color:white;
+}</string>
+          </property>
+          <property name="text">
+           <string>Search</string>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="3">
+         <widget class="QPushButton" name="DeleteButton">
+          <property name="minimumSize">
+           <size>
+            <width>191</width>
+            <height>41</height>
+           </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">#DeleteButton{
+background-color:transparent;
+border-style: solid;
+border-width: 3px;
+border-bottom-right-radius:10px;
+border-color:black;
+}
+
+#DeleteButton:hover{
+background-color:silver;
+}
+
+#DeleteButton:pressed{
+background-color:white;
+}</string>
+          </property>
+          <property name="text">
+           <string>Delete</string>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="1" colspan="3">
+         <widget class="QPushButton" name="pushButton">
+          <property name="minimumSize">
+           <size>
+            <width>521</width>
+            <height>41</height>
+           </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">#pushButton{
+background-color:transparent;
+border-style: solid;
+border-width: 3px;
+border-top-left-radius:10px;
+border-top-right-radius:10px;
+border-bottom-left-radius:10px;
+border-bottom-right-radius:10px;
+border-color:black;
+}
+
+#pushButton:hover{
+background-color:silver;
+}
+
+#pushButton:pressed{
+background-color:white;
+}</string>
+          </property>
+          <property name="text">
+           <string>Print tree</string>
+          </property>
+         </widget>
+        </item>
+        <item row="4" column="0" colspan="5">
+         <widget class="QTextBrowser" name="TreeOutput">
+          <property name="minimumSize">
+           <size>
+            <width>941</width>
+            <height>281</height>
+           </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">#TreeOutput{
+background-color:silver;
+border-style: solid;
+border-width: 3px;
+border-top-left-radius:10px;
+border-top-right-radius:10px;
+border-bottom-left-radius:10px;
+border-bottom-right-radius:10px;
+border-color:black;
+}
+
+</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+       <zorder>textEdit</zorder>
+       <zorder>InsertButton</zorder>
+       <zorder>DeleteButton</zorder>
+       <zorder>Undo</zorder>
+       <zorder>Redo</zorder>
+       <zorder>Search</zorder>
+       <zorder>TreeOutput</zorder>
+       <zorder>pushButton</zorder>
+       <zorder>SaveButton</zorder>
+      </widget>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menuBar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>1199</width>
+     <height>23</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QStatusBar" name="statusBar"/>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <resources/>
+ <connections/>
+</ui>
