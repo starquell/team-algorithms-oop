@@ -1,0 +1,166 @@
+\hypertarget{classlab_1_1forest_1_1detail_1_1BSTBase}{}\section{lab\+:\+:forest\+:\+:detail\+:\+:B\+S\+T\+Base$<$ T, Compare, Derived\+Tree $>$ Class Template Reference}
+\label{classlab_1_1forest_1_1detail_1_1BSTBase}\index{lab\+::forest\+::detail\+::\+B\+S\+T\+Base$<$ T, Compare, Derived\+Tree $>$@{lab\+::forest\+::detail\+::\+B\+S\+T\+Base$<$ T, Compare, Derived\+Tree $>$}}
+
+
+Abstract base class for binary search tree implementations using C\+R\+TP.  
+
+
+
+
+{\ttfamily \#include $<$B\+S\+T\+Base.\+hpp$>$}
+
+
+
+Collaboration diagram for lab\+:\+:forest\+:\+:detail\+:\+:B\+S\+T\+Base$<$ T, Compare, Derived\+Tree $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=208pt]{classlab_1_1forest_1_1detail_1_1BSTBase__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classlab_1_1forest_1_1detail_1_1BSTBase_ab100bb39d2607700286a707c40dcac11}\label{classlab_1_1forest_1_1detail_1_1BSTBase_ab100bb39d2607700286a707c40dcac11}} 
+using {\bfseries value\+\_\+type} = T
+\item 
+\mbox{\Hypertarget{classlab_1_1forest_1_1detail_1_1BSTBase_a6a6e409005b5922c1f9217d699cc965e}\label{classlab_1_1forest_1_1detail_1_1BSTBase_a6a6e409005b5922c1f9217d699cc965e}} 
+using {\bfseries iterator} = \hyperlink{classlab_1_1forest_1_1detail_1_1BSTIterator}{B\+S\+T\+Iterator}$<$ Derived\+Tree $>$
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classlab_1_1forest_1_1detail_1_1BSTIterator}{iterator} \hyperlink{classlab_1_1forest_1_1detail_1_1BSTBase_aac3bd1152a3754526dcc429c30f74ffb}{search} (const T \&key) noexcept
+\item 
+\mbox{\Hypertarget{classlab_1_1forest_1_1detail_1_1BSTBase_a7b0c4d929e60a583e4fefc88fe0979ac}\label{classlab_1_1forest_1_1detail_1_1BSTBase_a7b0c4d929e60a583e4fefc88fe0979ac}} 
+void \hyperlink{classlab_1_1forest_1_1detail_1_1BSTBase_a7b0c4d929e60a583e4fefc88fe0979ac}{insert} (const T \&key)
+\begin{DoxyCompactList}\small\item\em Inserts key to tree. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classlab_1_1forest_1_1detail_1_1BSTBase_ab5b55f3b275ce011aee2a8ad4bd18fb3}\label{classlab_1_1forest_1_1detail_1_1BSTBase_ab5b55f3b275ce011aee2a8ad4bd18fb3}} 
+void \hyperlink{classlab_1_1forest_1_1detail_1_1BSTBase_ab5b55f3b275ce011aee2a8ad4bd18fb3}{erase} (const T \&key)
+\begin{DoxyCompactList}\small\item\em Erase element with this key from tree. \end{DoxyCompactList}\item 
+\hyperlink{classlab_1_1forest_1_1detail_1_1BSTIterator}{iterator} \hyperlink{classlab_1_1forest_1_1detail_1_1BSTBase_aee57d4461130971ad187ea41bc8e4e74}{begin} () const noexcept
+\item 
+\hyperlink{classlab_1_1forest_1_1detail_1_1BSTIterator}{iterator} \hyperlink{classlab_1_1forest_1_1detail_1_1BSTBase_ad2ea364cc61d5581a861d1aab3734129}{end} () const noexcept
+\item 
+\mbox{\Hypertarget{classlab_1_1forest_1_1detail_1_1BSTBase_a518f44b8f05298ea36f382ad9c558ce1}\label{classlab_1_1forest_1_1detail_1_1BSTBase_a518f44b8f05298ea36f382ad9c558ce1}} 
+{\bfseries B\+S\+T\+Base} (const \hyperlink{classlab_1_1forest_1_1detail_1_1BSTBase}{B\+S\+T\+Base} \&other)
+\item 
+\mbox{\Hypertarget{classlab_1_1forest_1_1detail_1_1BSTBase_a7f56344789a083f9b0efd5c6190c4af6}\label{classlab_1_1forest_1_1detail_1_1BSTBase_a7f56344789a083f9b0efd5c6190c4af6}} 
+{\bfseries B\+S\+T\+Base} (\hyperlink{classlab_1_1forest_1_1detail_1_1BSTBase}{B\+S\+T\+Base} \&\&other) noexcept
+\item 
+\mbox{\Hypertarget{classlab_1_1forest_1_1detail_1_1BSTBase_ac56cd574b026e98ddb2aeca457d5d898}\label{classlab_1_1forest_1_1detail_1_1BSTBase_ac56cd574b026e98ddb2aeca457d5d898}} 
+\hyperlink{classlab_1_1forest_1_1detail_1_1BSTBase}{B\+S\+T\+Base} \& {\bfseries operator=} (Derived\+Tree other) noexcept
+\item 
+\mbox{\Hypertarget{classlab_1_1forest_1_1detail_1_1BSTBase_a7bb7f10ef641e7057949c00cf8cc812b}\label{classlab_1_1forest_1_1detail_1_1BSTBase_a7bb7f10ef641e7057949c00cf8cc812b}} 
+\hyperlink{classlab_1_1forest_1_1detail_1_1BSTBase}{B\+S\+T\+Base} \& {\bfseries operator=} (const \hyperlink{classlab_1_1forest_1_1detail_1_1BSTBase}{B\+S\+T\+Base} \&other) noexcept=default
+\item 
+\mbox{\Hypertarget{classlab_1_1forest_1_1detail_1_1BSTBase_ac578b147c53ab2f0a18a15756d94ac76}\label{classlab_1_1forest_1_1detail_1_1BSTBase_ac578b147c53ab2f0a18a15756d94ac76}} 
+\hyperlink{classlab_1_1forest_1_1detail_1_1BSTBase}{B\+S\+T\+Base} \& {\bfseries operator=} (\hyperlink{classlab_1_1forest_1_1detail_1_1BSTBase}{B\+S\+T\+Base} \&\&other) noexcept=default
+\item 
+\mbox{\Hypertarget{classlab_1_1forest_1_1detail_1_1BSTBase_aaf5f2af7dd8862c7e2181eec6a767bfa}\label{classlab_1_1forest_1_1detail_1_1BSTBase_aaf5f2af7dd8862c7e2181eec6a767bfa}} 
+bool {\bfseries operator==} (const Derived\+Tree \&other) const noexcept
+\item 
+\mbox{\Hypertarget{classlab_1_1forest_1_1detail_1_1BSTBase_a48843ab8cae5c4246bddc895f634de53}\label{classlab_1_1forest_1_1detail_1_1BSTBase_a48843ab8cae5c4246bddc895f634de53}} 
+bool {\bfseries operator!=} (const Derived\+Tree \&other) const noexcept
+\item 
+auto \hyperlink{classlab_1_1forest_1_1detail_1_1BSTBase_a26625c36d62d907106f61a33f793777b}{size} () const noexcept -\/$>$ std\+::size\+\_\+t
+\item 
+auto \hyperlink{classlab_1_1forest_1_1detail_1_1BSTBase_a8986f7a9fd8ef965740f0fd1acd71dd3}{compare\+Func} () const noexcept -\/$>$ Compare
+\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classlab_1_1forest_1_1detail_1_1BSTBase_af77ccebd03c9e2fb80b462b0e231f1ae}\label{classlab_1_1forest_1_1detail_1_1BSTBase_af77ccebd03c9e2fb80b462b0e231f1ae}} 
+{\bfseries B\+S\+T\+Base} (const Compare \&comp=Compare\{\})
+\item 
+\mbox{\Hypertarget{classlab_1_1forest_1_1detail_1_1BSTBase_a9691e34ec314b525967888ad09e8717a}\label{classlab_1_1forest_1_1detail_1_1BSTBase_a9691e34ec314b525967888ad09e8717a}} 
+void {\bfseries simple\+Insert} (\hyperlink{structlab_1_1forest_1_1detail_1_1Node}{lab\+::forest\+::detail\+::\+Node}$<$ Derived\+Tree $>$ $\ast$to\+Insert)
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classlab_1_1forest_1_1detail_1_1BSTBase_af2d79489ceab33ecfa6a6c90df7bd12f}\label{classlab_1_1forest_1_1detail_1_1BSTBase_af2d79489ceab33ecfa6a6c90df7bd12f}} 
+std\+::size\+\_\+t {\bfseries \+\_\+size} = 0
+\item 
+\mbox{\Hypertarget{classlab_1_1forest_1_1detail_1_1BSTBase_ac956fd4baf6a5a055f2eebea66aebafb}\label{classlab_1_1forest_1_1detail_1_1BSTBase_ac956fd4baf6a5a055f2eebea66aebafb}} 
+Compare {\bfseries \+\_\+comp} = Compare\{\}
+\item 
+\mbox{\Hypertarget{classlab_1_1forest_1_1detail_1_1BSTBase_acf863c0027cb1d90ac099917f5a988d4}\label{classlab_1_1forest_1_1detail_1_1BSTBase_acf863c0027cb1d90ac099917f5a988d4}} 
+\hyperlink{structlab_1_1forest_1_1detail_1_1Node}{lab\+::forest\+::detail\+::\+Node}$<$ Derived\+Tree $>$ $\ast$ {\bfseries \+\_\+root} = nullptr
+\end{DoxyCompactItemize}
+\subsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classlab_1_1forest_1_1detail_1_1BSTBase_ad7b611157b688b63c666ce6caecd6e0b}\label{classlab_1_1forest_1_1detail_1_1BSTBase_ad7b611157b688b63c666ce6caecd6e0b}} 
+void \hyperlink{classlab_1_1forest_1_1detail_1_1BSTBase_ad7b611157b688b63c666ce6caecd6e0b}{swap} (\hyperlink{classlab_1_1forest_1_1detail_1_1BSTBase}{B\+S\+T\+Base} \&lhs, \hyperlink{classlab_1_1forest_1_1detail_1_1BSTBase}{B\+S\+T\+Base} \&rhs) noexcept
+\begin{DoxyCompactList}\small\item\em Swaps contents of trees. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\subsubsection*{template$<$typename T, typename Compare, typename Derived\+Tree$>$\newline
+class lab\+::forest\+::detail\+::\+B\+S\+T\+Base$<$ T, Compare, Derived\+Tree $>$}
+
+Abstract base class for binary search tree implementations using C\+R\+TP. 
+
+Provides B\+ST iterator, representing elements in increasing order and \hyperlink{classlab_1_1forest_1_1detail_1_1BSTBase_aee57d4461130971ad187ea41bc8e4e74}{begin()}, \hyperlink{classlab_1_1forest_1_1detail_1_1BSTBase_ad2ea364cc61d5581a861d1aab3734129}{end()} methods. Provides search and size methods, copy and move constuctors, copy and move assigment operators, and swap function. Requires insert\+Impl(const T\& key) and erase\+Impl(const T\& key) methods in derived class. Implementation details like root and size are protected. 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classlab_1_1forest_1_1detail_1_1BSTBase_aee57d4461130971ad187ea41bc8e4e74}\label{classlab_1_1forest_1_1detail_1_1BSTBase_aee57d4461130971ad187ea41bc8e4e74}} 
+\index{lab\+::forest\+::detail\+::\+B\+S\+T\+Base@{lab\+::forest\+::detail\+::\+B\+S\+T\+Base}!begin@{begin}}
+\index{begin@{begin}!lab\+::forest\+::detail\+::\+B\+S\+T\+Base@{lab\+::forest\+::detail\+::\+B\+S\+T\+Base}}
+\subsubsection{\texorpdfstring{begin()}{begin()}}
+{\footnotesize\ttfamily template$<$typename T, typename Compare, typename Derived\+Tree$>$ \\
+\hyperlink{classlab_1_1forest_1_1detail_1_1BSTIterator}{iterator} \hyperlink{classlab_1_1forest_1_1detail_1_1BSTBase}{lab\+::forest\+::detail\+::\+B\+S\+T\+Base}$<$ T, Compare, Derived\+Tree $>$\+::begin (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [noexcept]}}
+
+\begin{DoxyReturn}{Returns}
+Iterator pointed to the min element in tree 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classlab_1_1forest_1_1detail_1_1BSTBase_a8986f7a9fd8ef965740f0fd1acd71dd3}\label{classlab_1_1forest_1_1detail_1_1BSTBase_a8986f7a9fd8ef965740f0fd1acd71dd3}} 
+\index{lab\+::forest\+::detail\+::\+B\+S\+T\+Base@{lab\+::forest\+::detail\+::\+B\+S\+T\+Base}!compare\+Func@{compare\+Func}}
+\index{compare\+Func@{compare\+Func}!lab\+::forest\+::detail\+::\+B\+S\+T\+Base@{lab\+::forest\+::detail\+::\+B\+S\+T\+Base}}
+\subsubsection{\texorpdfstring{compare\+Func()}{compareFunc()}}
+{\footnotesize\ttfamily template$<$typename T, typename Compare, typename Derived\+Tree$>$ \\
+auto \hyperlink{classlab_1_1forest_1_1detail_1_1BSTBase}{lab\+::forest\+::detail\+::\+B\+S\+T\+Base}$<$ T, Compare, Derived\+Tree $>$\+::compare\+Func (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const -\/$>$  Compare\hspace{0.3cm}{\ttfamily [noexcept]}}
+
+\begin{DoxyReturn}{Returns}
+Function that sets order in tree, default -\/ std\+::less\{\} 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classlab_1_1forest_1_1detail_1_1BSTBase_ad2ea364cc61d5581a861d1aab3734129}\label{classlab_1_1forest_1_1detail_1_1BSTBase_ad2ea364cc61d5581a861d1aab3734129}} 
+\index{lab\+::forest\+::detail\+::\+B\+S\+T\+Base@{lab\+::forest\+::detail\+::\+B\+S\+T\+Base}!end@{end}}
+\index{end@{end}!lab\+::forest\+::detail\+::\+B\+S\+T\+Base@{lab\+::forest\+::detail\+::\+B\+S\+T\+Base}}
+\subsubsection{\texorpdfstring{end()}{end()}}
+{\footnotesize\ttfamily template$<$typename T, typename Compare, typename Derived\+Tree$>$ \\
+\hyperlink{classlab_1_1forest_1_1detail_1_1BSTIterator}{iterator} \hyperlink{classlab_1_1forest_1_1detail_1_1BSTBase}{lab\+::forest\+::detail\+::\+B\+S\+T\+Base}$<$ T, Compare, Derived\+Tree $>$\+::end (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [noexcept]}}
+
+\begin{DoxyReturn}{Returns}
+Iterator pointed to the element after last in tree 
+\end{DoxyReturn}
+\begin{DoxyWarning}{Warning}
+Use only to check if element is in tree, derefencing causes exception 
+\end{DoxyWarning}
+\mbox{\Hypertarget{classlab_1_1forest_1_1detail_1_1BSTBase_aac3bd1152a3754526dcc429c30f74ffb}\label{classlab_1_1forest_1_1detail_1_1BSTBase_aac3bd1152a3754526dcc429c30f74ffb}} 
+\index{lab\+::forest\+::detail\+::\+B\+S\+T\+Base@{lab\+::forest\+::detail\+::\+B\+S\+T\+Base}!search@{search}}
+\index{search@{search}!lab\+::forest\+::detail\+::\+B\+S\+T\+Base@{lab\+::forest\+::detail\+::\+B\+S\+T\+Base}}
+\subsubsection{\texorpdfstring{search()}{search()}}
+{\footnotesize\ttfamily template$<$typename T, typename Compare, typename Derived\+Tree$>$ \\
+\hyperlink{classlab_1_1forest_1_1detail_1_1BSTIterator}{iterator} \hyperlink{classlab_1_1forest_1_1detail_1_1BSTBase}{lab\+::forest\+::detail\+::\+B\+S\+T\+Base}$<$ T, Compare, Derived\+Tree $>$\+::search (\begin{DoxyParamCaption}\item[{const T \&}]{key }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [noexcept]}}
+
+\begin{DoxyReturn}{Returns}
+Iterator to key in tree, if not found -\/ \hyperlink{classlab_1_1forest_1_1detail_1_1BSTBase_ad2ea364cc61d5581a861d1aab3734129}{end()} 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classlab_1_1forest_1_1detail_1_1BSTBase_a26625c36d62d907106f61a33f793777b}\label{classlab_1_1forest_1_1detail_1_1BSTBase_a26625c36d62d907106f61a33f793777b}} 
+\index{lab\+::forest\+::detail\+::\+B\+S\+T\+Base@{lab\+::forest\+::detail\+::\+B\+S\+T\+Base}!size@{size}}
+\index{size@{size}!lab\+::forest\+::detail\+::\+B\+S\+T\+Base@{lab\+::forest\+::detail\+::\+B\+S\+T\+Base}}
+\subsubsection{\texorpdfstring{size()}{size()}}
+{\footnotesize\ttfamily template$<$typename T, typename Compare, typename Derived\+Tree$>$ \\
+auto \hyperlink{classlab_1_1forest_1_1detail_1_1BSTBase}{lab\+::forest\+::detail\+::\+B\+S\+T\+Base}$<$ T, Compare, Derived\+Tree $>$\+::size (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const -\/$>$  std\+::size\+\_\+t\hspace{0.3cm}{\ttfamily [noexcept]}}
+
+\begin{DoxyReturn}{Returns}
+Amount of elements in tree 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/B\+S\+T\+Base.\+hpp\end{DoxyCompactItemize}
