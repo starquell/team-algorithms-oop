@@ -19,8 +19,6 @@ namespace lab {
 
 class TreeDatabase;
 
-enum CmpType{Less, Greater};
-
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
@@ -53,6 +51,8 @@ private slots:
     void on_SaveButton_clicked();
 
 private:
+
+    enum CmpType{Less, Greater};
     Ui::MainWindow *ui;
     CmpType _cmp;
     std::string _curTreeName;

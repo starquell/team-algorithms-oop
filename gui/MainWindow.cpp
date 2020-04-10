@@ -64,7 +64,7 @@ void MainWindow::_printTree(){
 void MainWindow::on_BluePill_clicked()
 {
 
-    if (_cmp == lab::CmpType::Less){
+    if (_cmp == CmpType::Less){
         auto loadedTree = _db.load<forest::UndoableTree<forest::SplayTree<std::string>>>(_curTreeName);
         if(loadedTree == std::nullopt)
             _tree = forest::UndoableTree<forest::SplayTree<std::string>>();
@@ -83,7 +83,7 @@ void MainWindow::on_BluePill_clicked()
 
 void MainWindow::on_RedPill_clicked()
 {
-    if (_cmp == lab::CmpType::Less){
+    if (_cmp == CmpType::Less){
         auto loadedTree = _db.load<forest::UndoableTree<forest::RedBlackTree<std::string>>>(_curTreeName);
         if(loadedTree == std::nullopt)
             _tree = forest::UndoableTree<forest::RedBlackTree<std::string>>();
