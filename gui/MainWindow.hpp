@@ -10,39 +10,23 @@
 #include <UndoableTree.hpp>
 #include <AnyTree.hpp>
 
+namespace Ui {
+class MainWindow;
+}
 
 
 namespace lab {
 
 class TreeDatabase;
 
-
-enum CurPage{Pills, DB, TreeUI};
 enum CmpType{Less, Greater};
-
-/*class TreeDatabase;*/
-/*
-namespace tree {
-    template<typename, typename>
-    class AnyTree;
-    template<typename>
-    class SupportedValueType;
-
-    template<typename... T>
-    class SupportedComparators;
-}*/
-
-
-namespace Ui {
-class MainWindow;
-}
 
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
 
 public:
-    explicit MainWindow(QWidget *parent = 0);
+    explicit MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
 private slots:
@@ -70,7 +54,6 @@ private slots:
 
 private:
     Ui::MainWindow *ui;
-    CurPage _state;
     CmpType _cmp;
     std::string _curTreeName;
     TreeDatabase& _db;

@@ -23,7 +23,7 @@ background-color:#e6ffff;
 }</string>
       </property>
       <property name="currentIndex">
-       <number>1</number>
+       <number>2</number>
       </property>
       <widget class="QWidget" name="page">
        <layout class="QGridLayout" name="gridLayout_5">
@@ -434,7 +434,7 @@ background-color:white;
 }</string>
           </property>
           <property name="text">
-           <string>Save tree to db</string>
+           <string>Save tree to DB</string>
           </property>
          </widget>
         </item>

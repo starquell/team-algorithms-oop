@@ -1,5 +1,5 @@
-#include "mainwindow.h"
-#include "ui_mainwindow.h"
+#include "MainWindow.hpp"
+#include "ui_MainWindow.h"
 
 #include <SplayTree.hpp>
 #include <RedBlackTree.hpp>
@@ -14,14 +14,12 @@ namespace lab {
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow),
-    _db(TreeDatabase::instance())
+    _db(TreeDatabase::instance()),
+    _curTreeName("")
 {
     ui->setupUi(this);
     ui->stackedWidget->setCurrentIndex(0);
-    _curTreeName = "Default Tree";
-    _state = CurPage::Pills;
     _getToDBPage();
-
 }
 
 MainWindow::~MainWindow()
@@ -38,7 +36,8 @@ void MainWindow::_getToDBPage(){
         treeNames << QString::fromStdString(name);
     _dbModel->setStringList(treeNames);
     ui->DBlist->setModel(_dbModel);
-
+    if(!_loadedNames.empty())
+        ui->DBlist->setCurrentIndex(_dbModel->index(0));
 }
 
 void MainWindow::_getToPillsPage(){
@@ -105,7 +104,7 @@ void MainWindow::on_CreateNew_clicked()
 {
     _setCmp();  
     _curTreeName = ui->lineEdit->text().toStdString();
-    if (_curTreeName == "")
+    if (_curTreeName.empty())
         _curTreeName = "Last unnamed tree";
     _getToPillsPage();
 }
@@ -139,7 +138,7 @@ void MainWindow::on_InsertButton_clicked()
 {
     ui->TreeOutput->clear();
     auto toInsert = ui->textEdit->toPlainText().toStdString();
-    if (toInsert == "")
+    if (toInsert.empty())
         return;
     ui->textEdit->clear();
     _tree.insert(toInsert);
@@ -150,7 +149,7 @@ void MainWindow::on_Search_clicked()
 {
     ui->TreeOutput->clear();
     auto toSearch = ui->textEdit->toPlainText().toStdString();
-    if (toSearch == "")
+    if (toSearch.empty())
         return;
     ui->textEdit->clear();
     if (_tree.search(toSearch) != _tree.end())
@@ -164,7 +163,7 @@ void MainWindow::on_DeleteButton_clicked()
 {
     ui->TreeOutput->clear();
     auto toDelete = ui->textEdit->toPlainText().toStdString();
-    if (toDelete == "")
+    if (toDelete.empty())
         return;
     _tree.erase(toDelete);
     ui->textEdit->clear();
@@ -185,6 +184,6 @@ void MainWindow::on_SaveButton_clicked()
 
 }
 
-}//kjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjnnnnnnnnnnnnnnnnnnnn
+}
 
 

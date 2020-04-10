@@ -13,17 +13,17 @@ DEFINES += QT_DEPRECATED_WARNINGS
 INCLUDEPATH += include \
             src \
             src/SplayTree \
-            srs/RedBlackTree \
+            src/RedBlackTree \
             deps \
             deps/cereal/include
 
 SOURCES += \
         gui/main.cpp \
-        gui/mainwindow.cpp  
+        gui/MainWindow.cpp
 
 
 HEADERS += \
-        gui/mainwindow.h \
+        gui/MainWindow.hpp \
 	src/AnyTree.tpp \
 	src/AnyTreeDetail.hpp \
 	src/BSTBase.hpp \
@@ -48,8 +48,8 @@ HEADERS += \
 	
 
 FORMS += \
-        gui/mainwindow.ui
+        gui/MainWindow.ui
 
 RESOURCES += \
-    resourses.qrc
+        gui/resourses.qrc
 

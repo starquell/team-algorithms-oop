@@ -3,7 +3,6 @@
 #include <NodeBase.hpp>
 #include <iterator>
 
-#include <iterator>
 
 namespace lab::forest::detail {
     /**
