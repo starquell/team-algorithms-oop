@@ -24,9 +24,9 @@ if(ENABLE_TESTS)
     add_subdirectory(${TESTS_DIR})
 endif()
 
-#set(CMAKE_CXX_FLAGS_DEBUG "-O3")
-
 add_executable(main main.cpp)
 target_link_libraries(main PRIVATE sqlite3)
+
+
 
 

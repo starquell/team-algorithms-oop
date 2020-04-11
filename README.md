@@ -20,18 +20,46 @@
   - Strategy (AnyTree can use different BST implementations (strategies))
   
   ___
+  
+   **Perfomance comparing with std::set :**
+   
+  
+| Single insert operation   | Time    |
+|--------------|---------|
+| SplayTree    | 1766 ns |
+| RedBlackTree | 1519 ns |
+| std::set     | 1695 ns |
+
+| Single erase operation      	| Time   	|
+|--------------	|--------	|
+| SplayTree    	| 784 ns 	|
+| RedBlackTree 	| 787 ns 	|
+| std::set     	| 783 ns 	|
+  
+  | Iterating all container  	| Time     	| Size of container 	|
+  |--------------	            |----------	|-------------------	|
+  | SplayTree    	            | 0.006 ns 	| 100000            	|
+  | RedBlackTree 	            | 0.006 ns 	| 100000            	|
+  | std::set     	            | 0.398 ns 	| 100000            	|
+  
+  ___
+  
 ***Requirements :***
   - Compiler with full C++17 language and standard library support
+  
+     **Attention :**
+     Usage of TreeDatabase requires linking sqlite3
   ___
   Generated documentation located in `doc/`
   
   **All include headers are in `include/`**
   
-  **Attention : Usage of TreeDatabase requires linking sqlite3**
+ 
   ___
   
-
-
+  Part of the lab - GUI could be built using qmake (using .pro file) 
+  ___
+  
 ***Running tests using CMake:***
 ```
 git clone --recursive https://github.com/starquell/team-algorithms-oop.git

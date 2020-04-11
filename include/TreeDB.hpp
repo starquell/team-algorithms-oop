@@ -13,7 +13,7 @@ namespace lab {
     using namespace std::string_literals;
 
     /**
-     *  @brief Singleton class represention SQLite-based database for tree (can be any container)
+     *  @brief Singleton class representation SQLite-based database for tree (can be any container)
      *
      *   Class operating file with database with filename trees.sqlite located in output binary directory
      */

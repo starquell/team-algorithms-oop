@@ -238,14 +238,13 @@ namespace lab::forest::detail {
     }
 
     /**
-     * @brief Recurrsively erase whole subtree strating from toDelete node
+     * @brief Recursively erase whole subtree starting from toDelete node
      */
     template <typename Tree>
     void eraseSubTree (Node<Tree>* toDelete) {
         if (toDelete == nullptr) {
             return;
         }
-
         eraseSubTree(toDelete->left);
         eraseSubTree(toDelete->right);
 
